@@ -108,6 +108,7 @@ public class BoardActivity extends AppCompatActivity {
 
         logs = (TextView) findViewById(R.id.log);
 
+        // TODO: Best way to reverse image view order depending on playerColor.
         a1 = (ImageView) findViewById(R.id.img_a1);
         a2 = (ImageView) findViewById(R.id.img_a2);
         a3 = (ImageView) findViewById(R.id.img_a3);
@@ -338,21 +339,27 @@ public class BoardActivity extends AppCompatActivity {
             // if playerColor is white
             if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
 
+                final int localSquare = square;
+
                 squareImageView.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        v.setBackgroundColor(Color.parseColor("#FF0000"));
-
+                        v.setBackgroundColor(Color.parseColor("#0000FF"));
+                        possibleMoves(localSquare);
 
                     }
                 });
 
-                squareImageView.setBackgroundColor(Color.parseColor("#0000FF"));
             }
 
             // if playerColor is black
             if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black")) {
+
+                final int localSquare = square;
+
                 squareImageView.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        v.setBackgroundColor(Color.parseColor("#FF0000"));
+                        possibleMoves(localSquare);
 
 
                     }
@@ -366,6 +373,11 @@ public class BoardActivity extends AppCompatActivity {
 
     // TODO: Create function for possible moves after piece selected
     private void possibleMoves(int square) {
+
+        // get selectedUnit
+        String selectedUnit = gamesetList.get(square).split("_")[1];
+
+        Log.e("EYHO", selectedUnit);
 
     }
 
