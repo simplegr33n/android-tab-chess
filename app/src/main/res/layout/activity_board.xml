@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:layout_height="match_parent"
-            android:text="In Progress"
+            android:text="IN PROGRESS"
             android:textAlignment="center"
             android:gravity="center"/>
 
@@ -59,7 +59,7 @@
                     android:id="@+id/img_a8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -75,7 +75,7 @@
                     android:id="@+id/img_b8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -91,7 +91,7 @@
                     android:id="@+id/img_c8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -106,7 +106,7 @@
                     android:id="@+id/img_d8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -121,7 +121,7 @@
                     android:id="@+id/img_e8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -136,7 +136,7 @@
                     android:id="@+id/img_f8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -152,7 +152,7 @@
                     android:id="@+id/img_g8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -167,7 +167,7 @@
                     android:id="@+id/img_h8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -200,7 +200,7 @@
                     android:id="@+id/img_a7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -216,7 +216,7 @@
                     android:id="@+id/img_b7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -232,7 +232,7 @@
                     android:id="@+id/img_c7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -247,7 +247,7 @@
                     android:id="@+id/img_d7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -262,7 +262,7 @@
                     android:id="@+id/img_e7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -277,7 +277,7 @@
                     android:id="@+id/img_f7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -293,7 +293,7 @@
                     android:id="@+id/img_g7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -308,7 +308,7 @@
                     android:id="@+id/img_h7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -341,7 +341,7 @@
                     android:id="@+id/img_a6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -357,7 +357,7 @@
                     android:id="@+id/img_b6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -373,7 +373,7 @@
                     android:id="@+id/img_c6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -388,7 +388,7 @@
                     android:id="@+id/img_d6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -403,7 +403,7 @@
                     android:id="@+id/img_e6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -418,7 +418,7 @@
                     android:id="@+id/img_f6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -434,7 +434,7 @@
                     android:id="@+id/img_g6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -449,7 +449,7 @@
                     android:id="@+id/img_h6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -482,7 +482,7 @@
                     android:id="@+id/img_a5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -498,7 +498,7 @@
                     android:id="@+id/img_b5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -514,7 +514,7 @@
                     android:id="@+id/img_c5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -529,7 +529,7 @@
                     android:id="@+id/img_d5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -544,7 +544,7 @@
                     android:id="@+id/img_e5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -559,7 +559,7 @@
                     android:id="@+id/img_f5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -575,7 +575,7 @@
                     android:id="@+id/img_g5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -590,7 +590,7 @@
                     android:id="@+id/img_h5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -623,7 +623,7 @@
                     android:id="@+id/img_a4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -639,7 +639,7 @@
                     android:id="@+id/img_b4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -655,7 +655,7 @@
                     android:id="@+id/img_c4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -670,7 +670,7 @@
                     android:id="@+id/img_d4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -685,7 +685,7 @@
                     android:id="@+id/img_e4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -700,7 +700,7 @@
                     android:id="@+id/img_f4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -716,7 +716,7 @@
                     android:id="@+id/img_g4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -731,7 +731,7 @@
                     android:id="@+id/img_h4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -764,7 +764,7 @@
                     android:id="@+id/img_a3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -780,7 +780,7 @@
                     android:id="@+id/img_b3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -796,7 +796,7 @@
                     android:id="@+id/img_c3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -811,7 +811,7 @@
                     android:id="@+id/img_d3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -826,7 +826,7 @@
                     android:id="@+id/img_e3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -841,7 +841,7 @@
                     android:id="@+id/img_f3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -857,7 +857,7 @@
                     android:id="@+id/img_g3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -872,7 +872,7 @@
                     android:id="@+id/img_h3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -905,7 +905,7 @@
                     android:id="@+id/img_a2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -921,7 +921,7 @@
                     android:id="@+id/img_b2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -937,7 +937,7 @@
                     android:id="@+id/img_c2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -952,7 +952,7 @@
                     android:id="@+id/img_d2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -967,7 +967,7 @@
                     android:id="@+id/img_e2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -982,7 +982,7 @@
                     android:id="@+id/img_f2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -998,7 +998,7 @@
                     android:id="@+id/img_g2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -1013,7 +1013,7 @@
                     android:id="@+id/img_h2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -1046,7 +1046,7 @@
                     android:id="@+id/img_a1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -1062,7 +1062,7 @@
                     android:id="@+id/img_b1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -1078,7 +1078,7 @@
                     android:id="@+id/img_c1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -1093,7 +1093,7 @@
                     android:id="@+id/img_d1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -1108,7 +1108,7 @@
                     android:id="@+id/img_e1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -1123,7 +1123,7 @@
                     android:id="@+id/img_f1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -1139,7 +1139,7 @@
                     android:id="@+id/img_g1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
             </LinearLayout>
@@ -1154,7 +1154,7 @@
                     android:id="@+id/img_h1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_pawn"
+                    tools:src="@drawable/b_r"
                     android:padding="4dp"/>
 
 
@@ -1163,10 +1163,10 @@
     </LinearLayout>
 
 
-    <View
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:id="@+id/view" />
+        android:id="@+id/log" />
 
 </LinearLayout>

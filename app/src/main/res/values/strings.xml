@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">android-tab-chess</string>
+    <string name="app_name">Tab Chess</string>
+
+    <string name="new_board">
+    w_r,w_kn,w_b,w_k,w_q,w_b,w_kn,w_r,
+    w_p,w_p,w_p,w_p,w_p,w_p,w_p,w_p,
+    n,n,n,n,n,n,n,n,
+    n,n,n,n,n,n,n,n,
+    n,n,n,n,n,n,n,n,
+    n,n,n,n,n,n,n,n,
+    b_p,b_p,b_p,b_p,b_p,b_p,b_p,b_p,
+    b_r,b_kn,b_b,b_k,b_q,b_b,b_kn,b_r
+    </string>
 </resources>
