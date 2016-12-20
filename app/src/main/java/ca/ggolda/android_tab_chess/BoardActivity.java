@@ -369,7 +369,7 @@ public class BoardActivity extends AppCompatActivity {
                     squareImageView.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             if (selectedSquare == 99) {
-                                v.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
                                 selectedSquare = localSquare;
                                 isSelected(localSquare, squareImageView);
 
@@ -408,7 +408,7 @@ public class BoardActivity extends AppCompatActivity {
 
                         if (selectedSquare == 99) {
                             if (playerColor.equals("black")) {
-                                v.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
                                 selectedSquare = localSquare;
                             }
 
@@ -447,7 +447,14 @@ public class BoardActivity extends AppCompatActivity {
         for (int i = 0; i < gamesetList.size(); i++) {
             // If player white and space held by black or free, mark as available
             if (playerColor.equals("white") && gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free")) {
-                ImageView space = (ImageView) getSquareImageView(i);
+                ImageView space = getSquareImageView(i);
+                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+
+            }
+
+            // If player black and space held by white or free, mark as available
+            if (playerColor.equals("black") && gamesetList.get(i).split("_")[0].equals("white") || gamesetList.get(i).split("_")[0].equals("free")) {
+                ImageView space = getSquareImageView(i);
                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
 
             }
