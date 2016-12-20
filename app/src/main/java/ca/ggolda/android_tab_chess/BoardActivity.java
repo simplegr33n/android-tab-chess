@@ -177,7 +177,7 @@ public class BoardActivity extends AppCompatActivity {
     private void setBoard() {
 
         gamesetString = getResources().getString(R.string.new_board);
-        
+
         logs.setText(gamesetString);
 
         List<String> gamesetList = Arrays.asList(gamesetString.split("\\s*,\\s*"));
