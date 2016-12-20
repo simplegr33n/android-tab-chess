@@ -1,6 +1,7 @@
 package ca.ggolda.android_tab_chess;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -182,6 +183,7 @@ public class BoardActivity extends AppCompatActivity {
         h7 = (ImageView) findViewById(R.id.img_h7);
         h8 = (ImageView) findViewById(R.id.img_h8);
 
+
         setBoard();
     }
 
@@ -344,9 +346,9 @@ public class BoardActivity extends AppCompatActivity {
 
                 squareImageView.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        v.setBackgroundColor(Color.parseColor("#0000FF"));
+                        v.setBackgroundColor(Color.parseColor("#A60000FF"));
                         selectedSquare = localSquare;
-                        possibleMoves(localSquare, squareImageView);
+                        isSelected(localSquare, squareImageView);
 
 
                     }
@@ -363,9 +365,9 @@ public class BoardActivity extends AppCompatActivity {
                 squareImageView.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        v.setBackgroundColor(Color.parseColor("#FF0000"));
+                        v.setBackgroundColor(Color.parseColor("#A6FF0000"));
                         selectedSquare = localSquare;
-                        possibleMoves(localSquare, squareImageView);
+                        isSelected(localSquare, squareImageView);
 
 
                     }
@@ -377,9 +379,9 @@ public class BoardActivity extends AppCompatActivity {
 
     }
 
-    // TODO: Create function for possible moves after piece selected
-    //passing in image view to be able to set color back on second click
-    private void possibleMoves(int square, ImageView squareImageView) {
+
+
+    private void isSelected(int square, ImageView squareImageView) {
 
         // get selectedUnit
         final String selectedUnit = gamesetList.get(selectedSquare).split("_")[1];
@@ -392,22 +394,24 @@ public class BoardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //set background back to transparent when clicked again and set selectedSquare to empty value (99)
                 selectedSquare = 99;
-                v.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+
+                // call clearBackgronds function to clear selected and possible moves indicators
+                clearBackgrounds();
 
                 v.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
                         if (playerColor.equals("black")){
-                            v.setBackgroundColor(Color.parseColor("#FF0000"));
+                            v.setBackgroundColor(Color.parseColor("#A6FF0000"));
                             selectedSquare = localSquare;
                         }
 
                         if (playerColor.equals("white")) {
-                            v.setBackgroundColor(Color.parseColor("#0000FF"));
+                            v.setBackgroundColor(Color.parseColor("#A60000FF"));
                             selectedSquare = localSquare;
                         }
 
-                        possibleMoves(localSquare, localImageView);
+                        isSelected(localSquare, localImageView);
 
                     }
                 });
@@ -416,15 +420,258 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
+        ;
 
 
-        //TODO: call method for each unit type re: their movement (rookMovement, kingMovement, etc.)
-
+        // Check for possible moves
+        possibleMoves();
 
 
         //Logging
         Log.e("TEST: ", "" + selectedUnit);
         Log.e("TEST: ", "" + String.valueOf(selectedSquare));
+
+    }
+
+    // TODO: Create function for possible moves after piece selected
+    //passing in image view to be able to set color back on second click
+    private void possibleMoves() {
+
+        for (int i = 0; i < gamesetList.size(); i++) {
+            // If player white and space held by black or free, mark as available
+            if (playerColor.equals("white") && gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free")) {
+                ImageView space = (ImageView) getSpaceImageView(i);
+                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+
+            }
+        }
+    }
+
+    // Clear backgrounds from selected / possible moves
+    private void clearBackgrounds() {
+        for (int i = 0; i < gamesetList.size(); i++) {
+            ImageView space = (ImageView) getSpaceImageView(i);
+            space.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+        }
+    }
+
+
+    // to conveniently get ImageView from the int value of the square
+    // TODO: there are definitely more clever/efficient ways to do this
+    private ImageView getSpaceImageView(int square) {
+        ImageView imgView = null;
+        switch (square) {
+            case 0:
+                imgView = a1;
+                break;
+            case 1:
+                imgView = b1;
+                break;
+            case 2:
+                imgView = c1;
+                break;
+            case 3:
+                imgView = d1;
+                break;
+            case 4:
+                imgView = e1;
+                break;
+            case 5:
+                imgView = f1;
+                break;
+            case 6:
+                imgView = g1;
+                break;
+            case 7:
+                imgView = h1;
+                break;
+
+            case 8:
+                imgView = a2;
+                break;
+            case 9:
+                imgView = b2;
+                break;
+            case 10:
+                imgView = c2;
+                break;
+            case 11:
+                imgView = d2;
+                break;
+            case 12:
+                imgView = e2;
+                break;
+            case 13:
+                imgView = f2;
+                break;
+            case 14:
+                imgView = g2;
+                break;
+            case 15:
+                imgView = h2;
+                break;
+
+
+            case 16:
+                imgView = a3;
+                break;
+            case 17:
+                imgView = b3;
+                break;
+            case 18:
+                imgView = c3;
+                break;
+            case 19:
+                imgView = d3;
+                break;
+            case 20:
+                imgView = e3;
+                break;
+            case 21:
+                imgView = f3;
+                break;
+            case 22:
+                imgView = g3;
+                break;
+            case 23:
+                imgView = h3;
+                break;
+
+            case 24:
+                imgView = a4;
+                break;
+            case 25:
+                imgView = b4;
+                break;
+            case 26:
+                imgView = c4;
+                break;
+            case 27:
+                imgView = d4;
+                break;
+            case 28:
+                imgView = e4;
+                break;
+            case 29:
+                imgView = f4;
+                break;
+            case 30:
+                imgView = g4;
+                break;
+            case 31:
+                imgView = h4;
+                break;
+
+            case 32:
+                imgView = a5;
+                break;
+            case 33:
+                imgView = b5;
+                break;
+            case 34:
+                imgView = c5;
+                break;
+            case 35:
+                imgView = d5;
+                break;
+            case 36:
+                imgView = e5;
+                break;
+            case 37:
+                imgView = f5;
+                break;
+            case 38:
+                imgView = g5;
+                break;
+            case 39:
+                imgView = h5;
+                break;
+
+
+            case 40:
+                imgView = a6;
+                break;
+            case 41:
+                imgView = b6;
+                break;
+            case 42:
+                imgView = c6;
+                break;
+            case 43:
+                imgView = d6;
+                break;
+            case 44:
+                imgView = e6;
+                break;
+            case 45:
+                imgView = f6;
+                break;
+            case 46:
+                imgView = g6;
+                break;
+            case 47:
+                imgView = h6;
+                break;
+
+            case 48:
+                imgView = a7;
+                break;
+            case 49:
+                imgView = b7;
+                break;
+            case 50:
+                imgView = c7;
+                break;
+            case 51:
+                imgView = d7;
+                break;
+            case 52:
+                imgView = e7;
+                break;
+            case 53:
+                imgView = f7;
+                break;
+            case 54:
+                imgView = g7;
+                break;
+            case 55:
+                imgView = h7;
+                break;
+
+            case 56:
+                imgView = a8;
+                break;
+            case 57:
+                imgView = b8;
+                break;
+            case 58:
+                imgView = c8;
+                break;
+            case 59:
+                imgView = d8;
+                break;
+            case 60:
+                imgView = e8;
+                break;
+            case 61:
+                imgView = f8;
+                break;
+            case 62:
+                imgView = g8;
+                break;
+            case 63:
+                imgView = h8;
+                break;
+
+        }
+
+
+
+
+
+
+        return imgView;
+
 
     }
 
