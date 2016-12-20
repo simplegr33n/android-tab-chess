@@ -346,7 +346,7 @@ public class BoardActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         v.setBackgroundColor(Color.parseColor("#0000FF"));
                         selectedSquare = localSquare;
-                        possibleMoves(squareImageView);
+                        possibleMoves(localSquare, squareImageView);
 
 
                     }
@@ -365,7 +365,7 @@ public class BoardActivity extends AppCompatActivity {
 
                         v.setBackgroundColor(Color.parseColor("#FF0000"));
                         selectedSquare = localSquare;
-                        possibleMoves(squareImageView);
+                        possibleMoves(localSquare, squareImageView);
 
 
                     }
@@ -379,19 +379,19 @@ public class BoardActivity extends AppCompatActivity {
 
     // TODO: Create function for possible moves after piece selected
     //passing in image view to be able to set color back on second click
-    private void possibleMoves(ImageView squareImageView) {
+    private void possibleMoves(int square, ImageView squareImageView) {
 
         // get selectedUnit
-        String selectedUnit = gamesetList.get(selectedSquare).split("_")[1];
-
-        Log.e("EYHO", selectedUnit);
+        final String selectedUnit = gamesetList.get(selectedSquare).split("_")[1];
 
         final ImageView localImageView = squareImageView;
-
+        final int localSquare = square;
 
         //TODO: clean up... this is too many levels of onclick listeners
         squareImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //set background back to transparent when clicked again and set selectedSquare to empty value (99)
+                selectedSquare = 99;
                 v.setBackgroundColor(Color.parseColor("#00FFFFFF"));
 
                 v.setOnClickListener(new View.OnClickListener() {
@@ -399,16 +399,15 @@ public class BoardActivity extends AppCompatActivity {
 
                         if (playerColor.equals("black")){
                             v.setBackgroundColor(Color.parseColor("#FF0000"));
+                            selectedSquare = localSquare;
                         }
 
                         if (playerColor.equals("white")) {
                             v.setBackgroundColor(Color.parseColor("#0000FF"));
+                            selectedSquare = localSquare;
                         }
 
-
-
-                        possibleMoves(localImageView);
-
+                        possibleMoves(localSquare, localImageView);
 
                     }
                 });
@@ -416,6 +415,16 @@ public class BoardActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        //TODO: call method for each unit type re: their movement (rookMovement, kingMovement, etc.)
+
+
+
+        //Logging
+        Log.e("TEST: ", "" + selectedUnit);
+        Log.e("TEST: ", "" + String.valueOf(selectedSquare));
 
     }
 
