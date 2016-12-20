@@ -89,7 +89,7 @@ public class BoardActivity extends AppCompatActivity {
 
     private TextView logs;
 
-    private String gameset;
+    private String gamesetString;
 
 
     @Override
@@ -176,83 +176,83 @@ public class BoardActivity extends AppCompatActivity {
 
     private void setBoard() {
 
-        gameset = getResources().getString(R.string.new_board);
+        gamesetString = getResources().getString(R.string.new_board);
+        
+        logs.setText(gamesetString);
 
-        logs.setText(gameset);
+        List<String> gamesetList = Arrays.asList(gamesetString.split("\\s*,\\s*"));
 
-        List<String> set = Arrays.asList(gameset.split("\\s*,\\s*"));
+        a1.setImageResource(getResources().getIdentifier(gamesetList.get(0) , "drawable", getPackageName()));
+        b1.setImageResource(getResources().getIdentifier(gamesetList.get(1) , "drawable", getPackageName()));
+        c1.setImageResource(getResources().getIdentifier(gamesetList.get(2) , "drawable", getPackageName()));
+        d1.setImageResource(getResources().getIdentifier(gamesetList.get(3) , "drawable", getPackageName()));
+        e1.setImageResource(getResources().getIdentifier(gamesetList.get(4) , "drawable", getPackageName()));
+        f1.setImageResource(getResources().getIdentifier(gamesetList.get(5) , "drawable", getPackageName()));
+        g1.setImageResource(getResources().getIdentifier(gamesetList.get(6) , "drawable", getPackageName()));
+        h1.setImageResource(getResources().getIdentifier(gamesetList.get(7) , "drawable", getPackageName()));
 
-        a1.setImageResource(getResources().getIdentifier(set.get(0) , "drawable", getPackageName()));
-        b1.setImageResource(getResources().getIdentifier(set.get(1) , "drawable", getPackageName()));
-        c1.setImageResource(getResources().getIdentifier(set.get(2) , "drawable", getPackageName()));
-        d1.setImageResource(getResources().getIdentifier(set.get(3) , "drawable", getPackageName()));
-        e1.setImageResource(getResources().getIdentifier(set.get(4) , "drawable", getPackageName()));
-        f1.setImageResource(getResources().getIdentifier(set.get(5) , "drawable", getPackageName()));
-        g1.setImageResource(getResources().getIdentifier(set.get(6) , "drawable", getPackageName()));
-        h1.setImageResource(getResources().getIdentifier(set.get(7) , "drawable", getPackageName()));
+        a2.setImageResource(getResources().getIdentifier(gamesetList.get(8) , "drawable", getPackageName()));
+        b2.setImageResource(getResources().getIdentifier(gamesetList.get(9) , "drawable", getPackageName()));
+        c2.setImageResource(getResources().getIdentifier(gamesetList.get(10) , "drawable", getPackageName()));
+        d2.setImageResource(getResources().getIdentifier(gamesetList.get(11) , "drawable", getPackageName()));
+        e2.setImageResource(getResources().getIdentifier(gamesetList.get(12) , "drawable", getPackageName()));
+        f2.setImageResource(getResources().getIdentifier(gamesetList.get(13) , "drawable", getPackageName()));
+        g2.setImageResource(getResources().getIdentifier(gamesetList.get(14) , "drawable", getPackageName()));
+        h2.setImageResource(getResources().getIdentifier(gamesetList.get(15) , "drawable", getPackageName()));
 
-        a2.setImageResource(getResources().getIdentifier(set.get(8) , "drawable", getPackageName()));
-        b2.setImageResource(getResources().getIdentifier(set.get(9) , "drawable", getPackageName()));
-        c2.setImageResource(getResources().getIdentifier(set.get(10) , "drawable", getPackageName()));
-        d2.setImageResource(getResources().getIdentifier(set.get(11) , "drawable", getPackageName()));
-        e2.setImageResource(getResources().getIdentifier(set.get(12) , "drawable", getPackageName()));
-        f2.setImageResource(getResources().getIdentifier(set.get(13) , "drawable", getPackageName()));
-        g2.setImageResource(getResources().getIdentifier(set.get(14) , "drawable", getPackageName()));
-        h2.setImageResource(getResources().getIdentifier(set.get(15) , "drawable", getPackageName()));
+        a3.setImageResource(getResources().getIdentifier(gamesetList.get(16) , "drawable", getPackageName()));
+        b3.setImageResource(getResources().getIdentifier(gamesetList.get(17) , "drawable", getPackageName()));
+        c3.setImageResource(getResources().getIdentifier(gamesetList.get(18) , "drawable", getPackageName()));
+        d3.setImageResource(getResources().getIdentifier(gamesetList.get(19) , "drawable", getPackageName()));
+        e3.setImageResource(getResources().getIdentifier(gamesetList.get(20) , "drawable", getPackageName()));
+        f3.setImageResource(getResources().getIdentifier(gamesetList.get(21) , "drawable", getPackageName()));
+        g3.setImageResource(getResources().getIdentifier(gamesetList.get(22) , "drawable", getPackageName()));
+        h3.setImageResource(getResources().getIdentifier(gamesetList.get(23) , "drawable", getPackageName()));
 
-        a3.setImageResource(getResources().getIdentifier(set.get(16) , "drawable", getPackageName()));
-        b3.setImageResource(getResources().getIdentifier(set.get(17) , "drawable", getPackageName()));
-        c3.setImageResource(getResources().getIdentifier(set.get(18) , "drawable", getPackageName()));
-        d3.setImageResource(getResources().getIdentifier(set.get(19) , "drawable", getPackageName()));
-        e3.setImageResource(getResources().getIdentifier(set.get(20) , "drawable", getPackageName()));
-        f3.setImageResource(getResources().getIdentifier(set.get(21) , "drawable", getPackageName()));
-        g3.setImageResource(getResources().getIdentifier(set.get(22) , "drawable", getPackageName()));
-        h3.setImageResource(getResources().getIdentifier(set.get(23) , "drawable", getPackageName()));
+        a4.setImageResource(getResources().getIdentifier(gamesetList.get(24) , "drawable", getPackageName()));
+        b4.setImageResource(getResources().getIdentifier(gamesetList.get(25) , "drawable", getPackageName()));
+        c4.setImageResource(getResources().getIdentifier(gamesetList.get(26) , "drawable", getPackageName()));
+        d4.setImageResource(getResources().getIdentifier(gamesetList.get(27) , "drawable", getPackageName()));
+        e4.setImageResource(getResources().getIdentifier(gamesetList.get(28) , "drawable", getPackageName()));
+        f4.setImageResource(getResources().getIdentifier(gamesetList.get(29) , "drawable", getPackageName()));
+        g4.setImageResource(getResources().getIdentifier(gamesetList.get(30) , "drawable", getPackageName()));
+        h4.setImageResource(getResources().getIdentifier(gamesetList.get(31) , "drawable", getPackageName()));
 
-        a4.setImageResource(getResources().getIdentifier(set.get(24) , "drawable", getPackageName()));
-        b4.setImageResource(getResources().getIdentifier(set.get(25) , "drawable", getPackageName()));
-        c4.setImageResource(getResources().getIdentifier(set.get(26) , "drawable", getPackageName()));
-        d4.setImageResource(getResources().getIdentifier(set.get(27) , "drawable", getPackageName()));
-        e4.setImageResource(getResources().getIdentifier(set.get(28) , "drawable", getPackageName()));
-        f4.setImageResource(getResources().getIdentifier(set.get(29) , "drawable", getPackageName()));
-        g4.setImageResource(getResources().getIdentifier(set.get(30) , "drawable", getPackageName()));
-        h4.setImageResource(getResources().getIdentifier(set.get(31) , "drawable", getPackageName()));
+        a5.setImageResource(getResources().getIdentifier(gamesetList.get(32) , "drawable", getPackageName()));
+        b5.setImageResource(getResources().getIdentifier(gamesetList.get(33) , "drawable", getPackageName()));
+        c5.setImageResource(getResources().getIdentifier(gamesetList.get(34) , "drawable", getPackageName()));
+        d5.setImageResource(getResources().getIdentifier(gamesetList.get(35) , "drawable", getPackageName()));
+        e5.setImageResource(getResources().getIdentifier(gamesetList.get(36) , "drawable", getPackageName()));
+        f5.setImageResource(getResources().getIdentifier(gamesetList.get(37) , "drawable", getPackageName()));
+        g5.setImageResource(getResources().getIdentifier(gamesetList.get(38) , "drawable", getPackageName()));
+        h5.setImageResource(getResources().getIdentifier(gamesetList.get(39) , "drawable", getPackageName()));
 
-        a5.setImageResource(getResources().getIdentifier(set.get(32) , "drawable", getPackageName()));
-        b5.setImageResource(getResources().getIdentifier(set.get(33) , "drawable", getPackageName()));
-        c5.setImageResource(getResources().getIdentifier(set.get(34) , "drawable", getPackageName()));
-        d5.setImageResource(getResources().getIdentifier(set.get(35) , "drawable", getPackageName()));
-        e5.setImageResource(getResources().getIdentifier(set.get(36) , "drawable", getPackageName()));
-        f5.setImageResource(getResources().getIdentifier(set.get(37) , "drawable", getPackageName()));
-        g5.setImageResource(getResources().getIdentifier(set.get(38) , "drawable", getPackageName()));
-        h5.setImageResource(getResources().getIdentifier(set.get(39) , "drawable", getPackageName()));
+        a6.setImageResource(getResources().getIdentifier(gamesetList.get(40) , "drawable", getPackageName()));
+        b6.setImageResource(getResources().getIdentifier(gamesetList.get(41) , "drawable", getPackageName()));
+        c6.setImageResource(getResources().getIdentifier(gamesetList.get(42) , "drawable", getPackageName()));
+        d6.setImageResource(getResources().getIdentifier(gamesetList.get(43) , "drawable", getPackageName()));
+        e6.setImageResource(getResources().getIdentifier(gamesetList.get(44) , "drawable", getPackageName()));
+        f6.setImageResource(getResources().getIdentifier(gamesetList.get(45) , "drawable", getPackageName()));
+        g6.setImageResource(getResources().getIdentifier(gamesetList.get(46) , "drawable", getPackageName()));
+        h6.setImageResource(getResources().getIdentifier(gamesetList.get(47) , "drawable", getPackageName()));
 
-        a6.setImageResource(getResources().getIdentifier(set.get(40) , "drawable", getPackageName()));
-        b6.setImageResource(getResources().getIdentifier(set.get(41) , "drawable", getPackageName()));
-        c6.setImageResource(getResources().getIdentifier(set.get(42) , "drawable", getPackageName()));
-        d6.setImageResource(getResources().getIdentifier(set.get(43) , "drawable", getPackageName()));
-        e6.setImageResource(getResources().getIdentifier(set.get(44) , "drawable", getPackageName()));
-        f6.setImageResource(getResources().getIdentifier(set.get(45) , "drawable", getPackageName()));
-        g6.setImageResource(getResources().getIdentifier(set.get(46) , "drawable", getPackageName()));
-        h6.setImageResource(getResources().getIdentifier(set.get(47) , "drawable", getPackageName()));
+        a7.setImageResource(getResources().getIdentifier(gamesetList.get(48) , "drawable", getPackageName()));
+        b7.setImageResource(getResources().getIdentifier(gamesetList.get(49) , "drawable", getPackageName()));
+        c7.setImageResource(getResources().getIdentifier(gamesetList.get(50) , "drawable", getPackageName()));
+        d7.setImageResource(getResources().getIdentifier(gamesetList.get(51) , "drawable", getPackageName()));
+        e7.setImageResource(getResources().getIdentifier(gamesetList.get(52) , "drawable", getPackageName()));
+        f7.setImageResource(getResources().getIdentifier(gamesetList.get(53) , "drawable", getPackageName()));
+        g7.setImageResource(getResources().getIdentifier(gamesetList.get(54) , "drawable", getPackageName()));
+        h7.setImageResource(getResources().getIdentifier(gamesetList.get(55) , "drawable", getPackageName()));
 
-        a7.setImageResource(getResources().getIdentifier(set.get(48) , "drawable", getPackageName()));
-        b7.setImageResource(getResources().getIdentifier(set.get(49) , "drawable", getPackageName()));
-        c7.setImageResource(getResources().getIdentifier(set.get(50) , "drawable", getPackageName()));
-        d7.setImageResource(getResources().getIdentifier(set.get(51) , "drawable", getPackageName()));
-        e7.setImageResource(getResources().getIdentifier(set.get(52) , "drawable", getPackageName()));
-        f7.setImageResource(getResources().getIdentifier(set.get(53) , "drawable", getPackageName()));
-        g7.setImageResource(getResources().getIdentifier(set.get(54) , "drawable", getPackageName()));
-        h7.setImageResource(getResources().getIdentifier(set.get(55) , "drawable", getPackageName()));
-
-        a8.setImageResource(getResources().getIdentifier(set.get(56) , "drawable", getPackageName()));
-        b8.setImageResource(getResources().getIdentifier(set.get(57) , "drawable", getPackageName()));
-        c8.setImageResource(getResources().getIdentifier(set.get(58) , "drawable", getPackageName()));
-        d8.setImageResource(getResources().getIdentifier(set.get(59) , "drawable", getPackageName()));
-        e8.setImageResource(getResources().getIdentifier(set.get(60) , "drawable", getPackageName()));
-        f8.setImageResource(getResources().getIdentifier(set.get(61) , "drawable", getPackageName()));
-        g8.setImageResource(getResources().getIdentifier(set.get(62) , "drawable", getPackageName()));
-        h8.setImageResource(getResources().getIdentifier(set.get(63) , "drawable", getPackageName()));
+        a8.setImageResource(getResources().getIdentifier(gamesetList.get(56) , "drawable", getPackageName()));
+        b8.setImageResource(getResources().getIdentifier(gamesetList.get(57) , "drawable", getPackageName()));
+        c8.setImageResource(getResources().getIdentifier(gamesetList.get(58) , "drawable", getPackageName()));
+        d8.setImageResource(getResources().getIdentifier(gamesetList.get(59) , "drawable", getPackageName()));
+        e8.setImageResource(getResources().getIdentifier(gamesetList.get(60) , "drawable", getPackageName()));
+        f8.setImageResource(getResources().getIdentifier(gamesetList.get(61) , "drawable", getPackageName()));
+        g8.setImageResource(getResources().getIdentifier(gamesetList.get(62) , "drawable", getPackageName()));
+        h8.setImageResource(getResources().getIdentifier(gamesetList.get(63) , "drawable", getPackageName()));
 
     }
 }
