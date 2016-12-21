@@ -1759,6 +1759,350 @@ public class BoardActivity extends AppCompatActivity {
         if (selectedUnit.equals("white_bishop")) {
             Log.e("EYHOSEL", selectedUnit);
 
+
+            for (int i = 0; i < 63; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                Log.e("EYHOSEL", gamesetList.get(i));
+
+                // subtract int selectedSquare to get the difference of i
+                int iDiff = i - selectedSquare;
+
+                switch (iDiff) {
+                    // UP-RIGHT
+                    case 54:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 45:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 36:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 27:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 18:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9))) {
+
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+                    case 9:
+                        if (blackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+                    // DOWN-RIGHT
+                    case -42:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -35:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -28:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -21:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -14:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9))) {
+
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+                    case -7:
+                        if (blackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+                    // UP-LEFT
+                    case 42:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 35:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 28:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 21:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case 14:
+                        if (blackOrFree(i) && (isFree(selectedSquare + 9))) {
+
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+                    case 7:
+                        if (blackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+
+                    // DOWN LEFT
+                    case -54:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -45:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -36:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -27:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    case -18:
+                        if (blackOrFree(i) && (isFree(selectedSquare - 9))) {
+
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+                    case -9:
+                        if (blackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        break;
+
+
+
+                }
+            }
         }
 
 
@@ -1811,8 +2155,6 @@ public class BoardActivity extends AppCompatActivity {
         }
 
     }
-
-
 
 
     // if space in row directly ahead or behind not in same column as rook, make unavailable
@@ -1930,7 +2272,7 @@ public class BoardActivity extends AppCompatActivity {
 
     // Check if a square is free
     private Boolean isFree(int i) {
-        return (gamesetList.get(i).equals("free_square"));
+            return (gamesetList.get(i).equals("free_square"));
     }
 
     // Check if a square is either black or free
