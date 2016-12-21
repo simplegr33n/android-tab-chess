@@ -1,6 +1,5 @@
 package ca.ggolda.android_tab_chess;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -116,7 +115,6 @@ public class BoardActivity extends AppCompatActivity {
         if (gamesetString.equals("")) {
             gamesetString = getResources().getString(R.string.new_board);
         }
-
 
 
         logs = (TextView) findViewById(R.id.log);
@@ -347,46 +345,48 @@ public class BoardActivity extends AppCompatActivity {
             Log.e("EYHO", gamesetList.get(square).split("_")[0]);
 
 
-            // if playerColor is white
-            if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white") && turn.equals("white")) {
 
-                final int localSquare = square;
+            // if turn is white
+            if (turn.equals("white")) {
+                if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
 
-
-                squareImageView.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        if (selectedSquare == 99) {
-                            v.setBackgroundColor(Color.parseColor("#A60000FF"));
-                            selectedSquare = localSquare;
-                            isSelected(localSquare, squareImageView);
-                        }
+                    final int localSquare = square;
 
 
-                    }
-                });
+                    squareImageView.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            if (selectedSquare == 99) {
+                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
+                                selectedSquare = localSquare;
+                                isSelected(localSquare, squareImageView);
+                            }
 
-
-            }
-
-            // if playerColor is black
-            if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black") && turn.equals("black")) {
-
-                final int localSquare = square;
-
-
-                squareImageView.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        if (selectedSquare == 99 && turn.equals("black")) {
-                            v.setBackgroundColor(Color.parseColor("#A60000FF"));
-                            selectedSquare = localSquare;
-                            isSelected(localSquare, squareImageView);
 
                         }
-                    }
-                });
-
-
+                    });
+                }
             }
+
+            // if turn is black
+            if (turn.equals("black")) {
+                if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black")) {
+
+                    final int localSquare = square;
+
+
+                    squareImageView.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            if (selectedSquare == 99 && turn.equals("black")) {
+                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
+                                selectedSquare = localSquare;
+                                isSelected(localSquare, squareImageView);
+
+                            }
+                        }
+                    });
+                }
+            }
+
         }
 
 
@@ -492,11 +492,12 @@ public class BoardActivity extends AppCompatActivity {
 
             // change gamesetList
             gamesetList.set(moveTo, selectedUnit);
-            gamesetList.set(selectedSquare, "free_space");
+            if (selectedSquare != 99) {
+                gamesetList.set(selectedSquare, "free_space");
+            }
 
             selectedUnit = "";
             selectedSquare = 99;
-
 
 
             // delete piece from previous location
@@ -521,15 +522,27 @@ public class BoardActivity extends AppCompatActivity {
 
 
         // TODO: verify player cannot play twice in one turn if they play quickly
-        if (turn.equals("white")) {
-            turn = "black";
-        }
-        if (turn.equals("white")) {
-            turn = "white";
+        // Null onclicks and change turn
+        switch (turn) {
+            case "white":
+                turn = "black";
+                for (int i = 0; i < 64; i++) {
+                    if (playerColor.equals("white")) {
+                        getSquareImageView(i).setOnClickListener(null);
+                    }
+                }
+                break;
+            case "black":
+                turn = "white";
+                for (int i = 0; i < 64; i++) {
+                    if (playerColor.equals("black")) {
+                        getSquareImageView(i).setOnClickListener(null);
+                    }
+                }
+                break;
         }
 
         Log.e("Turn", turn);
-
 
         clearBackgrounds();
 
