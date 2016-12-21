@@ -504,7 +504,7 @@ public class BoardActivity extends AppCompatActivity {
 
 
                 // if statement for +1 forward
-                if (i == selectedSquare + 8) {
+                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare + 8)) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -517,7 +517,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if (i == selectedSquare + 16 && ((i == 24)||(i == 25)||(i == 26)||(i == 27)||(i == 28)||(i == 29)||(i == 30)||(i == 31)))  {
+                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare + 16) && ((i == 24)||(i == 25)||(i == 26)||(i == 27)||(i == 28)||(i == 29)||(i == 30)||(i == 31)))  {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -566,7 +566,7 @@ public class BoardActivity extends AppCompatActivity {
                 final ImageView space = getSquareImageView(i);
 
                 // if statement for -1 forward
-                if (i == selectedSquare - 8) {
+                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare - 8)) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -579,7 +579,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if (i == selectedSquare - 16 && ((i == 32)||(i == 33)||(i == 34)||(i == 35)||(i == 36)||(i == 37)||(i == 38)||(i == 39)))  {
+                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare - 16) && ((i == 32)||(i == 33)||(i == 34)||(i == 35)||(i == 36)||(i == 37)||(i == 38)||(i == 39)))  {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -685,7 +685,7 @@ public class BoardActivity extends AppCompatActivity {
             // change gamesetList
             gamesetList.set(moveTo, selectedUnit);
             if (selectedSquare != 99) {
-                gamesetList.set(selectedSquare, "free_space");
+                gamesetList.set(selectedSquare, "free_square");
             }
 
             selectedUnit = "";
@@ -694,7 +694,7 @@ public class BoardActivity extends AppCompatActivity {
 
             // delete piece from previous location
             if (getSquareImageView(selectedSquare) != null) {
-                getSquareImageView(selectedSquare).setImageResource(getResources().getIdentifier("free_space", "drawable", getPackageName()));
+                getSquareImageView(selectedSquare).setImageResource(getResources().getIdentifier("free_square", "drawable", getPackageName()));
             }
 
 
