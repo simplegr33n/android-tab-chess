@@ -1292,27 +1292,474 @@ public class BoardActivity extends AppCompatActivity {
 
 
                 }
-
             }
-
+        }
 //             ___ _         _   ___          _
 //            | _ ) |__ _ __| |_| _ \___  ___| |__
 //            | _ \ / _` / _| / /   / _ \/ _ \ / /
 //            |___/_\__,_\__|_\_\_|_\___/\___/_\_\
 
-            if (selectedUnit.equals("black_rook")) {
-                Log.e("EYHOSEL", selectedUnit);
+        if (selectedUnit.equals("black_rook")) {
+            Log.e("EYHOSEL", selectedUnit);
+
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                Log.e("EYHOSEL", gamesetList.get(i));
+
+                // subtract int selectedSquare to get the difference of i
+                int iDiff = i - selectedSquare;
+
+                switch (iDiff) {
+                    // UP
+                    case 8:
+                        if (whiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 16:
+
+                        if (whiteOrFree(i) && isFree(i - 8)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case 24:
+
+                        if (whiteOrFree(i) && isFree(i - 8) && isFree(i - 16)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 32:
+
+                        if (whiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 40:
+
+                        if (whiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 48:
+
+                        if (whiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case 56:
+
+                        if (whiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40) && isFree(i - 48)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+                    // DOWN
+                    case -8:
+                        if (whiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case -16:
+
+                        if (whiteOrFree(i) && isFree(i + 8)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case -24:
+
+                        if (whiteOrFree(i) && isFree(i + 8) && isFree(i + 16)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case -32:
+
+                        if (whiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case -40:
+
+                        if (whiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case -48:
+
+                        if (whiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case -56:
+
+                        if (whiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40) && isFree(i + 48)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        break;
+
+
+                    // RIGHT
+                    case 1:
+                        if (whiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+
+                        }
+                        wallRook(i);
+
+
+                        break;
+                    case 2:
+
+                        if (whiteOrFree(i) && isFree(i - 1)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+                        break;
+                    case 3:
+
+                        if (whiteOrFree(i) && isFree(i - 1) && isFree(i - 2)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+
+                        break;
+                    case 4:
+
+                        if (whiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+
+                        break;
+                    case 5:
+
+                        if (whiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+
+                        break;
+                    case 6:
+
+                        if (whiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+                        break;
+                    case 7:
+
+                        if (whiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5) && isFree(i - 6)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+                        break;
+
+                    // LEFT
+                    case -1:
+                        if (whiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallRook(i);
+
+
+                        break;
+                    case -2:
+
+                        if (whiteOrFree(i) && isFree(i + 1)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        wallRook(i);
+
+                        break;
+                    case -3:
+
+                        if (whiteOrFree(i) && isFree(i + 1) && isFree(i + 2)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        wallRook(i);
+
+
+                        break;
+                    case -4:
+
+                        if (whiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        wallRook(i);
+
+
+                        break;
+                    case -5:
+
+                        if (whiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        wallRook(i);
+
+
+                        break;
+                    case -6:
+
+                        if (whiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        wallRook(i);
+
+                        break;
+                    case -7:
+
+                        if (whiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5) && isFree(i + 6)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        wallRook(i);
+
+                        break;
+
+
+                }
+
             }
+        }
 
 //            __      ___    _ _       ___ _    _
 //            \ \    / / |_ (_) |_ ___| _ |_)__| |_  ___ _ __
 //             \ \/\/ /| ' \| |  _/ -_) _ \ (_-< ' \/ _ \ '_ \
 //              \_/\_/ |_||_|_|\__\___|___/_/__/_||_\___/ .__/
 //                                                      |_|
-            if (selectedUnit.equals("white_bishop")) {
-                Log.e("EYHOSEL", selectedUnit);
+        if (selectedUnit.equals("white_bishop")) {
+            Log.e("EYHOSEL", selectedUnit);
 
-            }
+        }
 
 
 //             ___ _         _   ___ _    _
@@ -1320,9 +1767,9 @@ public class BoardActivity extends AppCompatActivity {
 //            | _ \ / _` / _| / / _ \ (_-< ' \/ _ \ '_ \
 //            |___/_\__,_\__|_\_\___/_/__/_||_\___/ .__/
 //                                                |_|
-            if (selectedUnit.equals("black_bishop")) {
-                Log.e("EYHOSEL", selectedUnit);
-            }
+        if (selectedUnit.equals("black_bishop")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
 
 
 //            __      ___    _ _       _  ___
@@ -1330,18 +1777,18 @@ public class BoardActivity extends AppCompatActivity {
 //             \ \/\/ /| ' \| |  _/ -_) ' <| | ' \/ _` |
 //              \_/\_/ |_||_|_|\__\___|_|\_\_|_||_\__, |
 //                                                |___/
-            if (selectedUnit.equals("white_king")) {
-                Log.e("EYHOSEL", selectedUnit);
-            }
+        if (selectedUnit.equals("white_king")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
 
 //             ___ _         _   _  ___
 //            | _ ) |__ _ __| |_| |/ (_)_ _  __ _
 //            | _ \ / _` / _| / / ' <| | ' \/ _` |
 //            |___/_\__,_\__|_\_\_|\_\_|_||_\__, |
 //                                          |___/
-            if (selectedUnit.equals("black_king")) {
-                Log.e("EYHOSEL", selectedUnit);
-            }
+        if (selectedUnit.equals("black_king")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
 
 
 //            __      ___    _ _        ___
@@ -1349,9 +1796,9 @@ public class BoardActivity extends AppCompatActivity {
 //             \ \/\/ /| ' \| |  _/ -_) (_) | || / -_) -_) ' \
 //              \_/\_/ |_||_|_|\__\___|\__\_\\_,_\___\___|_||_|
 
-            if (selectedUnit.equals("white_queen")) {
-                Log.e("EYHOSEL", selectedUnit);
-            }
+        if (selectedUnit.equals("white_queen")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
 
 
 //             ___ _         _    ___
@@ -1359,19 +1806,22 @@ public class BoardActivity extends AppCompatActivity {
 //            | _ \ / _` / _| / / (_) | || / -_) -_) ' \
 //            |___/_\__,_\__|_\_\\__\_\\_,_\___\___|_||_|
 
-            if (selectedUnit.equals("black_queen")) {
-                Log.e("EYHOSEL", selectedUnit);
-            }
-
+        if (selectedUnit.equals("black_queen")) {
+            Log.e("EYHOSEL", selectedUnit);
         }
+
     }
 
+
+
+
     // if space in row directly ahead or behind not in same column as rook, make unavailable
-    //TODO: consider more elegant solution to walling the sides off
+    //TODO: consider more elegant solution to walling off rooks at sides
+
     private void wallRook(int i) {
 
-        if (selectedSquare  <= 7 && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15))) {
-            if (i !=  selectedSquare + 8) {
+        if (selectedSquare <= 7 && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15))) {
+            if (i != selectedSquare + 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
@@ -1379,29 +1829,14 @@ public class BoardActivity extends AppCompatActivity {
 
         }
 
-        if ((selectedSquare  >= 8 && selectedSquare  <= 15) && ((i == 0) || (i == 1) || (i == 2) || (i == 3) || (i == 4) || (i == 5) || (i == 6)  || (i == 7) || (i == 16) || (i == 17) || (i == 18) || (i == 19) || (i == 20) || (i == 21) || (i == 22) || (i == 23))) {
+        if ((selectedSquare >= 8 && selectedSquare <= 15) && ((i == 0) || (i == 1) || (i == 2) || (i == 3) || (i == 4) || (i == 5) || (i == 6) || (i == 7) || (i == 16) || (i == 17) || (i == 18) || (i == 19) || (i == 20) || (i == 21) || (i == 22) || (i == 23))) {
 
-            if (i !=  selectedSquare + 8) {
+            if (i != selectedSquare + 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
             }
-            if (i !=  selectedSquare - 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-        }
-
-
-        if ((selectedSquare  >= 16 && selectedSquare  <= 23) && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14)  || (i == 15) || (i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
-
-            if (i !=  selectedSquare + 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-            if (i !=  selectedSquare - 8) {
+            if (i != selectedSquare - 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
@@ -1409,29 +1844,14 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
-        if ((selectedSquare  >= 24 && selectedSquare  <= 31) && ((i == 16) || (i == 17) || (i == 18) || (i == 19) || (i == 20) || (i == 21) || (i == 22)  || (i == 23) || (i == 32) || (i == 33) || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39))) {
+        if ((selectedSquare >= 16 && selectedSquare <= 23) && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15) || (i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
 
-            if (i !=  selectedSquare + 8) {
+            if (i != selectedSquare + 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
             }
-            if (i !=  selectedSquare - 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-        }
-
-
-        if ((selectedSquare  >= 32 && selectedSquare  <= 39) && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30)  || (i == 31) || (i == 40) || (i == 41) || (i == 42) || (i == 43) || (i == 44) || (i == 45) || (i == 46) || (i == 47))) {
-
-            if (i !=  selectedSquare + 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-            if (i !=  selectedSquare - 8) {
+            if (i != selectedSquare - 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
@@ -1439,36 +1859,14 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
-        if ((selectedSquare  >= 40 && selectedSquare  <= 47) && ((i == 32) || (i == 33 || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38)  || (i == 39) || (i == 48) || (i == 49) || (i == 50) || (i == 51) || (i == 52) || (i == 53)) || (i == 54) || (i == 55))) {
+        if ((selectedSquare >= 24 && selectedSquare <= 31) && ((i == 16) || (i == 17) || (i == 18) || (i == 19) || (i == 20) || (i == 21) || (i == 22) || (i == 23) || (i == 32) || (i == 33) || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39))) {
 
-            if (i !=  selectedSquare + 8) {
+            if (i != selectedSquare + 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
             }
-            if (i !=  selectedSquare - 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-        }
-
-        if ((selectedSquare  >= 48 && selectedSquare  <= 56) && ((i == 40) || (i == 41) || (i == 42) || (i == 43) || (i == 44) || (i == 45) || (i == 46)  || (i == 47) || (i == 56) || (i == 57) || (i == 58) || (i == 59) || (i == 60) || (i == 61) || (i == 62) || (i == 63))) {
-
-            if (i !=  selectedSquare + 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-            if (i !=  selectedSquare - 8) {
-                ImageView nulled = getSquareImageView(i);
-                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                nulled.setOnClickListener(null);
-            }
-        }
-
-        if ((selectedSquare  >= 56 && selectedSquare  <= 63) && ((i == 48) || (i == 49) || (i == 50) || (i == 51) || (i == 52) || (i == 53) || (i == 54)  || (i == 55))) {
-            if (i !=  selectedSquare - 8) {
+            if (i != selectedSquare - 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
                 nulled.setOnClickListener(null);
@@ -1476,6 +1874,56 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
+        if ((selectedSquare >= 32 && selectedSquare <= 39) && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31) || (i == 40) || (i == 41) || (i == 42) || (i == 43) || (i == 44) || (i == 45) || (i == 46) || (i == 47))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+
+        if ((selectedSquare >= 40 && selectedSquare <= 47) && ((i == 32) || (i == 33 || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39) || (i == 48) || (i == 49) || (i == 50) || (i == 51) || (i == 52) || (i == 53)) || (i == 54) || (i == 55))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+        if ((selectedSquare >= 48 && selectedSquare <= 56) && ((i == 40) || (i == 41) || (i == 42) || (i == 43) || (i == 44) || (i == 45) || (i == 46) || (i == 47) || (i == 56) || (i == 57) || (i == 58) || (i == 59) || (i == 60) || (i == 61) || (i == 62) || (i == 63))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+        if ((selectedSquare >= 56 && selectedSquare <= 63) && ((i == 48) || (i == 49) || (i == 50) || (i == 51) || (i == 52) || (i == 53) || (i == 54) || (i == 55))) {
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
 
 
     }
