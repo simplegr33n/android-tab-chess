@@ -103,6 +103,8 @@ public class BoardActivity extends AppCompatActivity {
 
     private String turn = "white";
 
+    private TextView currentTurn;
+
     private List<String> gamesetList;
 
 
@@ -111,7 +113,7 @@ public class BoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
-        final TextView currentTurn = (TextView) findViewById(R.id.current_turn);
+        currentTurn = (TextView) findViewById(R.id.current_turn);
         if (turn.equals("black")) {
             currentTurn.setText("turn: BLACK");
             currentTurn.setBackgroundColor(Color.parseColor("#000000"));
@@ -123,7 +125,7 @@ public class BoardActivity extends AppCompatActivity {
             currentTurn.setTextColor(Color.parseColor("#000000"));
         }
 
-        
+
         final TextView currentSide = (TextView) findViewById(R.id.current_side);
         TextView changeSide = (TextView) findViewById(R.id.change_side);
         changeSide.setOnClickListener(new View.OnClickListener() {
@@ -236,7 +238,6 @@ public class BoardActivity extends AppCompatActivity {
         h6 = (ImageView) findViewById(R.id.img_h6);
         h7 = (ImageView) findViewById(R.id.img_h7);
         h8 = (ImageView) findViewById(R.id.img_h8);
-
 
 
         setBoard();
@@ -389,7 +390,6 @@ public class BoardActivity extends AppCompatActivity {
         //TODO: implement turns
         if ((gamesetList.get(square).split("_")[0]).equals("white") || (gamesetList.get(square).split("_")[0]).equals("black")) {
             Log.e("EYHO", gamesetList.get(square).split("_")[0]);
-
 
 
             // if turn is white
@@ -572,21 +572,30 @@ public class BoardActivity extends AppCompatActivity {
         switch (turn) {
             case "white":
                 turn = "black";
-                for (int i = 0; i < 64; i++) {
-                    if (playerColor.equals("white")) {
+                currentTurn.setText("turn: BLACK");
+                currentTurn.setBackgroundColor(Color.parseColor("#000000"));
+                currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
+
+                if (playerColor.equals("white")) {
+                    for (int i = 0; i < 64; i++) {
                         getSquareImageView(i).setOnClickListener(null);
                     }
                 }
                 break;
             case "black":
                 turn = "white";
-                for (int i = 0; i < 64; i++) {
-                    if (playerColor.equals("black")) {
+                currentTurn.setText("turn: WHITE");
+                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                currentTurn.setTextColor(Color.parseColor("#000000"));
+
+                if (playerColor.equals("black")) {
+                    for (int i = 0; i < 64; i++) {
                         getSquareImageView(i).setOnClickListener(null);
                     }
                 }
                 break;
         }
+
 
         Log.e("Turn", turn);
 
