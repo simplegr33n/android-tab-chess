@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -109,6 +110,26 @@ public class BoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
+
+        //TODO: remove or hide
+        TextView changeSide = (TextView) findViewById(R.id.change_side);
+        changeSide.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                clearSelected();
+
+                if (playerColor.equals("white")) {
+                    playerColor = "black";
+                    Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
+                    setBoard();
+                } else if (playerColor.equals("black")) {
+                    playerColor = "white";
+                    Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
+                    setBoard();
+                }
+
+            }
+        });
 
 
         //If no game is initialized, set gamesetString to a new board
@@ -408,7 +429,7 @@ public class BoardActivity extends AppCompatActivity {
                 selectedSquare = 99;
 
                 // call clearBackgronds function to clear selected and possible moves indicators
-                clearBackgrounds();
+                clearSelected();
 
                 v.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -544,7 +565,7 @@ public class BoardActivity extends AppCompatActivity {
 
         Log.e("Turn", turn);
 
-        clearBackgrounds();
+        clearSelected();
 
         // Reset board based on new gamesetString
         // TODO: use firebase realtime database instead of refreshing setBoard
@@ -554,10 +575,13 @@ public class BoardActivity extends AppCompatActivity {
 
     // Clear backgrounds from selected / possible moves
 
-    private void clearBackgrounds() {
+    private void clearSelected() {
         for (int i = 0; i < 64; i++) {
             ImageView space = (ImageView) getSquareImageView(i);
             space.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+
+            selectedSquare = 99;
+            selectedUnit = "";
         }
     }
 

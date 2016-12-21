@@ -32,6 +32,19 @@
             android:textAlignment="center"
             android:gravity="center"/>
 
+        <!-- TODO: remove or make hidden -->
+        <TextView
+            android:background="#f5b027"
+            android:layout_width="0dp"
+            android:textColor="#2d2e2a"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:id="@+id/change_side"
+            android:text="CHANGE SIDE"
+            android:textAlignment="center"
+            android:gravity="center"/>
+
 
     </LinearLayout>
 
