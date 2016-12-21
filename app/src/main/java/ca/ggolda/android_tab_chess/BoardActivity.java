@@ -1760,7 +1760,7 @@ public class BoardActivity extends AppCompatActivity {
             Log.e("EYHOSEL", selectedUnit);
 
 
-            for (int i = 0; i < 63; i++) {
+            for (int i = 0; i < 64; i++) {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
@@ -1854,7 +1854,7 @@ public class BoardActivity extends AppCompatActivity {
 
                     // DOWN-RIGHT
                     case -42:
-                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1867,7 +1867,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case -35:
-                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1880,7 +1880,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case -28:
-                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1893,7 +1893,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case -21:
-                        if (blackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1906,7 +1906,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case -14:
-                        if (blackOrFree(i) && (isFree(selectedSquare - 9))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare - 7))) {
 
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -1936,7 +1936,7 @@ public class BoardActivity extends AppCompatActivity {
 
                     // UP-LEFT
                     case 42:
-                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1949,7 +1949,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case 35:
-                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1962,7 +1962,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case 28:
-                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1975,7 +1975,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case 21:
-                        if (blackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -1988,7 +1988,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case 14:
-                        if (blackOrFree(i) && (isFree(selectedSquare + 9))) {
+                        if (blackOrFree(i) && (isFree(selectedSquare + 7))) {
 
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
