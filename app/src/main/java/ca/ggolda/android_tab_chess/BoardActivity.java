@@ -111,20 +111,44 @@ public class BoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
+        final TextView currentTurn = (TextView) findViewById(R.id.current_turn);
+        if (turn.equals("black")) {
+            currentTurn.setText("turn: BLACK");
+            currentTurn.setBackgroundColor(Color.parseColor("#000000"));
+            currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
 
-        //TODO: remove or hide
+        } else if (turn.equals("white")) {
+            currentTurn.setText("turn: WHITE");
+            currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            currentTurn.setTextColor(Color.parseColor("#000000"));
+        }
+
+        
+        final TextView currentSide = (TextView) findViewById(R.id.current_side);
         TextView changeSide = (TextView) findViewById(R.id.change_side);
         changeSide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                for (int i = 0; i < 64; i++) {
+                    getSquareImageView(i).setOnClickListener(null);
+                }
+
                 clearSelected();
 
                 if (playerColor.equals("white")) {
                     playerColor = "black";
                     Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
+
+                    currentSide.setText("you are: BLACK");
+                    currentSide.setBackgroundColor(Color.parseColor("#000000"));
+                    currentSide.setTextColor(Color.parseColor("#FFFFFF"));
                     setBoard();
                 } else if (playerColor.equals("black")) {
                     playerColor = "white";
                     Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
+
+                    currentSide.setText("you are: WHITE");
+                    currentSide.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    currentSide.setTextColor(Color.parseColor("#000000"));
                     setBoard();
                 }
 
@@ -212,6 +236,7 @@ public class BoardActivity extends AppCompatActivity {
         h6 = (ImageView) findViewById(R.id.img_h6);
         h7 = (ImageView) findViewById(R.id.img_h7);
         h8 = (ImageView) findViewById(R.id.img_h8);
+
 
 
         setBoard();

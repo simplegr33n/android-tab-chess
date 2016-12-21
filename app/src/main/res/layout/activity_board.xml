@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
     <!-- top buttons -->
     <LinearLayout
@@ -13,37 +13,70 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="NEW GAME"
-            android:textStyle="bold"
-            android:textAlignment="center"
+            android:layout_weight="1"
+            android:background="#56c1d4"
             android:gravity="center"
-            android:background="#56c1d4"/>
+            android:text="NEW GAME"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
         <TextView
-            android:background="#0a8d10"
             android:layout_width="0dp"
-            android:textColor="#FFFFFF"
-            android:layout_weight="1"
-            android:textStyle="bold"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0a8d10"
+            android:gravity="center"
             android:text="IN PROGRESS"
             android:textAlignment="center"
-            android:gravity="center"/>
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <!-- TODO: remove or make hidden -->
-        <TextView
-            android:background="#f5b027"
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:textColor="#2d2e2a"
-            android:layout_weight="1"
-            android:textStyle="bold"
             android:layout_height="match_parent"
-            android:id="@+id/change_side"
-            android:text="CHANGE SIDE"
-            android:textAlignment="center"
-            android:gravity="center"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/change_side"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#f5b027"
+                android:gravity="center"
+                android:text="CHANGE SIDE"
+                android:textAlignment="center"
+                android:textColor="#2d2e2a"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/current_side"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="you are: WHITE"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/current_turn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="turn: WHITE"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -73,8 +106,8 @@
                     android:id="@+id/img_a8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -89,8 +122,8 @@
                     android:id="@+id/img_b8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -105,8 +138,8 @@
                     android:id="@+id/img_c8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -120,8 +153,8 @@
                     android:id="@+id/img_d8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -135,8 +168,8 @@
                     android:id="@+id/img_e8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -150,8 +183,8 @@
                     android:id="@+id/img_f8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -166,8 +199,8 @@
                     android:id="@+id/img_g8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -181,8 +214,8 @@
                     android:id="@+id/img_h8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -214,8 +247,8 @@
                     android:id="@+id/img_a7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -230,8 +263,8 @@
                     android:id="@+id/img_b7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -246,8 +279,8 @@
                     android:id="@+id/img_c7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -261,8 +294,8 @@
                     android:id="@+id/img_d7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -276,8 +309,8 @@
                     android:id="@+id/img_e7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -291,8 +324,8 @@
                     android:id="@+id/img_f7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -307,8 +340,8 @@
                     android:id="@+id/img_g7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -322,8 +355,8 @@
                     android:id="@+id/img_h7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -355,8 +388,8 @@
                     android:id="@+id/img_a6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -371,8 +404,8 @@
                     android:id="@+id/img_b6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -387,8 +420,8 @@
                     android:id="@+id/img_c6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -402,8 +435,8 @@
                     android:id="@+id/img_d6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -417,8 +450,8 @@
                     android:id="@+id/img_e6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -432,8 +465,8 @@
                     android:id="@+id/img_f6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -448,8 +481,8 @@
                     android:id="@+id/img_g6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -463,8 +496,8 @@
                     android:id="@+id/img_h6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -496,8 +529,8 @@
                     android:id="@+id/img_a5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -512,8 +545,8 @@
                     android:id="@+id/img_b5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -528,8 +561,8 @@
                     android:id="@+id/img_c5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -543,8 +576,8 @@
                     android:id="@+id/img_d5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -558,8 +591,8 @@
                     android:id="@+id/img_e5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -573,8 +606,8 @@
                     android:id="@+id/img_f5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -589,8 +622,8 @@
                     android:id="@+id/img_g5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -604,8 +637,8 @@
                     android:id="@+id/img_h5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -637,8 +670,8 @@
                     android:id="@+id/img_a4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -653,8 +686,8 @@
                     android:id="@+id/img_b4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -669,8 +702,8 @@
                     android:id="@+id/img_c4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -684,8 +717,8 @@
                     android:id="@+id/img_d4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -699,8 +732,8 @@
                     android:id="@+id/img_e4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -714,8 +747,8 @@
                     android:id="@+id/img_f4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -730,8 +763,8 @@
                     android:id="@+id/img_g4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -745,8 +778,8 @@
                     android:id="@+id/img_h4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -778,8 +811,8 @@
                     android:id="@+id/img_a3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -794,8 +827,8 @@
                     android:id="@+id/img_b3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -810,8 +843,8 @@
                     android:id="@+id/img_c3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -825,8 +858,8 @@
                     android:id="@+id/img_d3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -840,8 +873,8 @@
                     android:id="@+id/img_e3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -855,8 +888,8 @@
                     android:id="@+id/img_f3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -871,8 +904,8 @@
                     android:id="@+id/img_g3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -886,8 +919,8 @@
                     android:id="@+id/img_h3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -919,8 +952,8 @@
                     android:id="@+id/img_a2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -935,8 +968,8 @@
                     android:id="@+id/img_b2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -951,8 +984,8 @@
                     android:id="@+id/img_c2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -966,8 +999,8 @@
                     android:id="@+id/img_d2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -981,8 +1014,8 @@
                     android:id="@+id/img_e2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -996,8 +1029,8 @@
                     android:id="@+id/img_f2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -1012,8 +1045,8 @@
                     android:id="@+id/img_g2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -1027,8 +1060,8 @@
                     android:id="@+id/img_h2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -1060,8 +1093,8 @@
                     android:id="@+id/img_a1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -1076,8 +1109,8 @@
                     android:id="@+id/img_b1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -1092,8 +1125,8 @@
                     android:id="@+id/img_c1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -1107,8 +1140,8 @@
                     android:id="@+id/img_d1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -1122,8 +1155,8 @@
                     android:id="@+id/img_e1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -1137,8 +1170,8 @@
                     android:id="@+id/img_f1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -1153,8 +1186,8 @@
                     android:id="@+id/img_g1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
             </LinearLayout>
 
@@ -1168,8 +1201,8 @@
                     android:id="@+id/img_h1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/black_rook"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    tools:src="@drawable/black_rook" />
 
 
             </LinearLayout>
@@ -1178,9 +1211,11 @@
 
 
     <TextView
+        android:id="@+id/log"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:id="@+id/log" />
+        android:textSize="8sp"
+        tools:text="test small text"/>
 
 </LinearLayout>
