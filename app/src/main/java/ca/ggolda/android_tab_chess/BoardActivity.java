@@ -497,10 +497,79 @@ public class BoardActivity extends AppCompatActivity {
 
         if (selectedUnit.equals("white_pawn")) {
             Log.e("EYHOSEL", selectedUnit);
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                // if statement for double move on first go
+                if (i == selectedSquare + 16 && ((i == 24)||(i == 25)||(i == 26)||(i == 27)||(i == 28)||(i == 29)||(i == 30)||(i == 31)))  {
+
+                    if (space != null) {
+                        space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                        space.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                moveGamepiece(localI);
+                            }
+                        });
+                    }
+                }
+
+
+                if (i == selectedSquare + 8) {
+
+                    if (space != null) {
+                        space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                        space.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                moveGamepiece(localI);
+                            }
+                        });
+                    }
+                }
+
+
+            }
+
+
         }
 
         if (selectedUnit.equals("black_pawn")) {
             Log.e("EYHOSEL", selectedUnit);
+
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                // if statement for double move on first go
+                if (i == selectedSquare - 16 && ((i == 32)||(i == 33)||(i == 34)||(i == 35)||(i == 36)||(i == 37)||(i == 38)||(i == 39)))  {
+
+                    if (space != null) {
+                        space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                        space.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                moveGamepiece(localI);
+                            }
+                        });
+                    }
+                }
+
+
+                if (i == selectedSquare - 8) {
+
+                    if (space != null) {
+                        space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                        space.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                moveGamepiece(localI);
+                            }
+                        });
+                    }
+                }
+
+
+            }
         }
 
         if (selectedUnit.equals("white_king")) {
@@ -536,37 +605,30 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
-        for (int i = 0; i < gamesetList.size(); i++) {
-            final int localI = i;
-
-            // If player white and space held by black or free, mark as available
-            if (selectedSquare != 99 && playerColor.equals("white") && (gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free"))) {
-                final ImageView space = getSquareImageView(i);
-                if (space != null) {
-                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
-                    space.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            moveGamepiece(localI);
-                        }
-                    });
-                }
-
-            }
-
-            // If player black and space held by white or free, mark as available
-            if (selectedSquare != 99 && playerColor.equals("black") && (gamesetList.get(i).split("_")[0].equals("white") || gamesetList.get(i).split("_")[0].equals("free"))) {
-                final ImageView space = getSquareImageView(i);
-                if (space != null) {
-                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
-                    space.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            moveGamepiece(localI);
-                        }
-                    });
-                }
-
-            }
-        }
+//        for (int i = 0; i < gamesetList.size(); i++) {
+//            final int localI = i;
+//
+//            // If player white and space held by black or free, mark as available
+//            if (selectedSquare != 99 && playerColor.equals("white") && (gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free"))) {
+//
+//
+//
+//            }
+//
+//            // If player black and space held by white or free, mark as available
+//            if (selectedSquare != 99 && playerColor.equals("black") && (gamesetList.get(i).split("_")[0].equals("white") || gamesetList.get(i).split("_")[0].equals("free"))) {
+//                final ImageView space = getSquareImageView(i);
+//                if (space != null) {
+//                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+//                    space.setOnClickListener(new View.OnClickListener() {
+//                        public void onClick(View v) {
+//                            moveGamepiece(localI);
+//                        }
+//                    });
+//                }
+//
+//            }
+//        }
     }
 
     private void moveGamepiece(int moveTo) {
