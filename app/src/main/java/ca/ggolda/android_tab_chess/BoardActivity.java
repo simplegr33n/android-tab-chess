@@ -502,9 +502,11 @@ public class BoardActivity extends AppCompatActivity {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
+                Log.e("EYHOSEL", gamesetList.get(i));
+
 
                 // if statement for +1 forward
-                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare + 8)) {
+                if ((i == selectedSquare + 8) && gamesetList.get(i).equals("free_square")) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -517,7 +519,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare + 16) && ((i == 24)||(i == 25)||(i == 26)||(i == 27)||(i == 28)||(i == 29)||(i == 30)||(i == 31)))  {
+                if ((i == selectedSquare + 16) && gamesetList.get(i).equals("free_square") && ((i == 24)||(i == 25)||(i == 26)||(i == 27)||(i == 28)||(i == 29)||(i == 30)||(i == 31)))  {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -566,7 +568,7 @@ public class BoardActivity extends AppCompatActivity {
                 final ImageView space = getSquareImageView(i);
 
                 // if statement for -1 forward
-                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare - 8)) {
+                if ((i == selectedSquare - 8) && gamesetList.get(i).equals("free_square")) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -579,7 +581,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if (gamesetList.get(i).equals("free_square") && (i == selectedSquare - 16) && ((i == 32)||(i == 33)||(i == 34)||(i == 35)||(i == 36)||(i == 37)||(i == 38)||(i == 39)))  {
+                if ((i == selectedSquare - 16) && gamesetList.get(i).equals("free_square") && ((i == 32)||(i == 33)||(i == 34)||(i == 35)||(i == 36)||(i == 37)||(i == 38)||(i == 39)))  {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
