@@ -495,8 +495,50 @@ public class BoardActivity extends AppCompatActivity {
     // passing in image view to be able to set color back on second click
     private void possibleMoves() {
 
+        if (selectedUnit.equals("white_pawn")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("black_pawn")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("white_king")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("black_king")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("white_queen")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("black_queen")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("white_rook")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("black_rook")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("white_bishop")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+        if (selectedUnit.equals("black_bishop")) {
+            Log.e("EYHOSEL", selectedUnit);
+        }
+
+
         for (int i = 0; i < gamesetList.size(); i++) {
             final int localI = i;
+
             // If player white and space held by black or free, mark as available
             if (selectedSquare != 99 && playerColor.equals("white") && (gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free"))) {
                 final ImageView space = getSquareImageView(i);
@@ -528,7 +570,6 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     private void moveGamepiece(int moveTo) {
-
 
         // Draw piece in new location
         // chance in gamesetList, then gamesetString // clear values of selectedUnit and selectedSquare
