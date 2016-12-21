@@ -12,6 +12,7 @@
         android:layout_weight="2">
 
         <TextView
+            android:id="@+id/new_game"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -21,13 +22,15 @@
             android:textAlignment="center"
             android:textStyle="bold" />
 
+
         <TextView
+            android:id="@+id/change_side"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#0a8d10"
             android:gravity="center"
-            android:text="IN PROGRESS"
+            android:text="CHANGE SIDE"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
@@ -40,17 +43,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/change_side"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#f5b027"
-                android:gravity="center"
-                android:text="CHANGE SIDE"
-                android:textAlignment="center"
-                android:textColor="#2d2e2a"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/current_side"

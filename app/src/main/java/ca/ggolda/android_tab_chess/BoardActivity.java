@@ -125,6 +125,20 @@ public class BoardActivity extends AppCompatActivity {
             currentTurn.setTextColor(Color.parseColor("#000000"));
         }
 
+        TextView newGame = (TextView) findViewById(R.id.new_game);
+        newGame.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                gamesetString = getResources().getString(R.string.new_board);
+                turn = "white";
+                currentTurn.setText("turn: WHITE");
+                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                currentTurn.setTextColor(Color.parseColor("#000000"));
+
+                setBoard();
+
+            }
+        });
+
 
         final TextView currentSide = (TextView) findViewById(R.id.current_side);
         TextView changeSide = (TextView) findViewById(R.id.change_side);
