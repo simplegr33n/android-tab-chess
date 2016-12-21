@@ -1,5 +1,6 @@
 package ca.ggolda.android_tab_chess;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -92,11 +93,15 @@ public class BoardActivity extends AppCompatActivity {
 
     private TextView logs;
 
-    private String gamesetString;
+    private String gamesetString = "";
 
     private int selectedSquare = 99;
+    private String selectedUnit = "";
 
+    //TODO: remove hardcoded playerColor
     private String playerColor = "white";
+
+    private String turn = "white";
 
     private List<String> gamesetList;
 
@@ -105,6 +110,13 @@ public class BoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
+
+        //If no game is initialized, set gamesetString to a new board
+        if (gamesetString.equals("")) {
+            gamesetString = getResources().getString(R.string.new_board);
+        }
+
 
 
         logs = (TextView) findViewById(R.id.log);
@@ -187,9 +199,6 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     private void setBoard() {
-
-        gamesetString = getResources().getString(R.string.new_board);
-
         logs.setText(gamesetString);
 
         gamesetList = Arrays.asList(gamesetString.split("\\s*,\\s*"));
@@ -339,43 +348,42 @@ public class BoardActivity extends AppCompatActivity {
 
 
             // if playerColor is white
-            if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
+            if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white") && turn.equals("white")) {
 
                 final int localSquare = square;
 
 
-                    squareImageView.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            if (selectedSquare == 99) {
-                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
-                                selectedSquare = localSquare;
-                                isSelected(localSquare, squareImageView);
-                            }
-
-
+                squareImageView.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (selectedSquare == 99) {
+                            v.setBackgroundColor(Color.parseColor("#A60000FF"));
+                            selectedSquare = localSquare;
+                            isSelected(localSquare, squareImageView);
                         }
-                    });
+
+
+                    }
+                });
 
 
             }
 
             // if playerColor is black
-            if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black")) {
+            if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black") && turn.equals("black")) {
 
                 final int localSquare = square;
 
 
+                squareImageView.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (selectedSquare == 99 && turn.equals("black")) {
+                            v.setBackgroundColor(Color.parseColor("#A60000FF"));
+                            selectedSquare = localSquare;
+                            isSelected(localSquare, squareImageView);
 
-                    squareImageView.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            if (selectedSquare == 99) {
-                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
-                                selectedSquare = localSquare;
-                                isSelected(localSquare, squareImageView);
-
-                            }
                         }
-                    });
+                    }
+                });
 
 
             }
@@ -385,11 +393,10 @@ public class BoardActivity extends AppCompatActivity {
     }
 
 
-
     private void isSelected(int square, ImageView squareImageView) {
 
         // get selectedUnit
-        final String selectedUnit = gamesetList.get(selectedSquare).split("_")[1];
+        selectedUnit = gamesetList.get(selectedSquare);
 
         final ImageView localImageView = squareImageView;
         final int localSquare = square;
@@ -427,9 +434,6 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
-        ;
-
-
         // Check for possible moves
         possibleMoves();
 
@@ -441,29 +445,104 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     // TODO: Create function for possible moves after piece selected
-    //passing in image view to be able to set color back on second click
+    // make possible views active
+    // passing in image view to be able to set color back on second click
     private void possibleMoves() {
 
         for (int i = 0; i < gamesetList.size(); i++) {
+            final int localI = i;
             // If player white and space held by black or free, mark as available
-            if (playerColor.equals("white") && gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free")) {
-                ImageView space = getSquareImageView(i);
-                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+            if (selectedSquare != 99 && playerColor.equals("white") && (gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free"))) {
+                final ImageView space = getSquareImageView(i);
+                if (space != null) {
+                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    space.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(localI);
+                        }
+                    });
+                }
 
             }
 
             // If player black and space held by white or free, mark as available
-            if (playerColor.equals("black") && gamesetList.get(i).split("_")[0].equals("white") || gamesetList.get(i).split("_")[0].equals("free")) {
-                ImageView space = getSquareImageView(i);
-                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+            if (selectedSquare != 99 && playerColor.equals("black") && (gamesetList.get(i).split("_")[0].equals("white") || gamesetList.get(i).split("_")[0].equals("free"))) {
+                final ImageView space = getSquareImageView(i);
+                if (space != null) {
+                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    space.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(localI);
+                        }
+                    });
+                }
 
             }
         }
     }
 
-    // Clear backgrounds from selected / possible moves
-    private void clearBackgrounds() {
+    private void moveGamepiece(int moveTo) {
+
+
+        // Draw piece in new location
+        // chance in gamesetList, then gamesetString // clear values of selectedUnit and selectedSquare
+        if (selectedUnit != "") {
+            ImageView space = getSquareImageView(moveTo);
+            space.setImageResource(getResources().getIdentifier(selectedUnit, "drawable", getPackageName()));
+
+            // change gamesetList
+            gamesetList.set(moveTo, selectedUnit);
+            gamesetList.set(selectedSquare, "free_space");
+
+            selectedUnit = "";
+            selectedSquare = 99;
+
+
+
+            // delete piece from previous location
+            if (getSquareImageView(selectedSquare) != null) {
+                getSquareImageView(selectedSquare).setImageResource(getResources().getIdentifier("free_space", "drawable", getPackageName()));
+            }
+
+
+        }
+
+        gamesetString = "";
         for (int i = 0; i < gamesetList.size(); i++) {
+            if (i != 0) {
+                gamesetString = gamesetString + "," + gamesetList.get(i);
+            }
+            if (i == 0) {
+                gamesetString = gamesetList.get(i);
+            }
+        }
+
+        Log.e("EYHO9", gamesetString);
+
+
+        // TODO: verify player cannot play twice in one turn if they play quickly
+        if (turn.equals("white")) {
+            turn = "black";
+        }
+        if (turn.equals("white")) {
+            turn = "white";
+        }
+
+        Log.e("Turn", turn);
+
+
+        clearBackgrounds();
+
+        // Reset board based on new gamesetString
+        // TODO: use firebase realtime database instead of refreshing setBoard
+        setBoard();
+
+    }
+
+    // Clear backgrounds from selected / possible moves
+
+    private void clearBackgrounds() {
+        for (int i = 0; i < 64; i++) {
             ImageView space = (ImageView) getSquareImageView(i);
             space.setBackgroundColor(Color.parseColor("#00FFFFFF"));
         }
@@ -678,10 +757,6 @@ public class BoardActivity extends AppCompatActivity {
                 break;
 
         }
-
-
-
-
 
 
         return imgView;
