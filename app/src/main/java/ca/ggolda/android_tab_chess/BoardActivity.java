@@ -412,7 +412,6 @@ public class BoardActivity extends AppCompatActivity {
 
                     final int localSquare = square;
 
-
                     squareImageView.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             if (selectedSquare == 99) {
@@ -432,7 +431,6 @@ public class BoardActivity extends AppCompatActivity {
                 if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black")) {
 
                     final int localSquare = square;
-
 
                     squareImageView.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
@@ -533,7 +531,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if ((i == selectedSquare + 16) && gamesetList.get(i).equals("free_square") && ((i == 24)||(i == 25)||(i == 26)||(i == 27)||(i == 28)||(i == 29)||(i == 30)||(i == 31)))  {
+                if ((i == selectedSquare + 16) && gamesetList.get(i).equals("free_square") && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -544,7 +542,6 @@ public class BoardActivity extends AppCompatActivity {
                         });
                     }
                 }
-
 
 
                 // if statement for pawn kill
@@ -563,9 +560,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
-
 
 
             }
@@ -595,7 +589,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if ((i == selectedSquare - 16) && gamesetList.get(i).equals("free_square") && ((i == 32)||(i == 33)||(i == 34)||(i == 35)||(i == 36)||(i == 37)||(i == 38)||(i == 39)))  {
+                if ((i == selectedSquare - 16) && gamesetList.get(i).equals("free_square") && ((i == 32) || (i == 33) || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39))) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -623,9 +617,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
-
 
 
             }
@@ -657,37 +648,217 @@ public class BoardActivity extends AppCompatActivity {
 
         if (selectedUnit.equals("white_bishop")) {
             Log.e("EYHOSEL", selectedUnit);
+
         }
+
 
         if (selectedUnit.equals("black_bishop")) {
             Log.e("EYHOSEL", selectedUnit);
         }
 
+        if (selectedUnit.equals("white_knight")) {
+            Log.e("EYHOSEL", selectedUnit);
 
-//        for (int i = 0; i < gamesetList.size(); i++) {
-//            final int localI = i;
-//
-//            // If player white and space held by black or free, mark as available
-//            if (selectedSquare != 99 && playerColor.equals("white") && (gamesetList.get(i).split("_")[0].equals("black") || gamesetList.get(i).split("_")[0].equals("free"))) {
-//
-//
-//
-//            }
-//
-//            // If player black and space held by white or free, mark as available
-//            if (selectedSquare != 99 && playerColor.equals("black") && (gamesetList.get(i).split("_")[0].equals("white") || gamesetList.get(i).split("_")[0].equals("free"))) {
-//                final ImageView space = getSquareImageView(i);
-//                if (space != null) {
-//                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
-//                    space.setOnClickListener(new View.OnClickListener() {
-//                        public void onClick(View v) {
-//                            moveGamepiece(localI);
-//                        }
-//                    });
-//                }
-//
-//            }
-//        }
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                // if statement for +1 forward
+                if ((i == selectedSquare + 6) || (i == selectedSquare + 10) || (i == selectedSquare + 15) || (i == selectedSquare + 17) || (i == selectedSquare - 6) || (i == selectedSquare - 10) || (i == selectedSquare - 15) || (i == selectedSquare - 17)) {
+
+                    if ((gamesetList.get(i).equals("free_square")) || (gamesetList.get(i).equals("black_pawn")) || (gamesetList.get(i).equals("black_king")) || (gamesetList.get(i).equals("black_queen")) || (gamesetList.get(i).equals("black_bishop")) || (gamesetList.get(i).equals("black_knight")) || (gamesetList.get(i).equals("black_rook"))) {
+                        if (space != null) {
+                            space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            space.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    moveGamepiece(localI);
+                                }
+                            });
+
+                            //TODO: figure out how to stop board side crossing a cleaner way
+                            // do not make squares which cross over the board available
+                            if ((selectedSquare == 0) || (selectedSquare == 1) || (selectedSquare == 8) || (selectedSquare == 9) || (selectedSquare == 16) || (selectedSquare == 17) || (selectedSquare == 24) || (selectedSquare == 25) || (selectedSquare == 32) || (selectedSquare == 33) || (selectedSquare == 40) || (selectedSquare == 41) || (selectedSquare == 48) || (selectedSquare == 49) || (selectedSquare == 56) || (selectedSquare == 57)) {
+                                h1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h1.setOnClickListener(null);
+                                g1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g1.setOnClickListener(null);
+                                h2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h2.setOnClickListener(null);
+                                g2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g2.setOnClickListener(null);
+                                h3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h3.setOnClickListener(null);
+                                g3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g3.setOnClickListener(null);
+                                h4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h4.setOnClickListener(null);
+                                g4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g4.setOnClickListener(null);
+                                h5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h5.setOnClickListener(null);
+                                g5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g5.setOnClickListener(null);
+                                h6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h6.setOnClickListener(null);
+                                g6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g6.setOnClickListener(null);
+                                h7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h7.setOnClickListener(null);
+                                g7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g7.setOnClickListener(null);
+                                h8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h8.setOnClickListener(null);
+                                g8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g8.setOnClickListener(null);
+                            } else if ((selectedSquare == 6) || (selectedSquare == 7) || (selectedSquare == 14) || (selectedSquare == 15) || (selectedSquare == 22) || (selectedSquare == 23) || (selectedSquare == 30) || (selectedSquare == 31) || (selectedSquare == 38) || (selectedSquare == 39) || (selectedSquare == 46) || (selectedSquare == 47) || (selectedSquare == 54) || (selectedSquare == 55) || (selectedSquare == 62) || (selectedSquare == 63)) {
+                                a1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a1.setOnClickListener(null);
+                                b1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b1.setOnClickListener(null);
+                                a2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a2.setOnClickListener(null);
+                                b2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b2.setOnClickListener(null);
+                                a3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a3.setOnClickListener(null);
+                                b3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b3.setOnClickListener(null);
+                                a4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a4.setOnClickListener(null);
+                                b4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b4.setOnClickListener(null);
+                                a5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a5.setOnClickListener(null);
+                                b5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b5.setOnClickListener(null);
+                                a6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a6.setOnClickListener(null);
+                                b6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b6.setOnClickListener(null);
+                                a7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a7.setOnClickListener(null);
+                                b7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b7.setOnClickListener(null);
+                                a8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a8.setOnClickListener(null);
+                                b8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b8.setOnClickListener(null);
+
+
+                            }
+
+
+                        }
+                    }
+
+
+
+                }
+
+            }
+        }
+
+        if (selectedUnit.equals("black_knight")) {
+            Log.e("EYHOSEL", selectedUnit);
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                // if statement for Knight movement
+                if ((i == selectedSquare + 6) || (i == selectedSquare + 10) || (i == selectedSquare + 15) || (i == selectedSquare + 17) || (i == selectedSquare - 6) || (i == selectedSquare - 10) || (i == selectedSquare - 15) || (i == selectedSquare - 17)) {
+
+                    if ((gamesetList.get(i).equals("free_square")) || (gamesetList.get(i).equals("white_pawn")) || (gamesetList.get(i).equals("white_king")) || (gamesetList.get(i).equals("white_queen")) || (gamesetList.get(i).equals("white_bishop")) || (gamesetList.get(i).equals("white_knight")) || (gamesetList.get(i).equals("white_rook"))) {
+                        if (space != null) {
+                            space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            space.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    moveGamepiece(localI);
+                                }
+                            });
+
+                            //TODO: figure out how to stop board side crossing a cleaner way
+                            // do not make squares which cross over the board available
+                            if ((selectedSquare == 0) || (selectedSquare == 1) || (selectedSquare == 8) || (selectedSquare == 9) || (selectedSquare == 16) || (selectedSquare == 17) || (selectedSquare == 24) || (selectedSquare == 25) || (selectedSquare == 32) || (selectedSquare == 33) || (selectedSquare == 40) || (selectedSquare == 41) || (selectedSquare == 48) || (selectedSquare == 49) || (selectedSquare == 56) || (selectedSquare == 57)) {
+                                h1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h1.setOnClickListener(null);
+                                g1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g1.setOnClickListener(null);
+                                h2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h2.setOnClickListener(null);
+                                g2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g2.setOnClickListener(null);
+                                h3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h3.setOnClickListener(null);
+                                g3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g3.setOnClickListener(null);
+                                h4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h4.setOnClickListener(null);
+                                g4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g4.setOnClickListener(null);
+                                h5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h5.setOnClickListener(null);
+                                g5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g5.setOnClickListener(null);
+                                h6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h6.setOnClickListener(null);
+                                g6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g6.setOnClickListener(null);
+                                h7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h7.setOnClickListener(null);
+                                g7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g7.setOnClickListener(null);
+                                h8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                h8.setOnClickListener(null);
+                                g8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                g8.setOnClickListener(null);
+                            } else if ((selectedSquare == 6) || (selectedSquare == 7) || (selectedSquare == 14) || (selectedSquare == 15) || (selectedSquare == 22) || (selectedSquare == 23) || (selectedSquare == 30) || (selectedSquare == 31) || (selectedSquare == 38) || (selectedSquare == 39) || (selectedSquare == 46) || (selectedSquare == 47) || (selectedSquare == 54) || (selectedSquare == 55) || (selectedSquare == 62) || (selectedSquare == 63)) {
+                                a1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a1.setOnClickListener(null);
+                                b1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b1.setOnClickListener(null);
+                                a2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a2.setOnClickListener(null);
+                                b2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b2.setOnClickListener(null);
+                                a3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a3.setOnClickListener(null);
+                                b3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b3.setOnClickListener(null);
+                                a4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a4.setOnClickListener(null);
+                                b4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b4.setOnClickListener(null);
+                                a5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a5.setOnClickListener(null);
+                                b5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b5.setOnClickListener(null);
+                                a6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a6.setOnClickListener(null);
+                                b6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b6.setOnClickListener(null);
+                                a7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a7.setOnClickListener(null);
+                                b7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b7.setOnClickListener(null);
+                                a8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                a8.setOnClickListener(null);
+                                b8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                                b8.setOnClickListener(null);
+
+
+                            }
+
+
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+
     }
 
     private void moveGamepiece(int moveTo) {
