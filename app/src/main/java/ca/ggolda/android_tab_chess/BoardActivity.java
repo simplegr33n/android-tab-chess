@@ -531,7 +531,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if ((i == selectedSquare + 16) && gamesetList.get(i).equals("free_square") && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
+                if ((i == selectedSquare + 16) && gamesetList.get(i - 8).equals("free_square") && gamesetList.get(i).equals("free_square") && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -589,7 +589,7 @@ public class BoardActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if ((i == selectedSquare - 16) && gamesetList.get(i).equals("free_square") && ((i == 32) || (i == 33) || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39))) {
+                if ((i == selectedSquare - 16) && gamesetList.get(i).equals("free_square") && gamesetList.get(i + 8).equals("free_square") && ((i == 32) || (i == 33) || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39))) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -746,15 +746,9 @@ public class BoardActivity extends AppCompatActivity {
 
 
                             }
-
-
                         }
                     }
-
-
-
                 }
-
             }
         }
 
@@ -848,13 +842,9 @@ public class BoardActivity extends AppCompatActivity {
 
 
                             }
-
-
                         }
                     }
                 }
-
-
             }
         }
 
