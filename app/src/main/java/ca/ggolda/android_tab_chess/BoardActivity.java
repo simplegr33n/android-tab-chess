@@ -507,6 +507,12 @@ public class BoardActivity extends AppCompatActivity {
     // passing in image view to be able to set color back on second click
     private void possibleMoves() {
 
+
+//            __      ___    _ _       ___
+//            \ \    / / |_ (_) |_ ___| _ \__ ___ __ ___ _
+//             \ \/\/ /| ' \| |  _/ -_)  _/ _` \ V  V / ' \
+//              \_/\_/ |_||_|_|\__\___|_| \__,_|\_/\_/|_||_|
+
         if (selectedUnit.equals("white_pawn")) {
             Log.e("EYHOSEL", selectedUnit);
 
@@ -567,6 +573,11 @@ public class BoardActivity extends AppCompatActivity {
 
         }
 
+//             ___ _         _   ___
+//            | _ ) |__ _ __| |_| _ \__ ___ __ ___ _
+//            | _ \ / _` / _| / /  _/ _` \ V  V / ' \
+//            |___/_\__,_\__|_\_\_| \__,_|\_/\_/|_||_|
+
         if (selectedUnit.equals("black_pawn")) {
             Log.e("EYHOSEL", selectedUnit);
 
@@ -622,40 +633,13 @@ public class BoardActivity extends AppCompatActivity {
             }
         }
 
-        if (selectedUnit.equals("white_king")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
-        if (selectedUnit.equals("black_king")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
-        if (selectedUnit.equals("white_queen")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
-        if (selectedUnit.equals("black_queen")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
-        if (selectedUnit.equals("white_rook")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
-        if (selectedUnit.equals("black_rook")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
-        if (selectedUnit.equals("white_bishop")) {
-            Log.e("EYHOSEL", selectedUnit);
-
-        }
 
 
-        if (selectedUnit.equals("black_bishop")) {
-            Log.e("EYHOSEL", selectedUnit);
-        }
-
+//            __      ___    _ _       _  __     _      _   _
+//            \ \    / / |_ (_) |_ ___| |/ /_ _ (_)__ _| |_| |_
+//             \ \/\/ /| ' \| |  _/ -_) ' <| ' \| / _` | ' \  _|
+//              \_/\_/ |_||_|_|\__\___|_|\_\_||_|_\__, |_||_\__|
+//                                                |___/
         if (selectedUnit.equals("white_knight")) {
             Log.e("EYHOSEL", selectedUnit);
 
@@ -751,6 +735,13 @@ public class BoardActivity extends AppCompatActivity {
                 }
             }
         }
+
+
+//            ___ _         _   _  __     _      _   _
+//           | _ ) |__ _ __| |_| |/ /_ _ (_)__ _| |_| |_
+//           | _ \ / _` / _| / / ' <| ' \| / _` | ' \  _|
+//           |___/_\__,_\__|_\_\_|\_\_||_|_\__, |_||_\__|
+//                                          |___/
 
         if (selectedUnit.equals("black_knight")) {
             Log.e("EYHOSEL", selectedUnit);
@@ -849,7 +840,215 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
+//            __      ___    _ _       ___          _
+//            \ \    / / |_ (_) |_ ___| _ \___  ___| |__
+//             \ \/\/ /| ' \| |  _/ -_)   / _ \/ _ \ / /
+//              \_/\_/ |_||_|_|\__\___|_|_\___/\___/_\_\
+
+        if (selectedUnit.equals("white_rook")) {
+            Log.e("EYHOSEL", selectedUnit);
+
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                Log.e("EYHOSEL", gamesetList.get(i));
+
+                // subtract int selectedSquare to get the difference of i
+                int iDiff = i - selectedSquare;
+
+                switch (iDiff) {
+                    case 8:
+                        if (blackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 16:
+
+                        if (blackOrFree(i) && isFree(i - 8)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case 24:
+
+                        if (blackOrFree(i) && isFree(i - 8) && isFree(i - 16)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 32:
+
+                        if (blackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 40:
+
+                        if (blackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) ) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                    case 48:
+
+                        if (blackOrFree(i) && isFree(i - 8) && isFree(i - 16)  && isFree(i - 24) && isFree(i - 32)  && isFree(i - 40)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case 56:
+
+                        if (blackOrFree(i) && isFree(i - 8) && isFree(i - 16)  && isFree(i - 24) && isFree(i - 32)  && isFree(i - 40) && isFree(i - 48)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                }
+
+            }
+
+//             ___ _         _   ___          _
+//            | _ ) |__ _ __| |_| _ \___  ___| |__
+//            | _ \ / _` / _| / /   / _ \/ _ \ / /
+//            |___/_\__,_\__|_\_\_|_\___/\___/_\_\
+
+            if (selectedUnit.equals("black_rook")) {
+                Log.e("EYHOSEL", selectedUnit);
+            }
+
+//            __      ___    _ _       ___ _    _
+//            \ \    / / |_ (_) |_ ___| _ |_)__| |_  ___ _ __
+//             \ \/\/ /| ' \| |  _/ -_) _ \ (_-< ' \/ _ \ '_ \
+//              \_/\_/ |_||_|_|\__\___|___/_/__/_||_\___/ .__/
+//                                                      |_|
+            if (selectedUnit.equals("white_bishop")) {
+                Log.e("EYHOSEL", selectedUnit);
+
+            }
+
+
+//             ___ _         _   ___ _    _
+//            | _ ) |__ _ __| |_| _ |_)__| |_  ___ _ __
+//            | _ \ / _` / _| / / _ \ (_-< ' \/ _ \ '_ \
+//            |___/_\__,_\__|_\_\___/_/__/_||_\___/ .__/
+//                                                |_|
+            if (selectedUnit.equals("black_bishop")) {
+                Log.e("EYHOSEL", selectedUnit);
+            }
+
+
+//            __      ___    _ _       _  ___
+//            \ \    / / |_ (_) |_ ___| |/ (_)_ _  __ _
+//             \ \/\/ /| ' \| |  _/ -_) ' <| | ' \/ _` |
+//              \_/\_/ |_||_|_|\__\___|_|\_\_|_||_\__, |
+//                                                |___/
+            if (selectedUnit.equals("white_king")) {
+                Log.e("EYHOSEL", selectedUnit);
+            }
+
+//             ___ _         _   _  ___
+//            | _ ) |__ _ __| |_| |/ (_)_ _  __ _
+//            | _ \ / _` / _| / / ' <| | ' \/ _` |
+//            |___/_\__,_\__|_\_\_|\_\_|_||_\__, |
+//                                          |___/
+            if (selectedUnit.equals("black_king")) {
+                Log.e("EYHOSEL", selectedUnit);
+            }
+
+
+
+//            __      ___    _ _        ___
+//            \ \    / / |_ (_) |_ ___ / _ \ _  _ ___ ___ _ _
+//             \ \/\/ /| ' \| |  _/ -_) (_) | || / -_) -_) ' \
+//              \_/\_/ |_||_|_|\__\___|\__\_\\_,_\___\___|_||_|
+
+            if (selectedUnit.equals("white_queen")) {
+                Log.e("EYHOSEL", selectedUnit);
+            }
+
+
+//             ___ _         _    ___
+//            | _ ) |__ _ __| |__/ _ \ _  _ ___ ___ _ _
+//            | _ \ / _` / _| / / (_) | || / -_) -_) ' \
+//            |___/_\__,_\__|_\_\\__\_\\_,_\___\___|_||_|
+
+            if (selectedUnit.equals("black_queen")) {
+                Log.e("EYHOSEL", selectedUnit);
+            }
+
+        }
     }
+
+    private Boolean isFree(int i) {
+        return (gamesetList.get(i).equals("free_square"));
+    }
+
+    private Boolean blackOrFree(int i) {
+        return ((gamesetList.get(i).equals("free_square")) || (gamesetList.get(i).equals("black_pawn")) || (gamesetList.get(i).equals("black_king")) || (gamesetList.get(i).equals("black_queen")) || (gamesetList.get(i).equals("black_bishop")) || (gamesetList.get(i).equals("black_knight")));
+    }
+
+    private Boolean whiteOrFree(int i) {
+        return ((gamesetList.get(i).equals("free_square")) || (gamesetList.get(i).equals("white_pawn")) || (gamesetList.get(i).equals("white_king")) || (gamesetList.get(i).equals("white_queen")) || (gamesetList.get(i).equals("white_bishop")) || (gamesetList.get(i).equals("white_knight")));
+    }
+
 
     private void moveGamepiece(int moveTo) {
 
