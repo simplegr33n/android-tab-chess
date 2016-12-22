@@ -140,6 +140,20 @@ public class BoardActivity extends AppCompatActivity {
         });
 
 
+        TextView testBoard = (TextView) findViewById(R.id.test_board);
+        testBoard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                gamesetString = getResources().getString(R.string.test_board);
+                turn = "white";
+                currentTurn.setText("turn: WHITE");
+                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                currentTurn.setTextColor(Color.parseColor("#000000"));
+
+                setBoard();
+
+            }
+        });
+
         final TextView currentSide = (TextView) findViewById(R.id.current_side);
         TextView changeSide = (TextView) findViewById(R.id.change_side);
         changeSide.setOnClickListener(new View.OnClickListener() {
@@ -4145,6 +4159,147 @@ public class BoardActivity extends AppCompatActivity {
 //                                                |___/
         if (selectedUnit.equals("white_king")) {
             Log.e("EYHOSEL", selectedUnit);
+
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                Log.e("EYHOSEL", gamesetList.get(i));
+
+                // subtract int selectedSquare to get the difference of i
+                int iDiff = i - selectedSquare;
+
+                switch (iDiff) {
+                    // UP
+                    case 8:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // DOWN
+                    case -8:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // RIGHT
+                    case 1:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // TOP-RIGHT
+                    case 9:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // BOTTOM-RIGHT
+                    case -9:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // LEFT
+                    case -1:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // TOP-LEFT
+                    case 7:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // BOTTOM-LEFT
+                    case -7:
+                        if (heldBlackOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                }
+            }
         }
 
 //             ___ _         _   _  ___
@@ -4154,10 +4309,156 @@ public class BoardActivity extends AppCompatActivity {
 //                                          |___/
         if (selectedUnit.equals("black_king")) {
             Log.e("EYHOSEL", selectedUnit);
+
+
+            for (int i = 0; i < 64; i++) {
+                final int localI = i;
+                final ImageView space = getSquareImageView(i);
+
+                Log.e("EYHOSEL", gamesetList.get(i));
+
+                // subtract int selectedSquare to get the difference of i
+                int iDiff = i - selectedSquare;
+
+                switch (iDiff) {
+                    // UP
+                    case 8:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // DOWN
+                    case -8:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // RIGHT
+                    case 1:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // TOP-RIGHT
+                    case 9:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // BOTTOM-RIGHT
+                    case -9:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // LEFT
+                    case -1:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // TOP-LEFT
+                    case 7:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+
+                    // BOTTOM-LEFT
+                    case -7:
+                        if (heldWhiteOrFree(i)) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+
+
+                        break;
+                }
+            }
+
+
+
         }
-
-
     }
+
+
+
+
 
 
     // if space in row directly ahead or behind not in same column as rook, make unavailable
