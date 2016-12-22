@@ -482,6 +482,10 @@ public class BoardActivity extends AppCompatActivity {
                 // call clearBackgronds function to clear selected and possible moves indicators
                 clearSelected();
 
+                // Rerun set board as some squares have probably been nulled by a wall function
+                // TODO: this may be inefficient, rethink
+                setBoard();
+
                 v.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
@@ -672,77 +676,8 @@ public class BoardActivity extends AppCompatActivity {
                                 }
                             });
 
-                            //TODO: figure out how to stop board side crossing a cleaner way
-                            // do not make squares which cross over the board available
-                            if ((selectedSquare == 0) || (selectedSquare == 1) || (selectedSquare == 8) || (selectedSquare == 9) || (selectedSquare == 16) || (selectedSquare == 17) || (selectedSquare == 24) || (selectedSquare == 25) || (selectedSquare == 32) || (selectedSquare == 33) || (selectedSquare == 40) || (selectedSquare == 41) || (selectedSquare == 48) || (selectedSquare == 49) || (selectedSquare == 56) || (selectedSquare == 57)) {
-                                h1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h1.setOnClickListener(null);
-                                g1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g1.setOnClickListener(null);
-                                h2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h2.setOnClickListener(null);
-                                g2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g2.setOnClickListener(null);
-                                h3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h3.setOnClickListener(null);
-                                g3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g3.setOnClickListener(null);
-                                h4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h4.setOnClickListener(null);
-                                g4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g4.setOnClickListener(null);
-                                h5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h5.setOnClickListener(null);
-                                g5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g5.setOnClickListener(null);
-                                h6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h6.setOnClickListener(null);
-                                g6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g6.setOnClickListener(null);
-                                h7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h7.setOnClickListener(null);
-                                g7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g7.setOnClickListener(null);
-                                h8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h8.setOnClickListener(null);
-                                g8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g8.setOnClickListener(null);
-                            } else if ((selectedSquare == 6) || (selectedSquare == 7) || (selectedSquare == 14) || (selectedSquare == 15) || (selectedSquare == 22) || (selectedSquare == 23) || (selectedSquare == 30) || (selectedSquare == 31) || (selectedSquare == 38) || (selectedSquare == 39) || (selectedSquare == 46) || (selectedSquare == 47) || (selectedSquare == 54) || (selectedSquare == 55) || (selectedSquare == 62) || (selectedSquare == 63)) {
-                                a1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a1.setOnClickListener(null);
-                                b1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b1.setOnClickListener(null);
-                                a2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a2.setOnClickListener(null);
-                                b2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b2.setOnClickListener(null);
-                                a3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a3.setOnClickListener(null);
-                                b3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b3.setOnClickListener(null);
-                                a4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a4.setOnClickListener(null);
-                                b4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b4.setOnClickListener(null);
-                                a5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a5.setOnClickListener(null);
-                                b5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b5.setOnClickListener(null);
-                                a6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a6.setOnClickListener(null);
-                                b6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b6.setOnClickListener(null);
-                                a7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a7.setOnClickListener(null);
-                                b7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b7.setOnClickListener(null);
-                                a8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a8.setOnClickListener(null);
-                                b8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b8.setOnClickListener(null);
+                            wallKnight();
 
-
-                            }
                         }
                     }
                 }
@@ -775,77 +710,7 @@ public class BoardActivity extends AppCompatActivity {
                                 }
                             });
 
-                            //TODO: figure out how to stop board side crossing a cleaner way
-                            // do not make squares which cross over the board available
-                            if ((selectedSquare == 0) || (selectedSquare == 1) || (selectedSquare == 8) || (selectedSquare == 9) || (selectedSquare == 16) || (selectedSquare == 17) || (selectedSquare == 24) || (selectedSquare == 25) || (selectedSquare == 32) || (selectedSquare == 33) || (selectedSquare == 40) || (selectedSquare == 41) || (selectedSquare == 48) || (selectedSquare == 49) || (selectedSquare == 56) || (selectedSquare == 57)) {
-                                h1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h1.setOnClickListener(null);
-                                g1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g1.setOnClickListener(null);
-                                h2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h2.setOnClickListener(null);
-                                g2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g2.setOnClickListener(null);
-                                h3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h3.setOnClickListener(null);
-                                g3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g3.setOnClickListener(null);
-                                h4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h4.setOnClickListener(null);
-                                g4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g4.setOnClickListener(null);
-                                h5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h5.setOnClickListener(null);
-                                g5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g5.setOnClickListener(null);
-                                h6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h6.setOnClickListener(null);
-                                g6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g6.setOnClickListener(null);
-                                h7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h7.setOnClickListener(null);
-                                g7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g7.setOnClickListener(null);
-                                h8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                h8.setOnClickListener(null);
-                                g8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                g8.setOnClickListener(null);
-                            } else if ((selectedSquare == 6) || (selectedSquare == 7) || (selectedSquare == 14) || (selectedSquare == 15) || (selectedSquare == 22) || (selectedSquare == 23) || (selectedSquare == 30) || (selectedSquare == 31) || (selectedSquare == 38) || (selectedSquare == 39) || (selectedSquare == 46) || (selectedSquare == 47) || (selectedSquare == 54) || (selectedSquare == 55) || (selectedSquare == 62) || (selectedSquare == 63)) {
-                                a1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a1.setOnClickListener(null);
-                                b1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b1.setOnClickListener(null);
-                                a2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a2.setOnClickListener(null);
-                                b2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b2.setOnClickListener(null);
-                                a3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a3.setOnClickListener(null);
-                                b3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b3.setOnClickListener(null);
-                                a4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a4.setOnClickListener(null);
-                                b4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b4.setOnClickListener(null);
-                                a5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a5.setOnClickListener(null);
-                                b5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b5.setOnClickListener(null);
-                                a6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a6.setOnClickListener(null);
-                                b6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b6.setOnClickListener(null);
-                                a7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a7.setOnClickListener(null);
-                                b7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b7.setOnClickListener(null);
-                                a8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                a8.setOnClickListener(null);
-                                b8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-                                b8.setOnClickListener(null);
-
-
-                            }
+                            wallKnight();
                         }
                     }
                 }
@@ -4452,13 +4317,89 @@ public class BoardActivity extends AppCompatActivity {
             }
 
 
-
         }
     }
 
+    //TODO: figure out how to stop board side crossing a cleaner way
+    // do not make squares which cross over the board available
+
+    private void wallKnight() {
+
+        if ((selectedSquare == 0) || (selectedSquare == 1) || (selectedSquare == 8) || (selectedSquare == 9) || (selectedSquare == 16) || (selectedSquare == 17) || (selectedSquare == 24) || (selectedSquare == 25) || (selectedSquare == 32) || (selectedSquare == 33) || (selectedSquare == 40) || (selectedSquare == 41) || (selectedSquare == 48) || (selectedSquare == 49) || (selectedSquare == 56) || (selectedSquare == 57))
+
+        {
+            h1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h1.setOnClickListener(null);
+            g1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g1.setOnClickListener(null);
+            h2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h2.setOnClickListener(null);
+            g2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g2.setOnClickListener(null);
+            h3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h3.setOnClickListener(null);
+            g3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g3.setOnClickListener(null);
+            h4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h4.setOnClickListener(null);
+            g4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g4.setOnClickListener(null);
+            h5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h5.setOnClickListener(null);
+            g5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g5.setOnClickListener(null);
+            h6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h6.setOnClickListener(null);
+            g6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g6.setOnClickListener(null);
+            h7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h7.setOnClickListener(null);
+            g7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g7.setOnClickListener(null);
+            h8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            h8.setOnClickListener(null);
+            g8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            g8.setOnClickListener(null);
+        } else if ((selectedSquare == 6) || (selectedSquare == 7) || (selectedSquare == 14) || (selectedSquare == 15) || (selectedSquare == 22) || (selectedSquare == 23) || (selectedSquare == 30) || (selectedSquare == 31) || (selectedSquare == 38) || (selectedSquare == 39) || (selectedSquare == 46) || (selectedSquare == 47) || (selectedSquare == 54) || (selectedSquare == 55) || (selectedSquare == 62) || (selectedSquare == 63))
+
+        {
+            a1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a1.setOnClickListener(null);
+            b1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b1.setOnClickListener(null);
+            a2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a2.setOnClickListener(null);
+            b2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b2.setOnClickListener(null);
+            a3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a3.setOnClickListener(null);
+            b3.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b3.setOnClickListener(null);
+            a4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a4.setOnClickListener(null);
+            b4.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b4.setOnClickListener(null);
+            a5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a5.setOnClickListener(null);
+            b5.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b5.setOnClickListener(null);
+            a6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a6.setOnClickListener(null);
+            b6.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b6.setOnClickListener(null);
+            a7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a7.setOnClickListener(null);
+            b7.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b7.setOnClickListener(null);
+            a8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            a8.setOnClickListener(null);
+            b8.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            b8.setOnClickListener(null);
 
 
+        }
 
+    }
 
 
     // if space in row directly ahead or behind not in same column as rook, make unavailable
