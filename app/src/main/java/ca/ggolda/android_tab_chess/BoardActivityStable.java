@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 
-public class BoardActivity extends AppCompatActivity {
+public class BoardActivityStable extends AppCompatActivity {
 
     private ImageView a1;
     private ImageView a2;
@@ -167,7 +167,7 @@ public class BoardActivity extends AppCompatActivity {
 
                 if (playerColor.equals("white")) {
                     playerColor = "black";
-                    Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BoardActivityStable.this, playerColor, Toast.LENGTH_SHORT).show();
 
                     currentSide.setText("you are: BLACK");
                     currentSide.setBackgroundColor(Color.parseColor("#000000"));
@@ -175,7 +175,7 @@ public class BoardActivity extends AppCompatActivity {
                     setBoard();
                 } else if (playerColor.equals("black")) {
                     playerColor = "white";
-                    Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BoardActivityStable.this, playerColor, Toast.LENGTH_SHORT).show();
 
                     currentSide.setText("you are: WHITE");
                     currentSide.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -2425,7 +2425,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 45:
@@ -2439,7 +2439,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 36:
@@ -2453,7 +2453,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 27:
@@ -2467,7 +2467,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 18:
@@ -2483,7 +2483,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 9:
@@ -2498,7 +2498,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallBishop(i);
                         break;
 
                     // DOWN-RIGHT
@@ -2513,7 +2513,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case -35:
@@ -2527,7 +2527,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case -28:
@@ -2541,7 +2541,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case -21:
@@ -2555,7 +2555,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case -14:
@@ -2571,7 +2571,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallBishop(i);
                         break;
 
                     case -7:
@@ -2586,7 +2586,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallBishop(i);
                         break;
 
                     // UP-LEFT
@@ -2601,7 +2601,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 35:
@@ -2615,7 +2615,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 28:
@@ -2643,7 +2643,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case 14:
@@ -2674,7 +2674,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallBishop(i);
                         break;
 
 
@@ -2690,7 +2690,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallBishop(i);
                         break;
 
                     case -45:
@@ -2718,6 +2718,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        wallBishop(i);
                         break;
 
                     case -27:
@@ -2731,8 +2732,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallBishop(i);
                         break;
 
                     case -18:
@@ -2748,8 +2748,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
-
+                        wallBishop(i);
                         break;
 
                     case -9:
@@ -2764,8 +2763,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
-
+                        wallBishop(i);
                         break;
                 }
 
@@ -2990,8 +2988,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
-
+                        wallRook(i);
 
 
                         break;
@@ -3007,8 +3004,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
                         break;
                     case 3:
@@ -3023,8 +3019,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
 
                         break;
@@ -3040,8 +3035,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
 
                         break;
@@ -3057,8 +3051,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
 
                         break;
@@ -3074,8 +3067,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
                         break;
                     case 7:
@@ -3090,8 +3082,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
                         break;
 
@@ -3107,8 +3098,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallRook(i);
 
 
                         break;
@@ -3125,8 +3115,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-
-
+                        wallRook(i);
 
                         break;
                     case -3:
@@ -3142,8 +3131,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-
-
+                        wallRook(i);
 
 
                         break;
@@ -3160,7 +3148,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-
+                        wallRook(i);
 
 
                         break;
@@ -3177,6 +3165,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallRook(i);
 
 
                         break;
@@ -3193,7 +3182,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-
+                        wallRook(i);
 
                         break;
                     case -7:
@@ -3209,6 +3198,8 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallRook(i);
+
                         break;
 
 
@@ -3219,8 +3210,9 @@ public class BoardActivity extends AppCompatActivity {
 
                 // For now correcting rook + bishop combo wall
                 // Eventually responsible for all queen walling
-
+                wallQueen(i);
             }
+            wallQueen(localB);
         }
 
 //             ___ _         _    ___
@@ -3255,7 +3247,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 45:
@@ -3269,7 +3261,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 36:
@@ -3283,7 +3275,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 27:
@@ -3297,7 +3289,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 18:
@@ -3313,7 +3305,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 9:
@@ -3328,7 +3320,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     // DOWN-RIGHT
@@ -3343,7 +3335,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -35:
@@ -3357,7 +3349,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -28:
@@ -3371,7 +3363,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -21:
@@ -3385,7 +3377,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -14:
@@ -3401,7 +3393,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -7:
@@ -3416,7 +3408,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     // UP-LEFT
@@ -3431,7 +3423,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 35:
@@ -3445,7 +3437,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 28:
@@ -3459,7 +3451,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 21:
@@ -3473,7 +3465,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 14:
@@ -3489,7 +3481,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case 7:
@@ -3504,7 +3496,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
 
@@ -3520,7 +3512,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -45:
@@ -3534,7 +3526,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -36:
@@ -3548,7 +3540,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -27:
@@ -3562,7 +3554,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -18:
@@ -3578,7 +3570,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
 
                     case -9:
@@ -3593,7 +3585,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallBishop(i);
                         break;
                 }
 
@@ -3818,7 +3810,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3834,7 +3826,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
                         break;
                     case 3:
@@ -3849,7 +3841,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3865,7 +3857,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3881,7 +3873,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3897,7 +3889,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
                         break;
                     case 7:
@@ -3912,7 +3904,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
                         break;
 
@@ -3928,7 +3920,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3945,7 +3937,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallRook(i);
 
                         break;
                     case -3:
@@ -3961,7 +3953,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3978,7 +3970,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -3995,7 +3987,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallRook(i);
 
 
                         break;
@@ -4012,7 +4004,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallRook(i);
 
                         break;
                     case -7:
@@ -4028,7 +4020,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallRook(i);
 
                         break;
 
@@ -4346,9 +4338,21 @@ public class BoardActivity extends AppCompatActivity {
     //Queen Fix
     //TODO: create separate queen function instead of combining rook + bishop
     private void wallQueen(int i) {
-        //wallBishop(i);
 
-        wallRook(i);
+        if (selectedUnit.equals("white_queen") || selectedUnit.equals("black_queen")) {
+            final int localI = i;
+            // Set TOP-LEFT and BOTTOM-RIGHT to avaiable if they are
+            if ((i == 7) || (i == -9)) {
+                if (getSquareImageView(i) != null) {
+                    getSquareImageView(i).setBackgroundColor(Color.parseColor("#A600FF00"));
+                    getSquareImageView(i).setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(localI);
+                        }
+                    });
+                }
+            }
+        }
     }
 
     //TODO: figure out how to stop board side crossing a cleaner way
