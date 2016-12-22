@@ -2394,15 +2394,9 @@ public class BoardActivity extends AppCompatActivity {
         if (selectedUnit.equals("white_queen")) {
             Log.e("EYHOSEL", selectedUnit);
 
-            //TODO: clean up, this is part of queen patch
-            int localB = 99;
 
             for (int i = 0; i < 64; i++) {
-                localB = i;
-
-                //TODO: clean up, this is part of queen patch
                 final int localI = i;
-
                 final ImageView space = getSquareImageView(i);
 
                 Log.e("EYHOSEL", gamesetList.get(i));
@@ -2424,7 +2418,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 45:
@@ -2438,7 +2432,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 36:
@@ -2452,7 +2446,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 27:
@@ -2466,7 +2460,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 18:
@@ -2482,7 +2476,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 9:
@@ -2497,7 +2491,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallQueen(i);
                         break;
 
                     // DOWN-RIGHT
@@ -2512,7 +2506,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case -35:
@@ -2526,7 +2520,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case -28:
@@ -2540,7 +2534,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case -21:
@@ -2554,7 +2548,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case -14:
@@ -2570,7 +2564,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallQueen(i);
                         break;
 
                     case -7:
@@ -2585,7 +2579,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallQueen(i);
                         break;
 
                     // UP-LEFT
@@ -2600,7 +2594,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 35:
@@ -2614,7 +2608,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 28:
@@ -2628,7 +2622,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallBishop(i);
+                        wallQueen(i);
                         break;
 
                     case 21:
@@ -2642,7 +2636,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case 14:
@@ -2658,7 +2652,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallBishop(i);
+                        wallQueen(i);
                         break;
 
                     case 7:
@@ -2673,7 +2667,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
+                        wallQueen(i);
                         break;
 
 
@@ -2689,7 +2683,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
                         break;
 
                     case -45:
@@ -2703,7 +2697,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallBishop(i);
+                        wallQueen(i);
                         break;
 
                     case -36:
@@ -2717,6 +2711,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        wallQueen(i);
                         break;
 
                     case -27:
@@ -2730,8 +2725,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
+                        wallQueen(i);
                         break;
 
                     case -18:
@@ -2747,8 +2741,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
-
+                        wallQueen(i);
                         break;
 
                     case -9:
@@ -2763,8 +2756,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
-
-
+                        wallQueen(i);
                         break;
                 }
 
@@ -2989,6 +2981,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
 
                         }
+                        wallQueen(i);
 
 
                         break;
@@ -3004,7 +2997,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
 
                         break;
                     case 3:
@@ -3019,6 +3012,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        wallQueen(i);
 
 
                         break;
@@ -3034,6 +3028,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        wallQueen(i);
 
 
                         break;
@@ -3049,6 +3044,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        wallQueen(i);
 
 
                         break;
@@ -3064,7 +3060,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
 
                         break;
                     case 7:
@@ -3079,7 +3075,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
+                        wallQueen(i);
 
                         break;
 
@@ -3095,6 +3091,7 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+                        wallQueen(i);
 
 
                         break;
@@ -3111,6 +3108,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallQueen(i);
 
                         break;
                     case -3:
@@ -3125,6 +3123,8 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+
+                        wallQueen(i);
 
 
                         break;
@@ -3141,6 +3141,8 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallQueen(i);
+
 
                         break;
                     case -5:
@@ -3155,6 +3157,8 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
+
+                        wallQueen(i);
 
 
                         break;
@@ -3171,6 +3175,7 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallQueen(i);
 
                         break;
                     case -7:
@@ -3186,14 +3191,12 @@ public class BoardActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallQueen(i);
+
                         break;
 
 
                 }
-
-
-                // For now correcting rook + bishop combo wall
-                // Eventually responsible for all queen walling
 
             }
         }
@@ -3424,7 +3427,7 @@ public class BoardActivity extends AppCompatActivity {
                         break;
 
                     case 28:
-                        if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
+                        if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
                             if (space != null) {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
@@ -4321,12 +4324,12 @@ public class BoardActivity extends AppCompatActivity {
     //Queen Fix
     //TODO: create separate queen function instead of combining rook + bishop
     private void wallQueen(int i) {
-        if ((i == 9) || (i == 18) || (i == 27) || (i == 36) || (i == 45) || (i == 54) || (i == 63) || (i == 7) ||(i == 14) || (i == 21) || (i == 28) || (i == 35) || (i == 42) || (i == 49) || (i == 56) || (i == -9) || (i == -18) || (i == -27) || (i == -36) || (i == -45) || (i == -54) || (i == -63) || (i == -7) ||(i == -14) || (i == -21) || (i == -28) || (i == -35) || (i == -42) || (i == -49) || (i == -56)) {
+        //if ((i == 9) || (i == 18) || (i == 27) || (i == 36) || (i == 45) || (i == 54) || (i == 63) || (i == 7) ||(i == 14) || (i == 21) || (i == 28) || (i == 35) || (i == 42) || (i == 49) || (i == 56) || (i == -9) || (i == -18) || (i == -27) || (i == -36) || (i == -45) || (i == -54) || (i == -63) || (i == -7) ||(i == -14) || (i == -21) || (i == -28) || (i == -35) || (i == -42) || (i == -49) || (i == -56)) {
             wallBishop(i);
-        } else {
+       // } else {
             wallRook(i);
 
-        }
+      //  }
 
     }
 
