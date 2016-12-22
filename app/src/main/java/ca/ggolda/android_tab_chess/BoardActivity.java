@@ -4515,8 +4515,8 @@ public class BoardActivity extends AppCompatActivity {
 
     }
 
-    // if space in row directly ahead or behind not in same column as rook, make unavailable
-    //TODO: consider more elegant solution to walling off rooks at sides
+    // if space is not the same color as that stood on by the bishop
+    // make unavailable
 
     private void wallBishop(int i) {
         if (isWhite(selectedSquare)) {
@@ -4543,7 +4543,7 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     private Boolean isWhite(int i) {
-        return ((i == 1) || (i == 3) || (i == 5) || (i == 7) || (i == 8) || (i == 10) || (i == 12) || (i == 14) || (i == 17) || (i == 19) || (i == 21) || (i == 23) || (i == 24) || (i == 26) || (i == 28) || (i == 30) || (i == 33) || (i == 35) || (i == 37) || (i == 39) || (i == 40) || (i == 42) || (i == 44) || (i == 46) || (i == 49) || (i == 51) || (i == 53) || (i == 55) || (i == 60) || (i == 62));
+        return ((i == 1) || (i == 3) || (i == 5) || (i == 7) || (i == 8) || (i == 10) || (i == 12) || (i == 14) || (i == 17) || (i == 19) || (i == 21) || (i == 23) || (i == 24) || (i == 26) || (i == 28) || (i == 30) || (i == 33) || (i == 35) || (i == 37) || (i == 39) || (i == 40) || (i == 42) || (i == 44) || (i == 46) || (i == 49) || (i == 51) || (i == 53) || (i == 55) || (i == 56) || (i == 58) || (i == 60) || (i == 62));
     }
 
     private Boolean isBlack(int i) {
