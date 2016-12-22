@@ -108,7 +108,6 @@ public class BoardActivity extends AppCompatActivity {
     private List<String> gamesetList;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -2992,8 +2991,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
-
                         break;
                     case 2:
 
@@ -3007,7 +3004,6 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
 
 
                         break;
@@ -3025,8 +3021,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
-
                         break;
                     case 4:
 
@@ -3040,8 +3034,6 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
 
 
                         break;
@@ -3059,8 +3051,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
-
                         break;
                     case 6:
 
@@ -3076,7 +3066,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
                         break;
                     case 7:
 
@@ -3090,7 +3079,6 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
 
 
                         break;
@@ -3109,8 +3097,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
-
                         break;
                     case -2:
 
@@ -3124,8 +3110,6 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
 
 
                         break;
@@ -3143,9 +3127,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
-
-
                         break;
                     case -4:
 
@@ -3159,8 +3140,6 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
-
 
 
                         break;
@@ -3178,7 +3157,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
 
-
                         break;
                     case -6:
 
@@ -3192,7 +3170,6 @@ public class BoardActivity extends AppCompatActivity {
                                 });
                             }
                         }
-
 
 
                         break;
@@ -3210,8 +3187,6 @@ public class BoardActivity extends AppCompatActivity {
                         }
 
                         break;
-
-
 
 
                 }
@@ -4346,10 +4321,15 @@ public class BoardActivity extends AppCompatActivity {
     //Queen Fix
     //TODO: create separate queen function instead of combining rook + bishop
     private void wallQueen(int i) {
-        //wallBishop(i);
+        if ((i == 9) || (i == 18) || (i == 27) || (i == 36) || (i == 45) || (i == 54) || (i == 63) || (i == 7) ||(i == 14) || (i == 21) || (i == 28) || (i == 35) || (i == 42) || (i == 49) || (i == 56) || (i == -9) || (i == -18) || (i == -27) || (i == -36) || (i == -45) || (i == -54) || (i == -63) || (i == -7) ||(i == -14) || (i == -21) || (i == -28) || (i == -35) || (i == -42) || (i == -49) || (i == -56)) {
+            wallBishop(i);
+        } else {
+            wallRook(i);
 
-        wallRook(i);
+        }
+
     }
+
 
     //TODO: figure out how to stop board side crossing a cleaner way
     // do not make squares which cross over the board available
@@ -4542,8 +4522,6 @@ public class BoardActivity extends AppCompatActivity {
                 nulled.setOnClickListener(null);
             }
         }
-
-
 
 
     }
