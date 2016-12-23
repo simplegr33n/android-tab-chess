@@ -530,6 +530,14 @@ public class BoardActivity extends AppCompatActivity {
 
             // if turn is white
             if (turn.equals("white")) {
+
+                Log.e("GAMEEEE", gamesetList.get(square).split("_")[0]);
+
+                if (playerColor == null) {
+                    playerColor = "black";
+                }
+                Log.e("GAMEEEE", playerColor);
+
                 if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
 
                     final int localSquare = square;
