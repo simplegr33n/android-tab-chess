@@ -29,6 +29,7 @@ public class LobbyActivity extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mGamesDatabaseReference;
+    private DatabaseReference mUsersDatabaseReference;
 
 
     @Override
@@ -59,6 +60,7 @@ public class LobbyActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
+        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
 
         //TODO: accept already pending offer
@@ -91,7 +93,9 @@ public class LobbyActivity extends AppCompatActivity {
                                         Toast.makeText(LobbyActivity.this, "Please Wait...", Toast.LENGTH_SHORT).show();
 
                                     } else {
+                                        // TODO: something to ensure these all happen
                                         mGamesDatabaseReference.child(offer).child("black").setValue(userId);
+                                        mUsersDatabaseReference.child(userId).child("games").child(offer).setValue(true);
                                         mGamesDatabaseReference.child("offers").removeValue();
                                     }
 
@@ -105,7 +109,10 @@ public class LobbyActivity extends AppCompatActivity {
 
                         } else {
                             String eventId = mGamesDatabaseReference.push().getKey();
+
+                            //TODO: ensure these all happen
                             mGamesDatabaseReference.child(eventId).child("white").setValue(userId);
+                            mUsersDatabaseReference.child(userId).child("games").child(eventId).setValue(true);
                             mGamesDatabaseReference.child("offers").setValue(eventId);
                         }
 
