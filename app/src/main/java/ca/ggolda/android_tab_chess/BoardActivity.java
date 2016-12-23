@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -159,6 +158,9 @@ public class BoardActivity extends AppCompatActivity {
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
 
+
+
+        // TODO: probably remove new game, test board, and change sides on clicks
         TextView newGame = (TextView) findViewById(R.id.new_game);
         newGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
