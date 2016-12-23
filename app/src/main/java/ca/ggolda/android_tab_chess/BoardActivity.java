@@ -1,13 +1,18 @@
 package ca.ggolda.android_tab_chess;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -107,11 +112,28 @@ public class BoardActivity extends AppCompatActivity {
 
     private List<String> gamesetList;
 
+    private FirebaseAuth.AuthStateListener authListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
+        //get current user and send to login screen if user is null
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(BoardActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
         if (turn.equals("black")) {
