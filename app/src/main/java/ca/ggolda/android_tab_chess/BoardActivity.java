@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -104,7 +109,7 @@ public class BoardActivity extends AppCompatActivity {
     private String selectedUnit = "";
 
     //TODO: remove hardcoded playerColor
-    private String playerColor = "white";
+    private String playerColor;
 
     private String turn = "white";
 
@@ -114,14 +119,31 @@ public class BoardActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mGamesDatabaseReference;
+
+    private String match_id;
+
+    private String userId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
+        mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
+
+        match_id = getIntent().getStringExtra("MATCH_ID");
+
         //get current user and send to login screen if user is null
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        userId = user.getUid();
+
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -151,6 +173,8 @@ public class BoardActivity extends AppCompatActivity {
         newGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 gamesetString = getResources().getString(R.string.new_board);
+
+
                 turn = "white";
                 currentTurn.setText("turn: WHITE");
                 currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -166,6 +190,8 @@ public class BoardActivity extends AppCompatActivity {
         testBoard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 gamesetString = getResources().getString(R.string.test_board);
+
+
                 turn = "white";
                 currentTurn.setText("turn: WHITE");
                 currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -177,6 +203,39 @@ public class BoardActivity extends AppCompatActivity {
         });
 
         final TextView currentSide = (TextView) findViewById(R.id.current_side);
+
+        // Get user games for Active list
+        mGamesDatabaseReference.child(match_id).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String white_player = dataSnapshot.getValue(String.class);
+                if (userId.equals(white_player)) {
+                    playerColor = "white";
+
+                    currentSide.setText("you are: WHITE");
+                    currentSide.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    currentSide.setTextColor(Color.parseColor("#000000"));
+
+                } else {
+                    playerColor = "black";
+
+                    currentSide.setText("you are: BLACK");
+                    currentSide.setBackgroundColor(Color.parseColor("#000000"));
+                    currentSide.setTextColor(Color.parseColor("#FFFFFF"));
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
         TextView changeSide = (TextView) findViewById(R.id.change_side);
         changeSide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -186,33 +245,9 @@ public class BoardActivity extends AppCompatActivity {
 
                 clearSelected();
 
-                if (playerColor.equals("white")) {
-                    playerColor = "black";
-                    Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
-
-                    currentSide.setText("you are: BLACK");
-                    currentSide.setBackgroundColor(Color.parseColor("#000000"));
-                    currentSide.setTextColor(Color.parseColor("#FFFFFF"));
-                    setBoard();
-                } else if (playerColor.equals("black")) {
-                    playerColor = "white";
-                    Toast.makeText(BoardActivity.this, playerColor, Toast.LENGTH_SHORT).show();
-
-                    currentSide.setText("you are: WHITE");
-                    currentSide.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    currentSide.setTextColor(Color.parseColor("#000000"));
-                    setBoard();
-                }
 
             }
         });
-
-
-        //If no game is initialized, set gamesetString to a new board
-        if (gamesetString.equals("")) {
-            gamesetString = getResources().getString(R.string.new_board);
-        }
-
 
         logs = (TextView) findViewById(R.id.log);
 
@@ -290,10 +325,33 @@ public class BoardActivity extends AppCompatActivity {
         h8 = (ImageView) findViewById(R.id.img_h8);
 
 
-        setBoard();
+
+
+
+        // Get user games for Active list
+        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                gamesetString = dataSnapshot.getValue(String.class);
+                setBoard();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
+
     }
 
     private void setBoard() {
+        
+
         logs.setText(gamesetString);
 
         gamesetList = Arrays.asList(gamesetString.split("\\s*,\\s*"));
@@ -4634,6 +4692,8 @@ public class BoardActivity extends AppCompatActivity {
         }
 
         Log.e("EYHO9", gamesetString);
+
+        mGamesDatabaseReference.child(match_id).child("board").setValue(gamesetString);
 
 
         // TODO: verify player cannot play twice in one turn if they play quickly

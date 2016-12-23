@@ -147,22 +147,24 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                final String game = dataSnapshot.getValue(String.class);
+                if (dataSnapshot.getValue() != null) {
+                    final String game = "" + dataSnapshot.getValue(String.class);
 
-                if (dataSnapshot.getValue(String.class) != null) {
-                    final TextView playCurrent = (TextView) findViewById(R.id.play_current);
-                    playCurrent.setVisibility(View.VISIBLE);
-                    playCurrent.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    if (dataSnapshot.getValue(String.class) != null) {
+                        final TextView playCurrent = (TextView) findViewById(R.id.play_current);
+                        playCurrent.setVisibility(View.VISIBLE);
+                        playCurrent.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
-                            Intent intent = new Intent(LobbyActivity.this, BoardActivity.class);
-                            intent.putExtra("MATCH_ID", game);
-                            startActivity(intent);
+                                Intent intent = new Intent(LobbyActivity.this, BoardActivity.class);
+                                intent.putExtra("MATCH_ID", game);
+                                startActivity(intent);
 
-                            finish();
-                        }
-                    });
+                                finish();
+                            }
+                        });
+                    }
                 }
 
 
