@@ -7,6 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/match_id"
         android:text="Game Info"
         android:textSize="24sp"
         android:textStyle="bold"
