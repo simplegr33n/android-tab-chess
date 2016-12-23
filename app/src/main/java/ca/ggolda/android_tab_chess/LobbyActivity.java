@@ -125,6 +125,7 @@ public class LobbyActivity extends AppCompatActivity {
                             mGamesDatabaseReference.child(eventId).child("white").setValue(userId);
                             String newBoard = getResources().getString(R.string.new_board);
                             mGamesDatabaseReference.child(eventId).child("board").setValue(newBoard);
+                            mGamesDatabaseReference.child(eventId).child("turn_color").setValue("white");
                             mUsersDatabaseReference.child(userId).child("games").setValue(eventId);
                             mGamesDatabaseReference.child("offers").setValue(eventId);
                         }

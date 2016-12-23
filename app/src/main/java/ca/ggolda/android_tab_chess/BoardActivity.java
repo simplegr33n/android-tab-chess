@@ -158,16 +158,6 @@ public class BoardActivity extends AppCompatActivity {
         };
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
-        if (turn.equals("black")) {
-            currentTurn.setText("turn: BLACK");
-            currentTurn.setBackgroundColor(Color.parseColor("#000000"));
-            currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
-
-        } else if (turn.equals("white")) {
-            currentTurn.setText("turn: WHITE");
-            currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            currentTurn.setTextColor(Color.parseColor("#000000"));
-        }
 
         TextView newGame = (TextView) findViewById(R.id.new_game);
         newGame.setOnClickListener(new View.OnClickListener() {
@@ -328,7 +318,7 @@ public class BoardActivity extends AppCompatActivity {
 
 
 
-        // Get user games for Active list
+        // Get gamesetString from firebase
         mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -346,11 +336,42 @@ public class BoardActivity extends AppCompatActivity {
         });
 
 
+        // Get turn color from firebase
+        mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                turn = dataSnapshot.getValue(String.class);
+
+                if (turn.equals("black")) {
+                    currentTurn.setText("turn: BLACK");
+                    currentTurn.setBackgroundColor(Color.parseColor("#000000"));
+                    currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
+
+                } else if (turn.equals("white")) {
+                    currentTurn.setText("turn: WHITE");
+                    currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    currentTurn.setTextColor(Color.parseColor("#000000"));
+                }
+
+                setBoard();
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
 
     }
 
     private void setBoard() {
-        
+
 
         logs.setText(gamesetString);
 
@@ -4694,6 +4715,12 @@ public class BoardActivity extends AppCompatActivity {
         Log.e("EYHO9", gamesetString);
 
         mGamesDatabaseReference.child(match_id).child("board").setValue(gamesetString);
+
+        if (turn.equals("white")) {
+            mGamesDatabaseReference.child(match_id).child("turn_color").setValue("black");
+        } else if (turn.equals("black")) {
+            mGamesDatabaseReference.child(match_id).child("turn_color").setValue("white");
+        }
 
 
         // TODO: verify player cannot play twice in one turn if they play quickly
