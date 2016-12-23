@@ -3,6 +3,7 @@ package ca.ggolda.android_tab_chess;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 /**
  * Created by gcgol on 12/22/2016.
@@ -41,12 +44,9 @@ public class LobbyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lobby);
 
 
-        ArrayList<InstanceGame> games = new ArrayList<>();
-
-
-        AdapterActive mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-        ListView mListViewActive = (ListView) findViewById(R.id.active_listview);
-        mListViewActive.setAdapter(mAdapterActive);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
+        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
 
         //get current user and send to login screen if user is null
@@ -68,13 +68,64 @@ public class LobbyActivity extends AppCompatActivity {
             }
         };
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-
-        mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
-        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
 
-        //TODO: accept already pending offer
+        final ArrayList<InstanceGame> games = new ArrayList<>();
+
+        final AdapterActive mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+        final ListView mListViewActive = (ListView) findViewById(R.id.active_listview);
+
+        mListViewActive.setAdapter(mAdapterActive);
+
+        mUsersDatabaseReference.child(userId).child("games").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
+
+                Log.e("GAME", "GETKEY" + dataSnapshot.getKey());
+
+                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Log.e("USER", "GAME2 " + dataSnapshot.getValue());
+
+                        games.add(dataSnapshot.getValue(InstanceGame.class));
+
+                        mListViewActive.setAdapter(mAdapterActive);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+
+
         //create a random game offer
         TextView matchRandom = (TextView) findViewById(R.id.random_button);
         matchRandom.setOnClickListener(new View.OnClickListener() {
@@ -84,14 +135,21 @@ public class LobbyActivity extends AppCompatActivity {
                 mGamesDatabaseReference.child("offers").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        final String offer = dataSnapshot.getValue(String.class);
 
 
-                        Log.e("USER", "Offeryo" + offer);
+                        // TODO: just get game key rather than splitting {akdffkadfjsdkfdf=true} strings
+                        String temp = ("" + dataSnapshot.getValue()).split("=")[0];
+
+                        Log.e("USER", "temp" + temp);
 
                         //if offer/accept offer
                         // TODO: possibly allow offers to hold multiple offer games
-                        if (offer != null) {
+                        if (dataSnapshot.getValue() != null) {
+
+                            StringBuilder sb = new StringBuilder(temp);
+                            sb.deleteCharAt(0);
+                            final String offer = sb.toString();
+                            Log.e("USEROH", "offer"+ offer);
 
                             mGamesDatabaseReference.child(offer).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -106,7 +164,7 @@ public class LobbyActivity extends AppCompatActivity {
                                     } else {
                                         // TODO: something to ensure these all happen
                                         mGamesDatabaseReference.child(offer).child("black").setValue(userId);
-                                        mUsersDatabaseReference.child(userId).child("games").setValue(offer);
+                                        mUsersDatabaseReference.child(userId).child("games").child(offer).setValue(true);
                                         mGamesDatabaseReference.child("offers").removeValue();
                                     }
 
@@ -126,8 +184,9 @@ public class LobbyActivity extends AppCompatActivity {
                             String newBoard = getResources().getString(R.string.new_board);
                             mGamesDatabaseReference.child(eventId).child("board").setValue(newBoard);
                             mGamesDatabaseReference.child(eventId).child("turn_color").setValue("white");
-                            mUsersDatabaseReference.child(userId).child("games").setValue(eventId);
-                            mGamesDatabaseReference.child("offers").setValue(eventId);
+                            mUsersDatabaseReference.child(userId).child("games").child(eventId).setValue(true);
+                            mGamesDatabaseReference.child("offers").child(eventId).setValue(true);
+                            mGamesDatabaseReference.child(eventId).child("match_id").setValue(eventId);
                         }
 
 
@@ -140,40 +199,6 @@ public class LobbyActivity extends AppCompatActivity {
                 });
 
 
-            }
-        });
-
-        // Get user games for Active list
-        mUsersDatabaseReference.child(userId).child("games").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.getValue() != null) {
-                    final String game = "" + dataSnapshot.getValue(String.class);
-
-                    if (dataSnapshot.getValue(String.class) != null) {
-                        final TextView playCurrent = (TextView) findViewById(R.id.play_current);
-                        playCurrent.setVisibility(View.VISIBLE);
-                        playCurrent.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                Intent intent = new Intent(LobbyActivity.this, BoardActivity.class);
-                                intent.putExtra("MATCH_ID", game);
-                                startActivity(intent);
-
-                                finish();
-                            }
-                        });
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
             }
         });
 

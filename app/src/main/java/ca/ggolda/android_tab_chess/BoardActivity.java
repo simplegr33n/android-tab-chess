@@ -325,6 +325,11 @@ public class BoardActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+
+                Log.e("GAMESET", ""+match_id);
+                Log.e("GAMESET", ""+dataSnapshot.getValue(String.class));
+
                 gamesetString = dataSnapshot.getValue(String.class);
                 setBoard();
 
@@ -4993,4 +4998,10 @@ public class BoardActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
+    }
 }

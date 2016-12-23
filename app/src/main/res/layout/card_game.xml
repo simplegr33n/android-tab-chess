@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="#ede65d">
+>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#55f48f"
         android:id="@+id/match_id"
+        android:layout_margin="4dp"
         android:text="Game Info"
         android:textSize="24sp"
         android:textStyle="bold"
