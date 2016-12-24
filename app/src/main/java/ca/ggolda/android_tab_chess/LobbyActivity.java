@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 
 /**
  * Created by gcgol on 12/22/2016.
@@ -48,6 +49,16 @@ public class LobbyActivity extends AppCompatActivity {
         mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
         mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
+        final EditText editUsername =  (EditText) findViewById(R.id.username_edittext);
+
+
+
+
+
+
+
+
+
 
         //get current user and send to login screen if user is null
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -67,6 +78,49 @@ public class LobbyActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+        TextView setUsername = (TextView) findViewById(R.id.set_username);
+        setUsername.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String username = editUsername.getText().toString();
+                Log.e("GAMEEE", ""+username);
+                if (username != null) {
+                    mUsersDatabaseReference.child(userId).child("username").setValue(username);
+
+                }
+
+            }
+
+
+        });
+
+        // Ensure user has username
+        mUsersDatabaseReference.child(userId).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Log.e("USER", "GAME2uname " + dataSnapshot.getValue());
+
+                if (dataSnapshot.getValue() == null) {
+                    LinearLayout usernameLayout = (LinearLayout) findViewById(R.id.username_layout);
+                    usernameLayout.setVisibility(View.VISIBLE);
+
+                }
+
+                if (dataSnapshot.getValue() != null) {
+                    LinearLayout usernameLayout = (LinearLayout) findViewById(R.id.username_layout);
+                    usernameLayout.setVisibility(View.GONE);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
 
 
