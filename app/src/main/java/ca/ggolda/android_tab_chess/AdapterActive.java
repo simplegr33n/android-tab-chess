@@ -40,8 +40,18 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
         final InstanceGame current = getItem(position);
 
-        final TextView match_id = (TextView) convertView.findViewById(R.id.match_id);
-        match_id.setText(current.getMatch_id());
+        final TextView opponent = (TextView) convertView.findViewById(R.id.match_id);
+
+        // Set name in list to opponent's
+        if (mUserID.equals(current.getWhite())) {
+            if (current.getUsername_black() != null){
+                opponent.setText("User: " + current.getUsername_black());
+            } else {
+                opponent.setText("waiting...");
+            }
+        } else if (mUserID.equals(current.getBlack())) {
+            opponent.setText("User: " + current.getUsername_white());
+        }
 
 
         convertView.setOnClickListener(new View.OnClickListener() {

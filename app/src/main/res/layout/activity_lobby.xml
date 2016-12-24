@@ -96,7 +96,7 @@
                             android:layout_marginBottom="4dp"
                             android:background="#FFFFFF"
                             android:clipToPadding="false"
-                            android:paddingTop="32dp" />
+                            android:paddingTop="36dp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -104,7 +104,7 @@
                             android:background="#c231e850"
                             android:gravity="center"
                             android:padding="8dp"
-                            android:text="ACTIVE" />
+                            android:text="ACTIVE GAMES" />
 
                     </RelativeLayout>
                 </LinearLayout>

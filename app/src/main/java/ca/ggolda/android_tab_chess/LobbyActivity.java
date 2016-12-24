@@ -38,6 +38,8 @@ public class LobbyActivity extends AppCompatActivity {
     private DatabaseReference mGamesDatabaseReference;
     private DatabaseReference mUsersDatabaseReference;
 
+    private String username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,7 @@ public class LobbyActivity extends AppCompatActivity {
         setUsername.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String username = editUsername.getText().toString();
+                username = editUsername.getText().toString();
                 Log.e("GAMEEE", ""+username);
                 if (username != null) {
                     mUsersDatabaseReference.child(userId).child("username").setValue(username);
@@ -219,6 +221,7 @@ public class LobbyActivity extends AppCompatActivity {
                                         // TODO: something to ensure these all happen
                                         mGamesDatabaseReference.child(offer).child("black").setValue(userId);
                                         mUsersDatabaseReference.child(userId).child("games").child(offer).setValue(true);
+                                        mGamesDatabaseReference.child(offer).child("username_black").setValue(username);
                                         mGamesDatabaseReference.child("offers").removeValue();
                                     }
 
@@ -241,6 +244,7 @@ public class LobbyActivity extends AppCompatActivity {
                             mUsersDatabaseReference.child(userId).child("games").child(eventId).setValue(true);
                             mGamesDatabaseReference.child("offers").child(eventId).setValue(true);
                             mGamesDatabaseReference.child(eventId).child("match_id").setValue(eventId);
+                            mGamesDatabaseReference.child(eventId).child("username_white").setValue(username);
                         }
 
 
