@@ -61,15 +61,6 @@ public class LobbyActivity extends AppCompatActivity {
         transaction.commit();
 
 
-
-
-
-
-
-
-
-
-
         //get current user and send to login screen if user is null
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid();

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,17 +41,39 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
         final InstanceGame current = getItem(position);
 
-        final TextView opponent = (TextView) convertView.findViewById(R.id.match_id);
+        final TextView opponentTheirTurn = (TextView) convertView.findViewById(R.id.opponent_their_turn);
+        final TextView opponentYourTurn = (TextView) convertView.findViewById(R.id.opponent_your_turn);
+        final LinearLayout yourView = (LinearLayout) convertView.findViewById(R.id.your_turn);
+        final LinearLayout theirView = (LinearLayout) convertView.findViewById(R.id.opponent_turn);
 
         // Set name in list to opponent's
-        if (mUserID.equals(current.getWhite())) {
-            if (current.getUsername_black() != null){
-                opponent.setText("User: " + current.getUsername_black());
-            } else {
-                opponent.setText("waiting...");
+        // Set view according to player turn
+        if (current.getTurn_color().equals("black")) {
+            if (mUserID.equals(current.getWhite())) {
+                if (current.getUsername_black() != null) {
+                    opponentTheirTurn.setText("User: " + current.getUsername_black() + "\'s");
+                    theirView.setVisibility(View.VISIBLE);
+                    yourView.setVisibility(View.GONE);
+                } else {
+                    opponentTheirTurn.setText("waiting...");
+                    theirView.setVisibility(View.VISIBLE);
+                    yourView.setVisibility(View.GONE);
+                }
+            } else if (mUserID.equals(current.getBlack())) {
+                opponentYourTurn.setText("Opp: " + current.getUsername_white());
+                yourView.setVisibility(View.VISIBLE);
+                theirView.setVisibility(View.GONE);
             }
-        } else if (mUserID.equals(current.getBlack())) {
-            opponent.setText("User: " + current.getUsername_white());
+        } else if (current.getTurn_color().equals("white")) {
+            if (mUserID.equals(current.getBlack())) {
+                opponentTheirTurn.setText("User: " + current.getUsername_white() + "\'s");
+                theirView.setVisibility(View.VISIBLE);
+                yourView.setVisibility(View.GONE);
+            } else if (mUserID.equals(current.getWhite())) {
+                opponentYourTurn.setText("Opp: " + current.getUsername_black());
+                yourView.setVisibility(View.VISIBLE);
+                theirView.setVisibility(View.GONE);
+            }
         }
 
 
@@ -65,8 +88,6 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 //
 //            }
 //        });
-
-
 
 
         convertView.setOnClickListener(new View.OnClickListener() {
