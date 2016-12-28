@@ -8,12 +8,18 @@
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0005.jpg" width="144">
 
 ## Todo
-
-* Fix Queen Movement
 * Check
 * Checkmate
 * En Passant
 * Castling
 * Add Chat
-* Add Friend-Finding
+* Add Friends
+* Game Preview In Lobby
+* Spectator mode // Private - Public gamemode
+
+#Bugs
+* Queen movement footprint is wrong
+* White is able to play black's turn if player returns to lobby page and then to the game again
+
+
 
