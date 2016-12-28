@@ -10,8 +10,8 @@
 
 
     <ImageView
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="@dimen/logo_w_h"
+        android:layout_height="@dimen/logo_w_h"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="30dp"
         android:src="@mipmap/ic_launcher" />
@@ -81,7 +81,7 @@
         android:layout_height="30dp"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
 
 </LinearLayout>

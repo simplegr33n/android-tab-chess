@@ -1,14 +1,14 @@
 package ca.ggolda.android_tab_chess;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,6 +52,14 @@ public class LobbyActivity extends AppCompatActivity {
         mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
         final EditText editUsername =  (EditText) findViewById(R.id.username_edittext);
+
+
+        // Set Preview Board
+        BoardFragment emptyFragment = new BoardFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, emptyFragment);
+        transaction.commit();
+
 
 
 

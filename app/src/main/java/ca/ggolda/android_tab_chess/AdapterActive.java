@@ -54,17 +54,41 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
         }
 
 
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//                Log.e("GAMESET",  "withintent"+current.getMatch_id());
+//
+//                Intent intent = new Intent(getContext(), BoardActivity.class);
+//                intent.putExtra("MATCH_ID", current.getMatch_id());
+//                getContext().startActivity(intent);
+//
+//            }
+//        });
+
+
+
+
         convertView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Log.e("GAMESET",  "withintent"+current.getMatch_id());
+                // Get parent activity, set container view
+                LobbyActivity lobbyActivity = (LobbyActivity) getContext();
 
-                Intent intent = new Intent(getContext(), BoardActivity.class);
-                intent.putExtra("MATCH_ID", current.getMatch_id());
-                getContext().startActivity(intent);
+                BoardFragment boardFragment = new BoardFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("gameset", current.getBoard());
+                bundle.putString("match_id", current.getMatch_id());
+                boardFragment.setArguments(bundle);
+
+                lobbyActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, boardFragment)
+                        .addToBackStack(null)
+                        .commit();
 
             }
         });
+
 
         return convertView;
 
