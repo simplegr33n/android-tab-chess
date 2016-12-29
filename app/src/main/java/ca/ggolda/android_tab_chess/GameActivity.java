@@ -110,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
     //TODO: remove hardcoded playerColor
     private String playerColor;
 
-    private String turn = "white";
+    private String turn = "";
 
     private TextView currentTurn;
 
@@ -558,7 +558,10 @@ public class GameActivity extends AppCompatActivity {
 
             // if turn is black
             if (turn.equals("black")) {
-                if ((gamesetList.get(square).split("_")[0]).equals("black") && playerColor.equals("black")) {
+                Log.e("PCPCPC", playerColor);
+                Log.e("PCPCGSL", gamesetList.get(square).split("_")[0]);
+
+                if ((playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
 
                     final int localSquare = square;
 
