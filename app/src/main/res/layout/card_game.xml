@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:background="#3dcb92"
+        android:background="#195d42"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/your_turn"
@@ -22,6 +22,7 @@
             android:layout_margin="4dp"
             android:gravity="center"
             android:text="YOUR TURN!"
+            android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Opponent: Username"
+            android:textColor="#d8d7b7"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -54,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
-            android:text="Opponent: Username's"
+            android:text="Username's"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -63,9 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:gravity="center"
-            android:text="Turn"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:text="TURN"
+            android:textSize="24sp" />
 
 
     </LinearLayout>

@@ -51,7 +51,7 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
         if (current.getTurn_color().equals("black")) {
             if (mUserID.equals(current.getWhite())) {
                 if (current.getUsername_black() != null) {
-                    opponentTheirTurn.setText("User: " + current.getUsername_black() + "\'s");
+                    opponentTheirTurn.setText(current.getUsername_black() + "\'s");
                     theirView.setVisibility(View.VISIBLE);
                     yourView.setVisibility(View.GONE);
                 } else {
@@ -66,7 +66,7 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
             }
         } else if (current.getTurn_color().equals("white")) {
             if (mUserID.equals(current.getBlack())) {
-                opponentTheirTurn.setText("User: " + current.getUsername_white() + "\'s");
+                opponentTheirTurn.setText(current.getUsername_white() + "\'s");
                 theirView.setVisibility(View.VISIBLE);
                 yourView.setVisibility(View.GONE);
             } else if (mUserID.equals(current.getWhite())) {

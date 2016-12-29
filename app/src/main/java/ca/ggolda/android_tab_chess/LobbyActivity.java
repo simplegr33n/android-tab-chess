@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,6 +39,10 @@ public class LobbyActivity extends AppCompatActivity {
 
     private String username;
 
+    private ArrayList<InstanceGame> games;
+    private AdapterActive mAdapterActive;
+    private ListView mListViewActive;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class LobbyActivity extends AppCompatActivity {
         mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
         mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
-        final EditText editUsername =  (EditText) findViewById(R.id.username_edittext);
+        final EditText editUsername = (EditText) findViewById(R.id.username_edittext);
 
 
         // Set Preview Board
@@ -66,6 +69,7 @@ public class LobbyActivity extends AppCompatActivity {
         userId = user.getUid();
 
         Log.e("USER", "" + userId);
+
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -86,7 +90,7 @@ public class LobbyActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 username = editUsername.getText().toString();
-                Log.e("GAMEEE", ""+username);
+                Log.e("GAMEEE", "" + username);
                 if (username != null) {
                     mUsersDatabaseReference.child(userId).child("username").setValue(username);
 
@@ -124,68 +128,10 @@ public class LobbyActivity extends AppCompatActivity {
         });
 
 
-
-        final ArrayList<InstanceGame> games = new ArrayList<>();
-
-        final AdapterActive mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-        final ListView mListViewActive = (ListView) findViewById(R.id.active_listview);
-
-        mListViewActive.setAdapter(mAdapterActive);
-
-        mUsersDatabaseReference.child(userId).child("games").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-
-
-                Log.e("GAME", "GETKEY" + dataSnapshot.getKey());
-
-                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        Log.e("USER", "GAME2 " + dataSnapshot.getValue());
-
-                        games.add(dataSnapshot.getValue(InstanceGame.class));
-
-                        mListViewActive.setAdapter(mAdapterActive);
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-
-
-
         //create a random game offer
         TextView matchRandom = (TextView) findViewById(R.id.random_button);
         matchRandom.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
 
                 mGamesDatabaseReference.child("offers").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -201,10 +147,11 @@ public class LobbyActivity extends AppCompatActivity {
                         // TODO: possibly allow offers to hold multiple offer games
                         if (dataSnapshot.getValue() != null) {
 
+                            //TODO: remove stringbuilder
                             StringBuilder sb = new StringBuilder(temp);
                             sb.deleteCharAt(0);
                             final String offer = sb.toString();
-                            Log.e("USEROH", "offer"+ offer);
+                            Log.e("USEROH", "offer" + offer);
 
                             mGamesDatabaseReference.child(offer).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -259,6 +206,141 @@ public class LobbyActivity extends AppCompatActivity {
             }
         });
 
+
+        // Set active games list
+
+
+//        refreshActive();
+
+
+//        games = null;
+//        mAdapterActive = null;
+//        mListViewActive = null;
+//
+        games = new ArrayList<>();
+        mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+        mListViewActive = (ListView) findViewById(R.id.active_listview);
+        mListViewActive.setAdapter(mAdapterActive);
+
+
+ //       refreshActive();
+
+        userGamesChildListener();
+
+
+    }
+
+
+    private void userGamesChildListener() {
+        mUsersDatabaseReference.child(userId).child("games").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
+
+                Log.e("GAME", "GETKEY" + dataSnapshot.getKey());
+
+                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+               //         clearAdapter();
+//
+                        if (dataSnapshot.getValue(InstanceGame.class) != null) {
+                            mAdapterActive.clear();
+                            games.add(dataSnapshot.getValue(InstanceGame.class));
+                            mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+                            mListViewActive.setAdapter(mAdapterActive);
+
+                        }
+
+//                        mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+
+
+
+                        //mAdapterActive.notifyDataSetChanged();
+                        //mAdapterActive.clear();
+
+//                        mListViewActive.setAdapter(mAdapterActive);
+                        //refreshActive();
+                       // clearAdapter();
+
+
+
+
+//                        mAdapterActive.notifyDataSetChanged();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        clearAdapter();
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        refreshActive();
+
+    }
+
+    private void clearAdapter() {
+        if (mAdapterActive != null) {
+            mAdapterActive.clear();
+        //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+//            mListViewActive.setAdapter(mAdapterActive);
+
+        }
+    }
+
+    private void refreshActive() {
+        if (games != null) {
+            games.clear();
+        }
+        if (mAdapterActive != null) {
+            mAdapterActive.clear();
+        //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+            mListViewActive.setAdapter(mAdapterActive);
+        }
+
+
+        userGamesChildListener();
 
     }
 

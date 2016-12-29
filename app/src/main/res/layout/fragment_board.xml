@@ -1143,6 +1143,18 @@
 
     </LinearLayout>
 
+    <!-- when gameset == null in BoardFragment -->
+    <TextView
+        android:text="Click To\nPlay"
+        android:gravity="center"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="#d2050729"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
 
     <!-- when gameset == null in BoardFragment -->
     <TextView
