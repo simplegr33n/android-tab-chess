@@ -558,8 +558,8 @@ public class GameActivity extends AppCompatActivity {
 
             // if turn is black
             if (turn.equals("black")) {
-                Log.e("PCPCPC", playerColor);
-                Log.e("PCPCGSL", gamesetList.get(square).split("_")[0]);
+                Log.e("PCPCPC", ""+playerColor);
+                Log.e("PCPCGSL", ""+gamesetList.get(square).split("_")[0]);
 
                 if ((playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
 
