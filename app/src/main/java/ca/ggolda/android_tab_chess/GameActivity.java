@@ -588,7 +588,7 @@ public class GameActivity extends AppCompatActivity {
                 Log.e("PCPCPC", ""+playerColor);
                 Log.e("PCPCGSL", ""+gamesetList.get(square).split("_")[0]);
 
-                if ((playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
+                if ((playerColor != null) && (playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
 
                     final int localSquare = square;
 
