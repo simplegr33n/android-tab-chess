@@ -9,7 +9,7 @@
 
 <br>
 
-<img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0005.jpg" width="160">
+<img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/tablet0001.jpg" width="160">
 
 ## Todo
 * Check
