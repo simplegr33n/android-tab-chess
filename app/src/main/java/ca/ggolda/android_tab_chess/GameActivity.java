@@ -158,7 +158,6 @@ public class GameActivity extends AppCompatActivity {
         currentTurn = (TextView) findViewById(R.id.current_turn);
 
 
-
         // TODO: probably remove new game, test board, and change sides on clicks
         TextView newGame = (TextView) findViewById(R.id.new_game);
         newGame.setOnClickListener(new View.OnClickListener() {
@@ -316,21 +315,48 @@ public class GameActivity extends AppCompatActivity {
         h8 = (ImageView) findViewById(R.id.img_h8);
 
 
-
-
-
         // Get gamesetString from firebase
         mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-
-                Log.e("GAMESET", ""+match_id);
-                Log.e("GAMESET", ""+dataSnapshot.getValue(String.class));
+                Log.e("GAMESET", "" + match_id);
+                Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
 
                 gamesetString = dataSnapshot.getValue(String.class);
-                setBoard();
+
+
+                // Get turn color from firebase
+                mGamesDatabaseReference.child(match_id).child("turn_color").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        turn = dataSnapshot.getValue(String.class);
+
+                        Log.e("turn_color-ref", turn);
+
+                        if (turn.equals("black")) {
+                            currentTurn.setText("turn: BLACK");
+                            currentTurn.setBackgroundColor(Color.parseColor("#000000"));
+                            currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
+
+                        } else if (turn.equals("white")) {
+                            currentTurn.setText("turn: WHITE");
+                            currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                            currentTurn.setTextColor(Color.parseColor("#000000"));
+                        }
+
+                        clearSelected();
+
+                        setBoard();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
 
 
             }
@@ -340,38 +366,6 @@ public class GameActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-
-
-        // Get turn color from firebase
-        mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                turn = dataSnapshot.getValue(String.class);
-
-                if (turn.equals("black")) {
-                    currentTurn.setText("turn: BLACK");
-                    currentTurn.setBackgroundColor(Color.parseColor("#000000"));
-                    currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
-
-                } else if (turn.equals("white")) {
-                    currentTurn.setText("turn: WHITE");
-                    currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    currentTurn.setTextColor(Color.parseColor("#000000"));
-                }
-
-                setBoard();
-
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
 
 
     }
@@ -519,63 +513,129 @@ public class GameActivity extends AppCompatActivity {
         returnSelectable(63, h8);
     }
 
+    // Move the gamepiece
+    public static void moveGamepiece(int moveTo) {
+
+        // Draw piece in new location
+        // chance in gamesetList, then gamesetString // clear values of selectedUnit and selectedSquare
+        if (selectedUnit != "") {
+            ImageView space = getSquareImageView(moveTo);
+            space.setImageResource(GameActivity.getContext().getResources().getIdentifier(selectedUnit, "drawable", GameActivity.getContext().getPackageName()));
+
+            // change gamesetList
+            gamesetList.set(moveTo, selectedUnit);
+            if (selectedSquare != 99) {
+                gamesetList.set(selectedSquare, "free_square");
+            }
+
+            selectedUnit = "";
+            selectedSquare = 99;
+
+
+            // delete piece from previous location
+            if (getSquareImageView(selectedSquare) != null) {
+                getSquareImageView(selectedSquare).setImageResource(GameActivity.getContext().getResources().getIdentifier("free_square", "drawable", GameActivity.getContext().getPackageName()));
+            }
+
+
+        }
+
+        gamesetString = "";
+        for (int i = 0; i < gamesetList.size(); i++) {
+            if (i != 0) {
+                gamesetString = gamesetString + "," + gamesetList.get(i);
+            }
+            if (i == 0) {
+                gamesetString = gamesetList.get(i);
+            }
+        }
+
+        Log.e("EYHO9", gamesetString);
+
+        mGamesDatabaseReference.child(match_id).child("board").setValue(gamesetString);
+
+        if (turn.equals("white")) {
+            mGamesDatabaseReference.child(match_id).child("turn_color").setValue("black");
+        } else if (turn.equals("black")) {
+            mGamesDatabaseReference.child(match_id).child("turn_color").setValue("white");
+        }
+
+
+        // TODO: verify player cannot play twice in one turn if they play quickly
+        // Null onclicks and change turn
+        switch (turn) {
+            case "white":
+                turn = "black";
+                currentTurn.setText("turn: BLACK");
+                currentTurn.setBackgroundColor(Color.parseColor("#000000"));
+                currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
+
+                if (playerColor.equals("white")) {
+                    for (int i = 0; i < 64; i++) {
+                        getSquareImageView(i).setOnClickListener(null);
+                    }
+                }
+                break;
+            case "black":
+                turn = "white";
+                currentTurn.setText("turn: WHITE");
+                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                currentTurn.setTextColor(Color.parseColor("#000000"));
+
+                if (playerColor.equals("black")) {
+                    for (int i = 0; i < 64; i++) {
+                        getSquareImageView(i).setOnClickListener(null);
+                    }
+                }
+                break;
+        }
+
+
+        Log.e("Turn", turn);
+
+        clearSelected();
+
+        // Reset board based on new gamesetString
+        // TODO: use firebase realtime database instead of refreshing setBoard
+        setBoard();
+
+    }
+
     private static void returnSelectable(int square, final ImageView squareImageView) {
-        //if the first word of the piece name is white or black, their space is clickable
-        //TODO: implement turns
-        if ((gamesetList.get(square).split("_")[0]).equals("white") || (gamesetList.get(square).split("_")[0]).equals("black")) {
-            Log.e("EYHO", gamesetList.get(square).split("_")[0]);
+        // if turn is white
+        if (turn.equals("white") && (gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
+
+            final int localSquare = square;
+
+            squareImageView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (selectedSquare == 99) {
+                        v.setBackgroundColor(Color.parseColor("#A60000FF"));
+                        selectedSquare = localSquare;
+                        isSelected(localSquare, squareImageView);
+                    }
 
 
-            // if turn is white
-            if (turn.equals("white")) {
-
-                Log.e("GAMEEEE", gamesetList.get(square).split("_")[0]);
-
-                if (playerColor == null) {
-                    playerColor = "black";
                 }
-                Log.e("GAMEEEE", playerColor);
+            });
 
-                if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
+        }
 
-                    final int localSquare = square;
+        // if turn is black
+        if (turn.equals("black") && (playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
 
-                    squareImageView.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            if (selectedSquare == 99) {
-                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
-                                selectedSquare = localSquare;
-                                isSelected(localSquare, squareImageView);
-                            }
+            final int localSquare = square;
 
+            squareImageView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (selectedSquare == 99 && turn.equals("black")) {
+                        v.setBackgroundColor(Color.parseColor("#A60000FF"));
+                        selectedSquare = localSquare;
+                        isSelected(localSquare, squareImageView);
 
-                        }
-                    });
+                    }
                 }
-            }
-
-            // if turn is black
-            if (turn.equals("black")) {
-                Log.e("PCPCPC", playerColor);
-                Log.e("PCPCGSL", gamesetList.get(square).split("_")[0]);
-
-                if ((playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
-
-                    final int localSquare = square;
-
-                    squareImageView.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            if (selectedSquare == 99 && turn.equals("black")) {
-                                v.setBackgroundColor(Color.parseColor("#A60000FF"));
-                                selectedSquare = localSquare;
-                                isSelected(localSquare, squareImageView);
-
-                            }
-                        }
-                    });
-                }
-            }
-
+            });
         }
 
 
@@ -863,10 +923,9 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public static Context getContext(){
+    public static Context getContext() {
         return mContext;
     }
-
 
 
     @Override
@@ -875,4 +934,5 @@ public class GameActivity extends AppCompatActivity {
 
         finish();
     }
+
 }

@@ -106,6 +106,7 @@ public class Movement {
 
     public static String match_id = GameActivity.match_id;
 
+
     // make possible views active
     // passing in image view to be able to set color back on second click
     public static void possibleMoves() {
@@ -135,7 +136,7 @@ public class Movement {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
                         space.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                moveGamepiece(localI);
+                                GameActivity.moveGamepiece(localI);
                             }
                         });
                     }
@@ -148,7 +149,7 @@ public class Movement {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
                         space.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                moveGamepiece(localI);
+                                GameActivity.moveGamepiece(localI);
                             }
                         });
                     }
@@ -165,7 +166,7 @@ public class Movement {
                             space.setBackgroundColor(Color.parseColor("#A600FF00"));
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    moveGamepiece(localI);
+                                    GameActivity.moveGamepiece(localI);
                                 }
                             });
                         }
@@ -199,7 +200,7 @@ public class Movement {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
                         space.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                moveGamepiece(localI);
+                                GameActivity.moveGamepiece(localI);
                             }
                         });
                     }
@@ -212,7 +213,7 @@ public class Movement {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
                         space.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                moveGamepiece(localI);
+                                GameActivity.moveGamepiece(localI);
                             }
                         });
                     }
@@ -228,7 +229,7 @@ public class Movement {
                             space.setBackgroundColor(Color.parseColor("#A600FF00"));
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    moveGamepiece(localI);
+                                    GameActivity.moveGamepiece(localI);
                                 }
                             });
                         }
@@ -261,7 +262,7 @@ public class Movement {
                             space.setBackgroundColor(Color.parseColor("#A600FF00"));
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    moveGamepiece(localI);
+                                    GameActivity.moveGamepiece(localI);
                                 }
                             });
 
@@ -295,7 +296,7 @@ public class Movement {
                             space.setBackgroundColor(Color.parseColor("#A600FF00"));
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    moveGamepiece(localI);
+                                    GameActivity.moveGamepiece(localI);
                                 }
                             });
 
@@ -333,7 +334,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -348,7 +349,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -362,7 +363,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -377,7 +378,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -392,7 +393,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -407,7 +408,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -421,7 +422,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -435,7 +436,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -450,7 +451,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -464,7 +465,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -479,7 +480,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -494,7 +495,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -509,7 +510,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -523,7 +524,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -538,7 +539,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -555,7 +556,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -570,7 +571,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -586,7 +587,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -602,7 +603,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -618,7 +619,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -633,7 +634,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -649,7 +650,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -665,7 +666,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -681,7 +682,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -698,7 +699,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -715,7 +716,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -732,7 +733,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -748,7 +749,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -788,7 +789,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -803,7 +804,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -817,7 +818,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -832,7 +833,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -847,7 +848,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -862,7 +863,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -876,7 +877,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -890,7 +891,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -905,7 +906,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -919,7 +920,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -934,7 +935,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -949,7 +950,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -964,7 +965,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -978,7 +979,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -993,7 +994,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1010,7 +1011,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1025,7 +1026,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1041,7 +1042,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1057,7 +1058,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1073,7 +1074,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1088,7 +1089,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1104,7 +1105,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1120,7 +1121,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1136,7 +1137,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1153,7 +1154,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1170,7 +1171,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1187,7 +1188,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1203,7 +1204,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1245,7 +1246,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1259,7 +1260,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1273,7 +1274,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1287,7 +1288,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1302,7 +1303,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1317,7 +1318,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1333,7 +1334,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1347,7 +1348,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1361,7 +1362,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1375,7 +1376,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1390,7 +1391,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1405,7 +1406,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1421,7 +1422,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1435,7 +1436,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1449,7 +1450,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1463,7 +1464,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1478,7 +1479,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1493,7 +1494,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1510,7 +1511,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1524,7 +1525,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1538,7 +1539,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1552,7 +1553,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1567,7 +1568,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1582,7 +1583,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1623,7 +1624,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1637,7 +1638,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1651,7 +1652,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1665,7 +1666,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1680,7 +1681,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1695,7 +1696,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1711,7 +1712,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1725,7 +1726,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1739,7 +1740,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1753,7 +1754,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1768,7 +1769,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1783,7 +1784,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1799,7 +1800,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1813,7 +1814,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1827,7 +1828,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1841,7 +1842,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1856,7 +1857,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1871,7 +1872,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1888,7 +1889,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1902,7 +1903,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1916,7 +1917,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1930,7 +1931,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1945,7 +1946,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -1960,7 +1961,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2002,7 +2003,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2016,7 +2017,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2030,7 +2031,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2044,7 +2045,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2059,7 +2060,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2074,7 +2075,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2090,7 +2091,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2104,7 +2105,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2118,7 +2119,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2132,7 +2133,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2147,7 +2148,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -2162,7 +2163,7 @@ public class Movement {
                                 space.setBackgroundColor(Color.parseColor("#A600FF00"));
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        moveGamepiece(localI);
+                                        GameActivity.moveGamepiece(localI);
                                     }
                                 });
                             }
@@ -4201,106 +4202,6 @@ public class Movement {
         return ((gamesetList.get(i).equals("free_square")) || (gamesetList.get(i).equals("white_pawn")) || (gamesetList.get(i).equals("white_king")) || (gamesetList.get(i).equals("white_queen")) || (gamesetList.get(i).equals("white_bishop")) || (gamesetList.get(i).equals("white_knight")) || (gamesetList.get(i).equals("white_rook")));
     }
 
-    // Move the gamepiece
-    private static void moveGamepiece(int moveTo) {
-
-        // Draw piece in new location
-        // chance in gamesetList, then gamesetString // clear values of selectedUnit and selectedSquare
-        if (selectedUnit != "") {
-            ImageView space = getSquareImageView(moveTo);
-            space.setImageResource(GameActivity.getContext().getResources().getIdentifier(selectedUnit, "drawable", GameActivity.getContext().getPackageName()));
-
-            // change gamesetList
-            gamesetList.set(moveTo, selectedUnit);
-            if (selectedSquare != 99) {
-                gamesetList.set(selectedSquare, "free_square");
-            }
-
-            selectedUnit = "";
-            selectedSquare = 99;
-
-
-            // delete piece from previous location
-            if (getSquareImageView(selectedSquare) != null) {
-                getSquareImageView(selectedSquare).setImageResource(GameActivity.getContext().getResources().getIdentifier("free_square", "drawable", GameActivity.getContext().getPackageName()));
-            }
-
-
-        }
-
-        gamesetString = "";
-        for (int i = 0; i < gamesetList.size(); i++) {
-            if (i != 0) {
-                gamesetString = gamesetString + "," + gamesetList.get(i);
-            }
-            if (i == 0) {
-                gamesetString = gamesetList.get(i);
-            }
-        }
-
-        Log.e("EYHO9", gamesetString);
-
-        mGamesDatabaseReference.child(match_id).child("board").setValue(gamesetString);
-
-        if (turn.equals("white")) {
-            mGamesDatabaseReference.child(match_id).child("turn_color").setValue("black");
-        } else if (turn.equals("black")) {
-            mGamesDatabaseReference.child(match_id).child("turn_color").setValue("white");
-        }
-
-
-        // TODO: verify player cannot play twice in one turn if they play quickly
-        // Null onclicks and change turn
-        switch (turn) {
-            case "white":
-                turn = "black";
-                currentTurn.setText("turn: BLACK");
-                currentTurn.setBackgroundColor(Color.parseColor("#000000"));
-                currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
-
-                if (playerColor.equals("white")) {
-                    for (int i = 0; i < 64; i++) {
-                        getSquareImageView(i).setOnClickListener(null);
-                    }
-                }
-                break;
-            case "black":
-                turn = "white";
-                currentTurn.setText("turn: WHITE");
-                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                currentTurn.setTextColor(Color.parseColor("#000000"));
-
-                if (playerColor.equals("black")) {
-                    for (int i = 0; i < 64; i++) {
-                        getSquareImageView(i).setOnClickListener(null);
-                    }
-                }
-                break;
-        }
-
-
-        Log.e("Turn", turn);
-
-        clearSelected();
-
-        // Reset board based on new gamesetString
-        // TODO: use firebase realtime database instead of refreshing setBoard
-        GameActivity.setBoard();
-
-    }
-
-
-    // Clear backgrounds from selected / possible moves
-    private static void clearSelected() {
-        for (int i = 0; i < 64; i++) {
-            ImageView space = (ImageView) getSquareImageView(i);
-            space.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-
-            selectedSquare = 99;
-            selectedUnit = "";
-        }
-    }
-
     // to conveniently get ImageView from the int value of the square
     // TODO: there are definitely more clever/efficient ways to do this
     private static ImageView getSquareImageView(int square) {
@@ -4514,6 +4415,12 @@ public class Movement {
         return imgView;
 
 
+    }
+
+
+    // TODO: make uniform -- half of the above have "GameActivity.moveGamepiece", while the rest refer to this function
+    private static void moveGamepiece(int localI) {
+        GameActivity.moveGamepiece(localI);
     }
 
 
