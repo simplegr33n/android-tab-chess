@@ -82,7 +82,7 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 //
 //                Log.e("GAMESET",  "withintent"+current.getMatch_id());
 //
-//                Intent intent = new Intent(getContext(), BoardActivity.class);
+//                Intent intent = new Intent(getContext(), GameActivity.class);
 //                intent.putExtra("MATCH_ID", current.getMatch_id());
 //                getContext().startActivity(intent);
 //

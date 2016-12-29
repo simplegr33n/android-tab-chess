@@ -27,7 +27,7 @@
 
         <activity android:name="ca.ggolda.android_tab_chess.SignupActivity" android:screenOrientation="portrait"/>
 
-        <activity android:name="ca.ggolda.android_tab_chess.BoardActivity" android:screenOrientation="portrait"/>
+        <activity android:name="ca.ggolda.android_tab_chess.GameActivity" android:screenOrientation="portrait"/>
 
     </application>
 

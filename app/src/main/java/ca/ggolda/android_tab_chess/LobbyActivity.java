@@ -209,14 +209,6 @@ public class LobbyActivity extends AppCompatActivity {
 
         // Set active games list
 
-
-//        refreshActive();
-
-
-//        games = null;
-//        mAdapterActive = null;
-//        mListViewActive = null;
-//
         games = new ArrayList<>();
         mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
         mListViewActive = (ListView) findViewById(R.id.active_listview);
@@ -243,21 +235,14 @@ public class LobbyActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-               //         clearAdapter();
-//
                         if (dataSnapshot.getValue(InstanceGame.class) != null) {
-//                            mAdapterActive.clear();
                             games.add(dataSnapshot.getValue(InstanceGame.class));
-                            mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-                            mListViewActive.setAdapter(mAdapterActive);
 
                         }
 
-//                        mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+                        mAdapterActive.notifyDataSetChanged();
 
 
-
-                        //mAdapterActive.notifyDataSetChanged();
                         //mAdapterActive.clear();
 
 //                        mListViewActive.setAdapter(mAdapterActive);

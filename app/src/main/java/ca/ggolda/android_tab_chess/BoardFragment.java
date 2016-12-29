@@ -11,12 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Arrays;
 import java.util.List;
@@ -122,7 +119,7 @@ public class BoardFragment extends Fragment {
                     Log.e("GAMESET", "gameset" + gameset);
                     Log.e("GAMESET", "withintent" + match_id);
 
-                    Intent intent = new Intent(getActivity(), BoardActivity.class);
+                    Intent intent = new Intent(getActivity(), GameActivity.class);
                     intent.putExtra("MATCH_ID", match_id);
                     startActivity(intent);
 

@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 
-public class BoardActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private ImageView a1;
     private ImageView a2;
@@ -129,7 +129,7 @@ public class BoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
+        setContentView(R.layout.activity_game);
 
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -150,7 +150,7 @@ public class BoardActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(BoardActivity.this, LoginActivity.class));
+                    startActivity(new Intent(GameActivity.this, LoginActivity.class));
                     finish();
                 }
             }
