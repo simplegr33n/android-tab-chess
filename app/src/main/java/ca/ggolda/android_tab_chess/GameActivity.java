@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -120,10 +121,13 @@ public class GameActivity extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mGamesDatabaseReference;
+    private DatabaseReference mUsersDatabaseReference;
 
-    private String match_id;
+    public static String match_id;
 
     private String userId;
+
+    public static String username;
 
 
     @Override
@@ -131,10 +135,10 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
+        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
         match_id = getIntent().getStringExtra("MATCH_ID");
 
@@ -218,6 +222,29 @@ public class GameActivity extends AppCompatActivity {
 
                 }
 
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        // Get username
+        mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Log.e("WHADDUP", ""+dataSnapshot.getValue());
+
+                username = dataSnapshot.getValue(String.class);
+
+                // Set Chat fragment
+                FragChat fragChat = new FragChat();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.frame_chat, fragChat);
+                transaction.commit();
 
             }
 
