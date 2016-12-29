@@ -246,7 +246,7 @@ public class LobbyActivity extends AppCompatActivity {
                //         clearAdapter();
 //
                         if (dataSnapshot.getValue(InstanceGame.class) != null) {
-                            mAdapterActive.clear();
+//                            mAdapterActive.clear();
                             games.add(dataSnapshot.getValue(InstanceGame.class));
                             mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
                             mListViewActive.setAdapter(mAdapterActive);
