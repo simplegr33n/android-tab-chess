@@ -7,6 +7,10 @@
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0004.jpg" width="144">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0005.jpg" width="144">
 
+<br>
+
+<img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0005.jpg" width="160">
+
 ## Todo
 * Check
 * Checkmate
