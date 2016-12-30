@@ -3,33 +3,26 @@ package ca.ggolda.android_tab_chess;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-import java.util.ArrayList;
 
 /**
  * Created by gcgol on 12/22/2016.
@@ -82,6 +75,28 @@ public class LobbyActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+        Log.e("WHAT", ""+userId);
+        Log.e("WHAT", ""+username);
+
+        mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Log.e("USER", "GAME2uname " + dataSnapshot.getValue());
+
+                username = dataSnapshot.getValue(String.class);
+
+                Log.e("WHATAFTER", ""+username);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
 
 
         TextView setUsername = (TextView) findViewById(R.id.set_username);
@@ -168,6 +183,11 @@ public class LobbyActivity extends AppCompatActivity {
                                         mUsersDatabaseReference.child(userId).child("games").child(offer).setValue(true);
                                         mGamesDatabaseReference.child(offer).child("username_black").setValue(username);
                                         mGamesDatabaseReference.child("offers").removeValue();
+
+                                        // go to game
+                                        Intent intent = new Intent(LobbyActivity.this, GameActivity.class);
+                                        intent.putExtra("MATCH_ID", offer);
+                                        startActivity(intent);
                                     }
 
                                 }
@@ -190,6 +210,11 @@ public class LobbyActivity extends AppCompatActivity {
                             mGamesDatabaseReference.child("offers").child(eventId).setValue(true);
                             mGamesDatabaseReference.child(eventId).child("match_id").setValue(eventId);
                             mGamesDatabaseReference.child(eventId).child("username_white").setValue(username);
+
+                            // go to game
+                            Intent intent = new Intent(LobbyActivity.this, GameActivity.class);
+                            intent.putExtra("MATCH_ID", eventId);
+                            startActivity(intent);
                         }
 
 

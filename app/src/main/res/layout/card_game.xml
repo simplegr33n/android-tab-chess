@@ -1172,6 +1172,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
+            android:text="Username"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:id="@+id/username2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Turn: w/b"
             android:textStyle="bold"
             android:id="@+id/turn"/>

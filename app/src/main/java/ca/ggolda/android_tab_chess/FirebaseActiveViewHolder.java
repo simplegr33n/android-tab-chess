@@ -120,6 +120,9 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
         TextView nameTextView = (TextView) mView.findViewById(R.id.username);
         nameTextView.setText(game.getUsername_white());
 
+        TextView nameTwoTextView = (TextView) mView.findViewById(R.id.username2);
+        nameTwoTextView.setText(game.getUsername_black());
+
         TextView turnTextView = (TextView) mView.findViewById(R.id.turn);
         turnTextView.setText(game.getTurn_color() + " turn");
 
