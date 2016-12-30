@@ -5,11 +5,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- chatbox -->
+    <LinearLayout
+        android:id="@+id/chat_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+
+        <FrameLayout
+            android:id="@+id/frame_chat"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/current_side"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="you are: WHITE"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/current_turn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="turn: WHITE"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     <!-- top buttons -->
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2">
+
+
 
 
         <!-- TODO: remove or make hidden -->
@@ -63,8 +115,7 @@
 
     <!-- the board -->
     <LinearLayout
-        android:paddingLeft="44dp"
-        android:paddingRight="44dp"
+        android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
@@ -1209,51 +1260,5 @@
         android:visibility="gone"
         tools:text="test small text" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <FrameLayout
-            android:id="@+id/frame_chat"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/current_side"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="you are: WHITE"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_turn"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="turn: WHITE"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 
 </LinearLayout>
