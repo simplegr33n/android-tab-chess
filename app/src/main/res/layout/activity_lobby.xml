@@ -179,6 +179,7 @@
                                 android:background="#c231e850"
                                 android:gravity="center"
                                 android:textSize="22sp"
+                                android:padding="4dp"
                                 android:textStyle="bold"
                                 android:text="ACTIVE GAMES" />
 

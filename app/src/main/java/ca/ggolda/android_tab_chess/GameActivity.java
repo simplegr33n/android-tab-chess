@@ -5085,4 +5085,142 @@ public class GameActivity extends AppCompatActivity {
 
         finish();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        onStartResume();
+
+    }
+
+    private void onStartResume() {
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
+        mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
+        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
+
+        match_id = getIntent().getStringExtra("MATCH_ID");
+
+        //get current user and send to login screen if user is null
+        FirebaseUser userIs = FirebaseAuth.getInstance().getCurrentUser();
+        userId = userIs.getUid();
+
+        currentTurn = (TextView) findViewById(R.id.current_turn);
+
+        final TextView currentSide = (TextView) findViewById(R.id.current_side);
+
+        // Get user games for Active list
+        mGamesDatabaseReference.child(match_id).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String white_player = dataSnapshot.getValue(String.class);
+                if (userId.equals(white_player)) {
+                    playerColor = "white";
+
+                    currentSide.setText("you are: WHITE");
+                    currentSide.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    currentSide.setTextColor(Color.parseColor("#000000"));
+
+                } else {
+                    playerColor = "black";
+
+                    currentSide.setText("you are: BLACK");
+                    currentSide.setBackgroundColor(Color.parseColor("#000000"));
+                    currentSide.setTextColor(Color.parseColor("#FFFFFF"));
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        // Get username
+        mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Log.e("WHADDUP", ""+dataSnapshot.getValue());
+
+                username = dataSnapshot.getValue(String.class);
+
+                // Set Chat fragment
+                FragChat fragChat = new FragChat();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.frame_chat, fragChat);
+                transaction.commit();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
+
+
+
+
+        // Get gamesetString from firebase
+        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+
+                Log.e("GAMESET", ""+match_id);
+                Log.e("GAMESET", ""+dataSnapshot.getValue(String.class));
+
+                gamesetString = dataSnapshot.getValue(String.class);
+                setBoard();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
+        // Get turn color from firebase
+        mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                turn = dataSnapshot.getValue(String.class);
+
+                if (turn.equals("black")) {
+                    currentTurn.setText("turn: BLACK");
+                    currentTurn.setBackgroundColor(Color.parseColor("#000000"));
+                    currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
+
+                } else if (turn.equals("white")) {
+                    currentTurn.setText("turn: WHITE");
+                    currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    currentTurn.setTextColor(Color.parseColor("#000000"));
+                }
+
+                setBoard();
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+    }
 }

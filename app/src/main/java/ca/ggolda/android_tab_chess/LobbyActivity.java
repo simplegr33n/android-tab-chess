@@ -71,231 +71,8 @@ public class LobbyActivity extends AppCompatActivity {
         Log.e("USER", "" + userId);
 
 
-        authListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user == null) {
-                    // user auth state is changed - user is null
-                    // launch login activity
-                    startActivity(new Intent(LobbyActivity.this, LoginActivity.class));
-                    finish();
-                }
-            }
-        };
-
-
-        TextView setUsername = (TextView) findViewById(R.id.set_username);
-        setUsername.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                username = editUsername.getText().toString();
-                Log.e("GAMEEE", "" + username);
-                if (username != null) {
-                    mUsersDatabaseReference.child(userId).child("username").setValue(username);
-
-                }
-
-            }
-
-
-        });
-
-        // Ensure user has username
-        mUsersDatabaseReference.child(userId).child("username").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Log.e("USER", "GAME2uname " + dataSnapshot.getValue());
-
-                if (dataSnapshot.getValue() == null) {
-                    LinearLayout usernameLayout = (LinearLayout) findViewById(R.id.username_layout);
-                    usernameLayout.setVisibility(View.VISIBLE);
-
-                }
-
-                if (dataSnapshot.getValue() != null) {
-                    LinearLayout usernameLayout = (LinearLayout) findViewById(R.id.username_layout);
-                    usernameLayout.setVisibility(View.GONE);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-
-        //create a random game offer
-        TextView matchRandom = (TextView) findViewById(R.id.random_button);
-        matchRandom.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                mGamesDatabaseReference.child("offers").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                        // TODO: just get game key rather than splitting {akdffkadfjsdkfdf=true} strings
-                        String temp = ("" + dataSnapshot.getValue()).split("=")[0];
-
-                        Log.e("USER", "temp" + temp);
-
-                        //if offer/accept offer
-                        // TODO: possibly allow offers to hold multiple offer games
-                        if (dataSnapshot.getValue() != null) {
-
-                            //TODO: remove stringbuilder
-                            StringBuilder sb = new StringBuilder(temp);
-                            sb.deleteCharAt(0);
-                            final String offer = sb.toString();
-                            Log.e("USEROH", "offer" + offer);
-
-                            mGamesDatabaseReference.child(offer).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    String player_white = dataSnapshot.getValue(String.class);
-
-                                    Log.e("USER", "player_white " + player_white);
-
-                                    if (player_white.equals(userId)) {
-                                        Toast.makeText(LobbyActivity.this, "Please Wait...", Toast.LENGTH_SHORT).show();
-
-                                    } else {
-                                        // TODO: something to ensure these all happen
-                                        mGamesDatabaseReference.child(offer).child("black").setValue(userId);
-                                        mUsersDatabaseReference.child(userId).child("games").child(offer).setValue(true);
-                                        mGamesDatabaseReference.child(offer).child("username_black").setValue(username);
-                                        mGamesDatabaseReference.child("offers").removeValue();
-                                    }
-
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                    System.out.println("The read failed: " + databaseError.getCode());
-                                }
-                            });
-
-                        } else {
-                            String eventId = mGamesDatabaseReference.push().getKey();
-
-                            //TODO: ensure these all happen
-                            mGamesDatabaseReference.child(eventId).child("white").setValue(userId);
-                            String newBoard = getResources().getString(R.string.new_board);
-                            mGamesDatabaseReference.child(eventId).child("board").setValue(newBoard);
-                            mGamesDatabaseReference.child(eventId).child("turn_color").setValue("white");
-                            mUsersDatabaseReference.child(userId).child("games").child(eventId).setValue(true);
-                            mGamesDatabaseReference.child("offers").child(eventId).setValue(true);
-                            mGamesDatabaseReference.child(eventId).child("match_id").setValue(eventId);
-                            mGamesDatabaseReference.child(eventId).child("username_white").setValue(username);
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The read failed: " + databaseError.getCode());
-                    }
-                });
-
-
-            }
-        });
-
-
-        // Set active games list
-
-        games = new ArrayList<>();
-        mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-        mListViewActive = (ListView) findViewById(R.id.active_listview);
-        mListViewActive.setAdapter(mAdapterActive);
-
-
- //       refreshActive();
-
-        userGamesChildListener();
-
 
     }
-
-
-    private void userGamesChildListener() {
-        mUsersDatabaseReference.child(userId).child("games").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-
-
-                Log.e("GAME", "GETKEY" + dataSnapshot.getKey());
-
-                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        if (dataSnapshot.getValue(InstanceGame.class) != null) {
-                            games.add(dataSnapshot.getValue(InstanceGame.class));
-
-                        }
-
-                        mAdapterActive.notifyDataSetChanged();
-
-
-                        //mAdapterActive.clear();
-
-//                        mListViewActive.setAdapter(mAdapterActive);
-                        //refreshActive();
-                       // clearAdapter();
-
-
-
-
-//                        mAdapterActive.notifyDataSetChanged();
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-
-                });
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
-
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        clearAdapter();
-
-    }
-
 
     @Override
     protected void onResume() {
@@ -471,13 +248,85 @@ public class LobbyActivity extends AppCompatActivity {
         userGamesChildListener();
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // clearAdapter();
 
     }
+
+
+    private void userGamesChildListener() {
+        mUsersDatabaseReference.child(userId).child("games").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
+
+                Log.e("GAME", "GETKEY" + dataSnapshot.getKey());
+
+                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.getValue(InstanceGame.class) != null) {
+                            games.add(dataSnapshot.getValue(InstanceGame.class));
+
+                        }
+
+                        mAdapterActive.notifyDataSetChanged();
+
+
+                        //mAdapterActive.clear();
+
+//                        mListViewActive.setAdapter(mAdapterActive);
+                        //refreshActive();
+                        // clearAdapter();
+
+
+//                        mAdapterActive.notifyDataSetChanged();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+    }
+
 
     private void clearAdapter() {
         if (mAdapterActive != null) {
             mAdapterActive.clear();
-        //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+            //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
 //            mListViewActive.setAdapter(mAdapterActive);
 
         }
@@ -489,17 +338,14 @@ public class LobbyActivity extends AppCompatActivity {
         }
         if (mAdapterActive != null) {
             mAdapterActive.clear();
-        //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+            //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
             mListViewActive.setAdapter(mAdapterActive);
         }
 
 
-        userGamesChildListener();
+      //  userGamesChildListener();
 
     }
-
-    private void onStartResume() {}
-
 
 
 }
