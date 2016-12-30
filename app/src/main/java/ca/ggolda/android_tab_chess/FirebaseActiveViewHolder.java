@@ -290,7 +290,8 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
             b4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(25), "drawable", mContext.getPackageName()));
             c4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(26), "drawable", mContext.getPackageName()));
             d4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(27), "drawable", mContext.getPackageName()));
-            e4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(29), "drawable", mContext.getPackageName()));
+            e4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(28), "drawable", mContext.getPackageName()));
+            f4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(29), "drawable", mContext.getPackageName()));
             g4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(30), "drawable", mContext.getPackageName()));
             h4.setImageResource(mContext.getResources().getIdentifier(gamesetList.get(31), "drawable", mContext.getPackageName()));
 
