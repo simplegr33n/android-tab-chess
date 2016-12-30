@@ -7,11 +7,15 @@
 
 
 
+
     <LinearLayout
         android:id="@+id/board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <!-- row 8 -->
         <LinearLayout
@@ -1145,12 +1149,12 @@
 
     <!-- when gameset == null in BoardFragment -->
     <TextView
-        android:text="Click To\nPlay"
+        android:text="Touch To\nPlay"
         android:gravity="center"
         android:textSize="64sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:background="#d2050729"
+        android:background="#9f0f6b3d"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
