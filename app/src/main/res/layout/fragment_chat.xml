@@ -13,7 +13,7 @@
         android:id="@+id/messageListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout"
+        android:layout_below="@+id/linearLayout"
         android:stackFromBottom="true"
         android:divider="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
@@ -24,7 +24,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:orientation="horizontal">
