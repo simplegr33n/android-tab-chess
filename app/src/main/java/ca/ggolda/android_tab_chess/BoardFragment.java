@@ -112,19 +112,19 @@ public class BoardFragment extends Fragment {
             logoCover = (TextView) v.findViewById(R.id.logo_cover);
 
 
-            LinearLayout gameBoard = (LinearLayout) v.findViewById(R.id.board);
-            gameBoard.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-
-                    Log.e("GAMESET", "gameset" + gameset);
-                    Log.e("GAMESET", "withintent" + match_id);
-
-                    Intent intent = new Intent(getActivity(), GameActivity.class);
-                    intent.putExtra("MATCH_ID", match_id);
-                    startActivity(intent);
-
-                }
-            });
+//            LinearLayout gameBoard = (LinearLayout) v.findViewById(R.id.board);
+//            gameBoard.setOnClickListener(new View.OnClickListener() {
+//                public void onClick(View v) {
+//
+//                    Log.e("GAMESET", "gameset" + gameset);
+//                    Log.e("GAMESET", "withintent" + match_id);
+//
+//                    Intent intent = new Intent(getActivity(), GameActivity.class);
+//                    intent.putExtra("MATCH_ID", match_id);
+//                    startActivity(intent);
+//
+//                }
+//            });
         }
 
         // TODO: Best way to reverse image view order depending on playerColor.

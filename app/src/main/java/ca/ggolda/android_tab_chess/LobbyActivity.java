@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -21,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 
@@ -39,10 +46,9 @@ public class LobbyActivity extends AppCompatActivity {
 
     private String username;
 
-    private ArrayList<InstanceGame> games;
-    private AdapterActive mAdapterActive;
-    private ListView mListViewActive;
-
+    private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,41 +61,6 @@ public class LobbyActivity extends AppCompatActivity {
         mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
         final EditText editUsername = (EditText) findViewById(R.id.username_edittext);
-
-
-        // Set Preview Board
-        BoardFragment emptyFragment = new BoardFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, emptyFragment);
-        transaction.commit();
-
-
-        //get current user and send to login screen if user is null
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid();
-
-        Log.e("USER", "" + userId);
-
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mGamesDatabaseReference = mFirebaseDatabase.getReference().child("games");
-        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
-
-        final EditText editUsername = (EditText) findViewById(R.id.username_edittext);
-
-
-        // Set Preview Board
-        BoardFragment emptyFragment = new BoardFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, emptyFragment);
-        transaction.commit();
 
 
         //get current user and send to login screen if user is null
@@ -188,7 +159,7 @@ public class LobbyActivity extends AppCompatActivity {
 
                                     Log.e("USER", "player_white " + player_white);
 
-                                    if (player_white.equals(userId)) {
+                                    if ((player_white != null) && player_white.equals(userId)) {
                                         Toast.makeText(LobbyActivity.this, "Please Wait...", Toast.LENGTH_SHORT).show();
 
                                     } else {
@@ -235,116 +206,43 @@ public class LobbyActivity extends AppCompatActivity {
         });
 
 
-        // Set active games list
+        //get current user and send to login screen if user is null
+        userId = user.getUid();
 
-        games = new ArrayList<>();
-        mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-        mListViewActive = (ListView) findViewById(R.id.active_listview);
-        mListViewActive.setAdapter(mAdapterActive);
+        Log.e("USER", "" + userId);
 
 
-        //       refreshActive();
-
-        userGamesChildListener();
+        setUpFirebaseAdapter();
 
 
     }
+
+
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        // clearAdapter();
-
-    }
-
-
-    private void userGamesChildListener() {
-        mUsersDatabaseReference.child(userId).child("games").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-
-
-                Log.e("GAME", "GETKEY" + dataSnapshot.getKey());
-
-                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        if (dataSnapshot.getValue(InstanceGame.class) != null) {
-                            games.add(dataSnapshot.getValue(InstanceGame.class));
-
-                        }
-
-                        mAdapterActive.notifyDataSetChanged();
-
-
-                        //mAdapterActive.clear();
-
-//                        mListViewActive.setAdapter(mAdapterActive);
-                        //refreshActive();
-                        // clearAdapter();
-
-
-//                        mAdapterActive.notifyDataSetChanged();
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-
-                });
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
-
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
 
 
     }
 
 
-    private void clearAdapter() {
-        if (mAdapterActive != null) {
-            mAdapterActive.clear();
-            //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-//            mListViewActive.setAdapter(mAdapterActive);
+    private void setUpFirebaseAdapter() {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<InstanceGame, FirebaseActiveViewHolder>
+                (InstanceGame.class, R.layout.card_game, FirebaseActiveViewHolder.class,
+                        mGamesDatabaseReference) {
 
-        }
-    }
-
-    private void refreshActive() {
-        if (games != null) {
-            games.clear();
-        }
-        if (mAdapterActive != null) {
-            mAdapterActive.clear();
-            //    mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
-            mListViewActive.setAdapter(mAdapterActive);
-        }
-
-
-      //  userGamesChildListener();
-
+            @Override
+            protected void populateViewHolder(FirebaseActiveViewHolder viewHolder,
+                                              InstanceGame model, int position) {
+                viewHolder.bindItem(model);
+            }
+        };
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mFirebaseAdapter);
     }
 
 

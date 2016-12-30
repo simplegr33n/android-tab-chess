@@ -30,6 +30,11 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
+
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+
+    // FirebaseUI Database only
+    compile 'com.firebaseui:firebase-ui-database:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
