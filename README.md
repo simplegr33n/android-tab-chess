@@ -1,5 +1,8 @@
 # Android Tab Chess
 
+Check out the Alpha on Google Play:
+https://play.google.com/store/apps/details?id=ca.ggolda.android_tab_chess
+
 <hr>
 ## Screenshots
 
