@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -117,17 +118,30 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
 
         current = game;
 
+        LinearLayout gameLayout = (LinearLayout) mView.findViewById(R.id.game_layout);
 
-        TextView nameTextView = (TextView) mView.findViewById(R.id.username);
-        nameTextView.setText(game.getUsername_white());
+        if (!((current.getBlack() != null &&(current.getBlack().equals(LobbyActivity.userId))) || (current.getWhite() != null && (current.getWhite().equals(LobbyActivity.userId))))) {
 
-        TextView nameTwoTextView = (TextView) mView.findViewById(R.id.username2);
-        nameTwoTextView.setText(game.getUsername_black());
+            // TODO: This hiding needs work, they still appear as empties in full size
+            gameLayout.setVisibility(View.GONE);
+            mView.setVisibility(View.GONE);
 
-        TextView turnTextView = (TextView) mView.findViewById(R.id.turn);
-        turnTextView.setText(game.getTurn_color() + " turn");
+        } else {
 
-        declareBoard();
+            gameLayout.setVisibility(View.VISIBLE);
+            mView.setVisibility(View.VISIBLE);
+
+            TextView nameTextView = (TextView) mView.findViewById(R.id.username);
+            nameTextView.setText(game.getUsername_white());
+
+            TextView nameTwoTextView = (TextView) mView.findViewById(R.id.username2);
+            nameTwoTextView.setText(game.getUsername_black());
+
+            TextView turnTextView = (TextView) mView.findViewById(R.id.turn);
+            turnTextView.setText(game.getTurn_color() + " turn");
+
+            declareBoard();
+        }
 
 
     }
@@ -140,34 +154,42 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("games");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    games.add(snapshot.getValue(InstanceGame.class));
-                }
+                                               @Override
+                                               public void onDataChange(DataSnapshot dataSnapshot) {
+                                                   for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                       games.add(snapshot.getValue(InstanceGame.class));
+                                                   }
 
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final int position = getLayoutPosition();
+                                                   view.setOnClickListener(new View.OnClickListener() {
+                                                                               @Override
+                                                                               public void onClick(View v) {
+                                                                                   final int position = getLayoutPosition();
 
-                        //        InstanceGame game = data.get(position);
+                                                                                   //        InstanceGame game = data.get(position);
 
-                        if (current.getMatch_id() != null) {
+                                                                                   if (current.getMatch_id() != null) {
 
-                            Intent intent = new Intent(mContext, GameActivity.class);
-                            intent.putExtra("MATCH_ID", current.getMatch_id());
-                            mContext.startActivity(intent);
-                        }
-                    }
-                });
-            }
+                                                                                       if ((current.getBlack().equals(LobbyActivity.userId)) || (current.getWhite().equals(LobbyActivity.userId)))  {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                                                                                           Intent intent = new Intent(mContext, GameActivity.class);
+                                                                                           intent.putExtra("MATCH_ID", current.getMatch_id());
+                                                                                           mContext.startActivity(intent);
+                                                                                       }
+                                                                                   }
+                                                                               }
+                                                                           }
 
-            }
-        });
+                                                   );
+
+                                               }
+
+                                               @Override
+                                               public void onCancelled(DatabaseError databaseError) {
+
+                                               }
+                                           }
+
+        );
     }
 
     private void declareBoard() {

@@ -238,7 +238,7 @@ public class LobbyActivity extends AppCompatActivity {
         Log.e("USER", "" + userId);
 
 
-        setUpFirebaseAdapter();
+//        setUpFirebaseAdapter();
 
 
     }
@@ -246,8 +246,21 @@ public class LobbyActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        setUpFirebaseAdapter();
+
+
+
+    }
+
+
+    @Override
     protected void onPause() {
         super.onPause();
+
+        mFirebaseAdapter.cleanup();
 
 
 
