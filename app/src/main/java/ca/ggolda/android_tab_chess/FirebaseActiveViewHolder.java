@@ -117,6 +117,7 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
 
         current = game;
 
+
         TextView nameTextView = (TextView) mView.findViewById(R.id.username);
         nameTextView.setText(game.getUsername_white());
 
@@ -250,8 +251,8 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
 
         setBoard();
     }
-    private void setBoard() {
 
+    private void setBoard() {
 
 
         if (gameset != null) {

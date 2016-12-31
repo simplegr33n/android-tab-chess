@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LobbyActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
-    private String userId;
+    public static String userId;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mGamesDatabaseReference;
@@ -105,6 +105,9 @@ public class LobbyActivity extends AppCompatActivity {
                 Log.e("GAMEEE", "" + username);
                 if (username != null) {
                     mUsersDatabaseReference.child(userId).child("username").setValue(username);
+
+                    TextView usernameBar = (TextView) findViewById(R.id.username);
+                    usernameBar.setText(username);
 
                 }
 
