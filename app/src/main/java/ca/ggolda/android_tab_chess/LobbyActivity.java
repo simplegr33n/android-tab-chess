@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +18,14 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -37,16 +41,28 @@ public class LobbyActivity extends AppCompatActivity {
     private DatabaseReference mGamesDatabaseReference;
     private DatabaseReference mUsersDatabaseReference;
 
+    private DatabaseReference mActiveDatabaseReference;
+
+    private ChildEventListener mActiveEventListener;
+
+    private AdapterActive mAdapterActive;
+    private ListView mListViewActive;
+
     private String username;
 
     private FirebaseRecyclerAdapter mFirebaseAdapter;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
 
+    private ArrayList<InstanceGame> games;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+
+
+        games = new ArrayList<>();
 
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -77,7 +93,6 @@ public class LobbyActivity extends AppCompatActivity {
         };
 
 
-
         // Get username
         mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -94,7 +109,6 @@ public class LobbyActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
 
 
         TextView setUsername = (TextView) findViewById(R.id.set_username);
@@ -238,11 +252,17 @@ public class LobbyActivity extends AppCompatActivity {
         Log.e("USER", "" + userId);
 
 
-//        setUpFirebaseAdapter();
+
+        games = new ArrayList<InstanceGame>();
+        mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
+        mListViewActive = (ListView) findViewById(R.id.active_listview);
+        mListViewActive.setAdapter(mAdapterActive);
+       // setUpAdapterActive();
+
+
 
 
     }
-
 
 
     @Override
@@ -251,7 +271,7 @@ public class LobbyActivity extends AppCompatActivity {
 
         setUpFirebaseAdapter();
 
-
+        setUpAdapterActive();
 
     }
 
@@ -263,8 +283,84 @@ public class LobbyActivity extends AppCompatActivity {
         mFirebaseAdapter.cleanup();
 
 
+        mActiveDatabaseReference.removeEventListener(mActiveEventListener);
+
+        games.clear();
 
     }
+
+
+
+
+    private void setUpAdapterActive() {
+        mActiveDatabaseReference = mUsersDatabaseReference
+                .child(userId).child("games");
+
+        mActiveEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
+                Log.e("CHILDEVENTLISTEN", "added: " + dataSnapshot.getKey());
+
+                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                     //   mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
+
+                        Log.e("CHILDEV", ""+dataSnapshot.getValue(InstanceGame.class));
+
+                        games.add(dataSnapshot.getValue(InstanceGame.class));
+                        mAdapterActive.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
+
+                Log.e("CHILDEVENTLISTENA", "Changed: " + dataSnapshot.getKey());
+                //mAdapterActive.clear();
+                //setUpFirebaseAdapterActive();
+
+
+                // TODO: this fully refreshes activity, really i just want to refresh the particular listview! should be easy?
+                Intent intent = new Intent(LobbyActivity.this, LobbyActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+
+                mAdapterActive.clear();
+                setUpAdapterActive();
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+
+        mActiveDatabaseReference.addChildEventListener(mActiveEventListener);
+    }
+
+
 
 
     private void setUpFirebaseAdapter() {
@@ -275,7 +371,19 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(FirebaseActiveViewHolder viewHolder,
                                               InstanceGame model, int position) {
-                viewHolder.bindItem(model);
+
+                Log.e("MODEL", "" + model.getBlack() + " & " + model.getWhite());
+
+                Log.e("MODELuser", "" + userId);
+
+                if (((model.getBlack() != null) && (userId.equals(model.getBlack()))) || ((model.getWhite() != null) && (userId.equals(model.getWhite())))) {
+
+                    viewHolder.bindItem(model);
+                } else {
+
+                }
+
+
             }
         };
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);

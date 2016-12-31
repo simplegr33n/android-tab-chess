@@ -122,12 +122,13 @@ public class FirebaseActiveViewHolder extends RecyclerView.ViewHolder implements
 
         if (!((current.getBlack() != null &&(current.getBlack().equals(LobbyActivity.userId))) || (current.getWhite() != null && (current.getWhite().equals(LobbyActivity.userId))))) {
 
-            // TODO: This hiding needs work, they still appear as empties in full size
+            // TODO: This hiding needs work
             gameLayout.setVisibility(View.GONE);
             mView.setVisibility(View.GONE);
 
         } else {
 
+            // Need to make visible, as default in card_game is visibility=GONE
             gameLayout.setVisibility(View.VISIBLE);
             mView.setVisibility(View.VISIBLE);
 
