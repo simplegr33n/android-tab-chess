@@ -7,6 +7,14 @@
               android:layout_marginStart="@dimen/activity_horizontal_margin"
               android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="Name" />
+
 
     <TextView
         android:id="@+id/messageTextView"
@@ -16,12 +24,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         tools:text="Message" />
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        tools:text="Name" />
+
 
 </LinearLayout>

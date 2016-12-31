@@ -77,18 +77,16 @@ public class LobbyActivity extends AppCompatActivity {
         };
 
 
-        Log.e("WHAT", ""+userId);
-        Log.e("WHAT", ""+username);
 
+        // Get username
         mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Log.e("USER", "GAME2uname " + dataSnapshot.getValue());
-
                 username = dataSnapshot.getValue(String.class);
 
-                Log.e("WHATAFTER", ""+username);
+                TextView usernameBar = (TextView) findViewById(R.id.username);
+                usernameBar.setText(username);
 
             }
 
