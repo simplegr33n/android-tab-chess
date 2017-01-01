@@ -4926,16 +4926,10 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        // TODO : fix inability to play after return to lobby... none of below seems to work
-
         super.onBackPressed();
 
         // Get username from firebase
         mUsersDatabaseReference.child(userId).child("username").removeEventListener(mUsernameValueListener);
-
-        // Get gamesetString from firebase
-//        mGamesDatabaseReference.child(match_id).child("board").removeEventListener(mGamesetValueListener);
 
         // Get turn color from firebase
         mGamesDatabaseReference.child(match_id).child("turn_color").removeEventListener(mTurnColorValueListener);
@@ -4945,16 +4939,10 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onPause() {
-
-        // TODO : fix inability to play after return to lobby... none of below seems to work
-
         super.onPause();
 
         // Get username from firebase
         mUsersDatabaseReference.child(userId).child("username").removeEventListener(mUsernameValueListener);
-
-        // Get gamesetString from firebase
-//        mGamesDatabaseReference.child(match_id).child("board").removeEventListener(mGamesetValueListener);
 
         // Get turn color from firebase
         mGamesDatabaseReference.child(match_id).child("turn_color").removeEventListener(mTurnColorValueListener);

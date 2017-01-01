@@ -105,7 +105,7 @@
                 android:layout_weight="1"
                 android:background="#000000"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -258,7 +258,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:padding="8dp">
+                        android:padding="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -269,18 +269,8 @@
                             <ListView
                                 android:id="@+id/active_listview"
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:background="#fff"
-                                android:layout_weight="1"/>
-
-                            <android.support.v7.widget.RecyclerView
-                                android:layout_marginTop="80dp"
-                                android:id="@+id/recyclerView"
-                                android:background="#fff"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:clipToPadding="false" />
+                                android:layout_height="match_parent"
+                                android:background="#fff" />
 
 
                         </LinearLayout>

@@ -257,8 +257,6 @@ public class LobbyActivity extends AppCompatActivity {
         mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
         mListViewActive = (ListView) findViewById(R.id.active_listview);
         mListViewActive.setAdapter(mAdapterActive);
-       // setUpAdapterActive();
-
 
 
 
@@ -269,9 +267,6 @@ public class LobbyActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //TODO: remove or use firebase adapter...
-    //    setUpFirebaseAdapter();
-
         setUpAdapterActive();
 
     }
@@ -280,8 +275,6 @@ public class LobbyActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
-    //    mFirebaseAdapter.cleanup();
 
         mActiveDatabaseReference.removeEventListener(mActiveEventListener);
 
@@ -348,11 +341,6 @@ public class LobbyActivity extends AppCompatActivity {
 
                 Log.e("CHILDEVENTLISTENA", "Changed: " + dataSnapshot.getKey());
 
-
-//                mAdapterActive.clear();
-//                setUpFirebaseAdapter();
-
-
                 // TODO: this fully refreshes activity, really i just want to refresh the particular listview! should be easy?
                 Intent intent = new Intent(LobbyActivity.this, LobbyActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
@@ -380,38 +368,6 @@ public class LobbyActivity extends AppCompatActivity {
         };
 
         mActiveDatabaseReference.addChildEventListener(mActiveEventListener);
-    }
-
-
-
-
-    private void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<InstanceGame, FirebaseActiveViewHolder>
-                (InstanceGame.class, R.layout.card_game, FirebaseActiveViewHolder.class,
-                        mGamesDatabaseReference) {
-
-            @Override
-            protected void populateViewHolder(FirebaseActiveViewHolder viewHolder,
-                                              InstanceGame model, int position) {
-
-                Log.e("MODEL", "" + model.getBlack() + " & " + model.getWhite());
-
-                Log.e("MODELuser", "" + userId);
-
-                if (((model.getBlack() != null) && (userId.equals(model.getBlack()))) || ((model.getWhite() != null) && (userId.equals(model.getWhite())))) {
-
-                    viewHolder.bindItem(model);
-                } else {
-
-                }
-
-
-            }
-        };
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mFirebaseAdapter);
     }
 
 
