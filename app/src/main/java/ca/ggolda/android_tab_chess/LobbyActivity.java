@@ -285,6 +285,8 @@ public class LobbyActivity extends AppCompatActivity {
 
         mActiveDatabaseReference.removeEventListener(mActiveEventListener);
 
+        mAdapterActive.clear();
+
         games.clear();
 
     }
@@ -293,6 +295,12 @@ public class LobbyActivity extends AppCompatActivity {
 
 
     private void setUpAdapterActive() {
+
+        mAdapterActive.clear();
+
+        games.clear();
+
+
         mActiveDatabaseReference = mUsersDatabaseReference
                 .child(userId).child("games");
 
@@ -302,7 +310,7 @@ public class LobbyActivity extends AppCompatActivity {
 
                 Log.e("CHILDEVENTLISTEN", "added: " + dataSnapshot.getKey());
 
-                mGamesDatabaseReference.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                mGamesDatabaseReference.child(dataSnapshot.getKey()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -310,9 +318,21 @@ public class LobbyActivity extends AppCompatActivity {
                      //   mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
 
                         Log.e("CHILDEV", ""+dataSnapshot.getValue(InstanceGame.class));
+                        Log.e("CHILDEV", "obo "+dataSnapshot.getValue(InstanceGame.class).getBlack());
+                        Log.e("CHILDEV", "obo "+dataSnapshot.getValue(InstanceGame.class).getWhite());
 
-                        games.add(dataSnapshot.getValue(InstanceGame.class));
-                        mAdapterActive.notifyDataSetChanged();
+
+
+                        // only show games if there is a white and a black player
+                        if (((dataSnapshot.getValue(InstanceGame.class).getBlack()) != null ) && ((dataSnapshot.getValue(InstanceGame.class).getWhite()) != null )) {
+                            Log.e("childev", ""+games.size());
+
+                         //   games.add(dataSnapshot.getValue(InstanceGame.class));
+
+                            mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
+
+                           // mAdapterActive.notifyDataSetChanged();
+                        }
 
                     }
 
@@ -327,8 +347,10 @@ public class LobbyActivity extends AppCompatActivity {
             public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
 
                 Log.e("CHILDEVENTLISTENA", "Changed: " + dataSnapshot.getKey());
-                //mAdapterActive.clear();
-                //setUpFirebaseAdapterActive();
+
+
+//                mAdapterActive.clear();
+//                setUpFirebaseAdapter();
 
 
                 // TODO: this fully refreshes activity, really i just want to refresh the particular listview! should be easy?

@@ -166,111 +166,6 @@ public class GameActivity extends AppCompatActivity {
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
 
-
-        // TODO: probably remove new game, test board, and change sides on clicks
-        TextView newGame = (TextView) findViewById(R.id.new_game);
-        newGame.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                gamesetString = getResources().getString(R.string.new_board);
-
-
-                turn = "white";
-                currentTurn.setText("turn: WHITE");
-                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                currentTurn.setTextColor(Color.parseColor("#000000"));
-
-                setBoard();
-
-            }
-        });
-
-
-        TextView testBoard = (TextView) findViewById(R.id.test_board);
-        testBoard.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                gamesetString = getResources().getString(R.string.test_board);
-
-
-                turn = "white";
-                currentTurn.setText("turn: WHITE");
-                currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                currentTurn.setTextColor(Color.parseColor("#000000"));
-
-                setBoard();
-
-            }
-        });
-
-        final TextView currentSide = (TextView) findViewById(R.id.current_side);
-
-        // Get user games for Active list
-        mGamesDatabaseReference.child(match_id).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                String white_player = dataSnapshot.getValue(String.class);
-                if (userId.equals(white_player)) {
-                    playerColor = "white";
-
-                    currentSide.setText("you are: WHITE");
-                    currentSide.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    currentSide.setTextColor(Color.parseColor("#000000"));
-
-                } else {
-                    playerColor = "black";
-
-                    currentSide.setText("you are: BLACK");
-                    currentSide.setBackgroundColor(Color.parseColor("#000000"));
-                    currentSide.setTextColor(Color.parseColor("#FFFFFF"));
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
-        // Get username
-        mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Log.e("WHADDUP", "" + dataSnapshot.getValue());
-
-                username = dataSnapshot.getValue(String.class);
-
-                // Set Chat fragment
-                FragChat fragChat = new FragChat();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.frame_chat, fragChat);
-                transaction.commit();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
-
-        TextView changeSide = (TextView) findViewById(R.id.change_side);
-        changeSide.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                for (int i = 0; i < 64; i++) {
-                    getSquareImageView(i).setOnClickListener(null);
-                }
-
-                clearSelected();
-
-
-            }
-        });
-
         logs = (TextView) findViewById(R.id.log);
 
         // TODO: Best way to reverse image view order depending on playerColor.
@@ -347,56 +242,7 @@ public class GameActivity extends AppCompatActivity {
         h8 = (ImageView) findViewById(R.id.img_h8);
 
 
-        // Get gamesetString from firebase
-        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                Log.e("GAMESET", "" + match_id);
-                Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
-
-                gamesetString = dataSnapshot.getValue(String.class);
-                setBoard();
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
-
-        // Get turn color from firebase
-        mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                turn = dataSnapshot.getValue(String.class);
-
-                if (turn.equals("black")) {
-                    currentTurn.setText("turn: BLACK");
-                    currentTurn.setBackgroundColor(Color.parseColor("#000000"));
-                    currentTurn.setTextColor(Color.parseColor("#FFFFFF"));
-
-                } else if (turn.equals("white")) {
-                    currentTurn.setText("turn: WHITE");
-                    currentTurn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    currentTurn.setTextColor(Color.parseColor("#000000"));
-                }
-
-                setBoard();
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
+        onStartResume();
 
 
     }
@@ -405,6 +251,8 @@ public class GameActivity extends AppCompatActivity {
 
 
         logs.setText(gamesetString);
+
+        clearSelected();
 
         gamesetList = Arrays.asList(gamesetString.split("\\s*,\\s*"));
 
@@ -5083,17 +4931,30 @@ public class GameActivity extends AppCompatActivity {
 
         super.onBackPressed();
 
-//        gamesetString = "";
-//        selectedSquare = 99;
-//        selectedUnit = "";
-//        playerColor = "";
-//        turn = "";
+        // Get username from firebase
+        mUsersDatabaseReference.child(userId).child("username").removeEventListener(mUsernameValueListener);
+
+        // Get gamesetString from firebase
+//        mGamesDatabaseReference.child(match_id).child("board").removeEventListener(mGamesetValueListener);
+
+        // Get turn color from firebase
+        mGamesDatabaseReference.child(match_id).child("turn_color").removeEventListener(mTurnColorValueListener);
+
+        finish();
+    }
+
+    @Override
+    public void onPause() {
+
+        // TODO : fix inability to play after return to lobby... none of below seems to work
+
+        super.onPause();
 
         // Get username from firebase
         mUsersDatabaseReference.child(userId).child("username").removeEventListener(mUsernameValueListener);
 
         // Get gamesetString from firebase
-        mGamesDatabaseReference.child(match_id).child("board").removeEventListener(mGamesetValueListener);
+//        mGamesDatabaseReference.child(match_id).child("board").removeEventListener(mGamesetValueListener);
 
         // Get turn color from firebase
         mGamesDatabaseReference.child(match_id).child("turn_color").removeEventListener(mTurnColorValueListener);
@@ -5181,24 +5042,24 @@ public class GameActivity extends AppCompatActivity {
 
 
         //Gameset listener
-        mGamesetValueListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Log.e("GAMESET", "" + match_id);
-                Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
-
-                gamesetString = dataSnapshot.getValue(String.class);
-                setBoard();
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        };
+//        mGamesetValueListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                Log.e("GAMESET", "" + match_id);
+//                Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
+//
+//                gamesetString = dataSnapshot.getValue(String.class);
+//                setBoard();
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        };
 
         mTurnColorValueListener = new ValueEventListener() {
             @Override
@@ -5217,7 +5078,29 @@ public class GameActivity extends AppCompatActivity {
                     currentTurn.setTextColor(Color.parseColor("#000000"));
                 }
 
-                setBoard();
+
+                mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Log.e("GAMESET", "" + match_id);
+                        Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
+
+                        gamesetString = dataSnapshot.getValue(String.class);
+
+
+                        setBoard();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
+
+               // setBoard();
 
             }
 
@@ -5231,7 +5114,7 @@ public class GameActivity extends AppCompatActivity {
         mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(mUsernameValueListener);
 
         // Get gamesetString from firebase
-        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(mGamesetValueListener);
+//        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(mGamesetValueListener);
 
         // Get turn color from firebase
         mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(mTurnColorValueListener);
