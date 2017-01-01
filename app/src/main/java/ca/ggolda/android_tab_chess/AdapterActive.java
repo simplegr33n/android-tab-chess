@@ -137,7 +137,6 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
 
 
-
         TextView turnTextView = (TextView) convertView.findViewById(R.id.turn);
         turnTextView.setText(game.getTurn_color() + " turn");
 
