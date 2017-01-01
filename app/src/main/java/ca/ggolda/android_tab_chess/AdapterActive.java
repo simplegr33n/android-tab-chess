@@ -118,12 +118,25 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
         gameset = current.getBoard();
 
+        TextView nameWhiteTextView = (TextView) convertView.findViewById(R.id.username);
+        TextView nameBlackTextView = (TextView) convertView.findViewById(R.id.username2);
 
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.username);
-        nameTextView.setText(game.getUsername_white());
 
-        TextView nameTwoTextView = (TextView) convertView.findViewById(R.id.username2);
-        nameTwoTextView.setText(game.getUsername_black());
+        //Set white and black usernames
+        if (game.getWhite().equals(LobbyActivity.userId)) {
+            nameWhiteTextView.setText("You");
+        } else {
+            nameWhiteTextView.setText(game.getUsername_white());
+        }
+        if (game.getBlack().equals(LobbyActivity.userId)) {
+            nameBlackTextView.setText("You");
+        } else {
+            nameBlackTextView.setText(game.getUsername_black());
+        }
+
+
+
+
 
         TextView turnTextView = (TextView) convertView.findViewById(R.id.turn);
         turnTextView.setText(game.getTurn_color() + " turn");
