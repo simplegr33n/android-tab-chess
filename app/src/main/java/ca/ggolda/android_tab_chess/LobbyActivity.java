@@ -253,7 +253,7 @@ public class LobbyActivity extends AppCompatActivity {
 
 
 
-        games = new ArrayList<InstanceGame>();
+        games = new ArrayList<>();
         mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
         mListViewActive = (ListView) findViewById(R.id.active_listview);
         mListViewActive.setAdapter(mAdapterActive);
@@ -269,7 +269,8 @@ public class LobbyActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        setUpFirebaseAdapter();
+        //TODO: remove or use firebase adapter...
+    //    setUpFirebaseAdapter();
 
         setUpAdapterActive();
 
@@ -280,8 +281,7 @@ public class LobbyActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        mFirebaseAdapter.cleanup();
-
+    //    mFirebaseAdapter.cleanup();
 
         mActiveDatabaseReference.removeEventListener(mActiveEventListener);
 

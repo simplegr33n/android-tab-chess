@@ -123,6 +123,10 @@ public class GameActivity extends AppCompatActivity {
     private DatabaseReference mGamesDatabaseReference;
     private DatabaseReference mUsersDatabaseReference;
 
+    private ValueEventListener mUsernameValueListener;
+    private ValueEventListener mTurnColorValueListener;
+    private ValueEventListener mGamesetValueListener;
+
     public static String match_id;
 
     private String userId;
@@ -161,7 +165,6 @@ public class GameActivity extends AppCompatActivity {
         };
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
-
 
 
         // TODO: probably remove new game, test board, and change sides on clicks
@@ -236,7 +239,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Log.e("WHADDUP", ""+dataSnapshot.getValue());
+                Log.e("WHADDUP", "" + dataSnapshot.getValue());
 
                 username = dataSnapshot.getValue(String.class);
 
@@ -344,18 +347,14 @@ public class GameActivity extends AppCompatActivity {
         h8 = (ImageView) findViewById(R.id.img_h8);
 
 
-
-
-
         // Get gamesetString from firebase
         mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-
-                Log.e("GAMESET", ""+match_id);
-                Log.e("GAMESET", ""+dataSnapshot.getValue(String.class));
+                Log.e("GAMESET", "" + match_id);
+                Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
 
                 gamesetString = dataSnapshot.getValue(String.class);
                 setBoard();
@@ -391,7 +390,6 @@ public class GameActivity extends AppCompatActivity {
                 setBoard();
 
 
-
             }
 
             @Override
@@ -399,7 +397,6 @@ public class GameActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-
 
 
     }
@@ -585,8 +582,8 @@ public class GameActivity extends AppCompatActivity {
 
             // if turn is black
             if (turn.equals("black")) {
-                Log.e("PCPCPC", ""+playerColor);
-                Log.e("PCPCGSL", ""+gamesetList.get(square).split("_")[0]);
+                Log.e("PCPCPC", "" + playerColor);
+                Log.e("PCPCGSL", "" + gamesetList.get(square).split("_")[0]);
 
                 if ((playerColor != null) && (playerColor.equals("black") && (gamesetList.get(square).split("_")[0]).equals("black"))) {
 
@@ -701,7 +698,7 @@ public class GameActivity extends AppCompatActivity {
                 }
 
                 // if statement for double move on first go
-                if ((i == selectedSquare + 16) && isFree(i) && gamesetList.get(i).equals("free_square") && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
+                if ((i == selectedSquare + 16) && isFree(i) && gamesetList.get(i - 8).equals("free_square") && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
 
                     if (space != null) {
                         space.setBackgroundColor(Color.parseColor("#A600FF00"));
@@ -4473,11 +4470,11 @@ public class GameActivity extends AppCompatActivity {
     //TODO: create separate queen function instead of combining rook + bishop
     private void wallQueen(int i) {
         //if ((i == 9) || (i == 18) || (i == 27) || (i == 36) || (i == 45) || (i == 54) || (i == 63) || (i == 7) ||(i == 14) || (i == 21) || (i == 28) || (i == 35) || (i == 42) || (i == 49) || (i == 56) || (i == -9) || (i == -18) || (i == -27) || (i == -36) || (i == -45) || (i == -54) || (i == -63) || (i == -7) ||(i == -14) || (i == -21) || (i == -28) || (i == -35) || (i == -42) || (i == -49) || (i == -56)) {
-            wallBishop(i);
-       // } else {
-            wallRook(i);
+        wallBishop(i);
+        // } else {
+        wallRook(i);
 
-      //  }
+        //  }
 
     }
 
@@ -5081,7 +5078,25 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        // TODO : fix inability to play after return to lobby... none of below seems to work
+
         super.onBackPressed();
+
+//        gamesetString = "";
+//        selectedSquare = 99;
+//        selectedUnit = "";
+//        playerColor = "";
+//        turn = "";
+
+        // Get username from firebase
+        mUsersDatabaseReference.child(userId).child("username").removeEventListener(mUsernameValueListener);
+
+        // Get gamesetString from firebase
+        mGamesDatabaseReference.child(match_id).child("board").removeEventListener(mGamesetValueListener);
+
+        // Get turn color from firebase
+        mGamesDatabaseReference.child(match_id).child("turn_color").removeEventListener(mTurnColorValueListener);
 
         finish();
     }
@@ -5132,7 +5147,6 @@ public class GameActivity extends AppCompatActivity {
 
                 }
 
-
             }
 
             @Override
@@ -5141,12 +5155,13 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        // Get username
-        mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        // Username listener
+        mUsernameValueListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Log.e("WHADDUP", ""+dataSnapshot.getValue());
+                Log.e("WHADDUP", "" + dataSnapshot.getValue());
 
                 username = dataSnapshot.getValue(String.class);
 
@@ -5162,22 +5177,16 @@ public class GameActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
-        });
+        };
 
 
-
-
-
-
-        // Get gamesetString from firebase
-        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(new ValueEventListener() {
+        //Gameset listener
+        mGamesetValueListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-
-                Log.e("GAMESET", ""+match_id);
-                Log.e("GAMESET", ""+dataSnapshot.getValue(String.class));
+                Log.e("GAMESET", "" + match_id);
+                Log.e("GAMESET", "" + dataSnapshot.getValue(String.class));
 
                 gamesetString = dataSnapshot.getValue(String.class);
                 setBoard();
@@ -5189,11 +5198,9 @@ public class GameActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
-        });
+        };
 
-
-        // Get turn color from firebase
-        mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(new ValueEventListener() {
+        mTurnColorValueListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -5212,15 +5219,22 @@ public class GameActivity extends AppCompatActivity {
 
                 setBoard();
 
-
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
-        });
+        };
+
+        // Get username from firebase
+        mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(mUsernameValueListener);
+
+        // Get gamesetString from firebase
+        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(mGamesetValueListener);
+
+        // Get turn color from firebase
+        mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(mTurnColorValueListener);
 
     }
 }
