@@ -342,7 +342,7 @@ public class LobbyActivity extends AppCompatActivity {
                                 mActiveCountTextview.setVisibility(View.VISIBLE);
                                 mActiveCountTextview.setText("Active Games " + "(" + games.size() + ")");
 
-                            } else if (games.size() > 0) {
+                            } else if (games.size() == 0) {
 
                                 mActiveCountTextview.setVisibility(View.GONE);
 
