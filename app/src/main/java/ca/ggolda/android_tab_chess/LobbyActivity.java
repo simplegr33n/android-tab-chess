@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -48,11 +50,10 @@ public class LobbyActivity extends AppCompatActivity {
     private AdapterActive mAdapterActive;
     private ListView mListViewActive;
 
+    private TextView mActiveCountTextview;
+
     private String username;
 
-    private FirebaseRecyclerAdapter mFirebaseAdapter;
-    private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
 
     private ArrayList<InstanceGame> games;
 
@@ -71,6 +72,8 @@ public class LobbyActivity extends AppCompatActivity {
 
         final EditText editUsername = (EditText) findViewById(R.id.username_edittext);
 
+
+        mActiveCountTextview = (TextView) findViewById(R.id.active_count);
 
         //get current user and send to login screen if user is null
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -320,11 +323,31 @@ public class LobbyActivity extends AppCompatActivity {
                         if (((dataSnapshot.getValue(InstanceGame.class).getBlack()) != null ) && ((dataSnapshot.getValue(InstanceGame.class).getWhite()) != null )) {
                             Log.e("childev", ""+games.size());
 
-                         //   games.add(dataSnapshot.getValue(InstanceGame.class));
+
+                            // if new entry a double of another match id, remove the older entry
+                            for (int i = 0; i < games.size(); i++) {
+                                if (games.get(i).getMatch_id().equals(dataSnapshot.getValue(InstanceGame.class).getMatch_id())) {
+                                    games.remove(i);
+                                }
+
+                            }
 
                             mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
 
-                           // mAdapterActive.notifyDataSetChanged();
+                            //   games.add(dataSnapshot.getValue(InstanceGame.class));
+                            // mAdapterActive.notifyDataSetChanged();
+                            Log.e("SIZER", "" + games.size());
+
+                            if (games.size() > 0) {
+                                mActiveCountTextview.setVisibility(View.VISIBLE);
+                                mActiveCountTextview.setText("Active Games " + "(" + games.size() + ")");
+
+                            } else if (games.size() > 0) {
+
+                                mActiveCountTextview.setVisibility(View.GONE);
+
+                            }
+
                         }
 
                     }

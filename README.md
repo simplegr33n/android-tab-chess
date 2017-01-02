@@ -19,10 +19,10 @@ https://play.google.com/store/apps/details?id=ca.ggolda.android_tab_chess
 * Game Preview In Lobby
 * Spectator mode // Private - Public gamemode
 
-### Bugs
+### Major Bugs
 * Queen movement footprint is wrong
-* Unable to move after returning to lobby
-* Active Games ListView does not update in realtime
+* Weird behavior after deselecting a piece which can allow impossible moves / result in a turn ending without a move made
+
 
 
 

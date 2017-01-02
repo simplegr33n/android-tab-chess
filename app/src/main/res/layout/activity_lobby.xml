@@ -96,19 +96,18 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/username_layout"
             android:layout_toRightOf="@+id/username_layout"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#000000"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:background="#294964"
                     android:orientation="vertical"
@@ -151,38 +150,7 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#d8d8d8"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="----------"
-                        android:textColor="#4d4d51"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#d8d8d8"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="----------"
-                        android:textColor="#4d4d51"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#d8d8d8"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="----------"
-                        android:textColor="#4d4d51"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -190,8 +158,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
                     android:background="#294964"
                     android:orientation="vertical"
                     android:padding="4dp">
@@ -206,15 +174,15 @@
                         android:padding="4dp"
                         android:text="FIND\nFRIEND"
                         android:textColor="#4d4d51"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
                     android:background="#294964"
                     android:orientation="vertical"
                     android:padding="4dp">
@@ -230,7 +198,7 @@
                         android:padding="8dp"
                         android:text="MATCH\nRANDOM"
                         android:textColor="#ffffff"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -238,11 +206,21 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Active Games (#)"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/active_count"/>
+
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:orientation="vertical">
 
 
