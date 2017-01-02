@@ -4074,6 +4074,8 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallKing(i);
+
 
                         break;
 
@@ -4089,6 +4091,8 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
+
+                        wallKing(i);
 
 
                         break;
@@ -4106,6 +4110,8 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallKing(i);
+
 
                         break;
 
@@ -4121,6 +4127,8 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
+
+                        wallKing(i);
 
 
                         break;
@@ -4138,6 +4146,8 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallKing(i);
+
 
                         break;
 
@@ -4153,6 +4163,8 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
+
+                        wallKing(i);
 
 
                         break;
@@ -4224,6 +4236,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallKing(i);
 
                         break;
 
@@ -4240,6 +4253,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallKing(i);
 
                         break;
 
@@ -4255,6 +4269,8 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
+
+                        wallKing(i);
 
 
                         break;
@@ -4273,6 +4289,8 @@ public class GameActivity extends AppCompatActivity {
                         }
 
 
+                        wallKing(i);
+
                         break;
 
                     // TOP-LEFT
@@ -4289,6 +4307,8 @@ public class GameActivity extends AppCompatActivity {
                         }
 
 
+                        wallKing(i);
+
                         break;
 
                     // BOTTOM-LEFT
@@ -4304,6 +4324,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
+                        wallKing(i);
 
                         break;
                 }
@@ -4408,8 +4429,52 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    // if space in row directly ahead or behind not in same column as rook, make unavailable
-    //TODO: consider more elegant solution to walling off rooks at sides
+
+    private void wallKing(int i) {
+
+        if ((selectedSquare == 7) ||(selectedSquare == 15) || (selectedSquare == 23) || (selectedSquare == 31) || (selectedSquare == 39) || (selectedSquare == 47) || (selectedSquare == 55) || (selectedSquare == 63)) {
+            if ((i == selectedSquare - 7)) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+            if ((i == selectedSquare + 9)) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+            if ((i == selectedSquare + 1)) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+        }
+
+        if ((selectedSquare == 56) || (selectedSquare == 48) || (selectedSquare == 40) || (selectedSquare == 32) || (selectedSquare == 24) || (selectedSquare == 16) || (selectedSquare == 8) || (selectedSquare == 0)) {
+            if ((i == selectedSquare - 9)) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+            if ((i == selectedSquare + 7)) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+            if ((i == selectedSquare - 1)) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+        }
+
+    }
 
     private void wallPawn(int i) {
 
