@@ -114,23 +114,25 @@
                     android:padding="4dp">
 
 
-                    <TextView
-                        android:id="@+id/username"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#d8d8d8"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:textColor="#4d4d51"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        tools:text="Usernvn" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#d8d8d8"
                         android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#d8d8d8"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textColor="#4d4d51"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            tools:text="Usernvn" />
 
                         <ImageView
                             android:layout_width="40dp"
@@ -144,10 +146,21 @@
                         android:layout_height="wrap_content"
                         android:background="#d8d8d8"
                         android:gravity="center"
-                        android:padding="8dp"
-                        android:text="----------"
+                        android:padding="0dp"
+                        android:text="0/0/0"
                         android:textColor="#4d4d51"
-                        android:textSize="20sp"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#d8d8d8"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:text="W/L/S"
+                        android:textColor="#7a7a7c"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
 
@@ -212,6 +225,8 @@
                 android:text="Active Games (#)"
                 android:visibility="gone"
                 tools:visibility="visible"
+                android:background="#294964"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:gravity="center"
                 android:textStyle="bold"
