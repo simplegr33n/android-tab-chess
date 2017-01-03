@@ -267,4 +267,5 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
         }
 
     }
+
 }

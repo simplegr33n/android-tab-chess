@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -25,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -37,24 +33,21 @@ import java.util.ArrayList;
 public class LobbyActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
-    public static String userId;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mGamesDatabaseReference;
     private DatabaseReference mUsersDatabaseReference;
 
     private DatabaseReference mActiveDatabaseReference;
-
     private ChildEventListener mActiveEventListener;
+
+    private TextView mActiveCountTextview;
 
     private AdapterActive mAdapterActive;
     private ListView mListViewActive;
 
-    private TextView mActiveCountTextview;
-
+    public static String userId;
     private String username;
-
-
     private ArrayList<InstanceGame> games;
 
     @Override
@@ -249,10 +242,13 @@ public class LobbyActivity extends AppCompatActivity {
         });
 
 
+        Log.e("USERBEFORE", "" + userId);
+
         //get current user and send to login screen if user is null
+        // IS this not redundant? TODO: Find out . lol
         userId = user.getUid();
 
-        Log.e("USER", "" + userId);
+        Log.e("USERAFTER", "" + userId);
 
 
 
@@ -304,39 +300,39 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
 
-                Log.e("CHILDEVENTLISTEN", "added: " + dataSnapshot.getKey());
+                Log.e("GAME", "added: " + dataSnapshot.getKey());
 
                 mGamesDatabaseReference.child(dataSnapshot.getKey()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                     //   mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
-
-                        Log.e("CHILDEV", ""+dataSnapshot.getValue(InstanceGame.class));
-                        Log.e("CHILDEV", "obo "+dataSnapshot.getValue(InstanceGame.class).getBlack());
-                        Log.e("CHILDEV", "obo "+dataSnapshot.getValue(InstanceGame.class).getWhite());
-
-
-
                         // only show games if there is a white and a black player
                         if (((dataSnapshot.getValue(InstanceGame.class).getBlack()) != null ) && ((dataSnapshot.getValue(InstanceGame.class).getWhite()) != null )) {
-                            Log.e("childev", ""+games.size());
 
-
-                            // if new entry a double of another match id, remove the older entry
+                            // if new entry a double of another match id, replace the older entry, otherwise add new
                             for (int i = 0; i < games.size(); i++) {
+
                                 if (games.get(i).getMatch_id().equals(dataSnapshot.getValue(InstanceGame.class).getMatch_id())) {
-                                    games.remove(i);
+                                    games.set(i, dataSnapshot.getValue(InstanceGame.class));
                                 }
 
                             }
 
+
+                            // TODO: this adds progressively more doubles to the end of the array list, but updates in place
+                            // so is an improvement. Needs to be fixed though
                             mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
 
-                            //   games.add(dataSnapshot.getValue(InstanceGame.class));
-                            // mAdapterActive.notifyDataSetChanged();
-                            Log.e("SIZER", "" + games.size());
+
+
+                 //            mAdapterActive.clear();
+                 //            mAdapterActive.notify();
+                 //            mAdapterActive.notifyDataSetChanged();
+                 //            mAdapterActive.setNotifyOnChange(true);
+                 //            mAdapterActive.insert(dataSnapshot.getValue(InstanceGame.class), i);
+                 //
+
 
                             if (games.size() > 0) {
                                 mActiveCountTextview.setVisibility(View.VISIBLE);
@@ -347,9 +343,7 @@ public class LobbyActivity extends AppCompatActivity {
                                 mActiveCountTextview.setVisibility(View.GONE);
 
                             }
-
                         }
-
                     }
 
                     @Override
@@ -362,19 +356,19 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
 
-                Log.e("CHILDEVENTLISTENA", "Changed: " + dataSnapshot.getKey());
-
-                // TODO: this fully refreshes activity, really i just want to refresh the particular listview! should be easy?
-                Intent intent = new Intent(LobbyActivity.this, LobbyActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+//              // TODO: probably remove, I don't think this does anything and I don't think I want it // TODO: 01/03/2017
+                Log.e("GAME", "Changed: " + dataSnapshot.getKey());
+//                Intent intent = new Intent(LobbyActivity.this, LobbyActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+//                        | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
 
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
+                Log.e("GAME", "Removed: " + dataSnapshot.getKey());
 
                 mAdapterActive.clear();
                 setUpAdapterActive();

@@ -62,7 +62,6 @@ public class GameActivity extends AppCompatActivity {
 
     private ValueEventListener mUsernameValueListener;
     private ValueEventListener mTurnColorValueListener;
-    private ValueEventListener mGamesetValueListener;
 
     public static String match_id;
 
