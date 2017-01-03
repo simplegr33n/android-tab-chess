@@ -29,77 +29,14 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
-    private ImageView a1;
-    private ImageView a2;
-    private ImageView a3;
-    private ImageView a4;
-    private ImageView a5;
-    private ImageView a6;
-    private ImageView a7;
-    private ImageView a8;
-
-    private ImageView b1;
-    private ImageView b2;
-    private ImageView b3;
-    private ImageView b4;
-    private ImageView b5;
-    private ImageView b6;
-    private ImageView b7;
-    private ImageView b8;
-
-    private ImageView c1;
-    private ImageView c2;
-    private ImageView c3;
-    private ImageView c4;
-    private ImageView c5;
-    private ImageView c6;
-    private ImageView c7;
-    private ImageView c8;
-
-    private ImageView d1;
-    private ImageView d2;
-    private ImageView d3;
-    private ImageView d4;
-    private ImageView d5;
-    private ImageView d6;
-    private ImageView d7;
-    private ImageView d8;
-
-    private ImageView e1;
-    private ImageView e2;
-    private ImageView e3;
-    private ImageView e4;
-    private ImageView e5;
-    private ImageView e6;
-    private ImageView e7;
-    private ImageView e8;
-
-    private ImageView f1;
-    private ImageView f2;
-    private ImageView f3;
-    private ImageView f4;
-    private ImageView f5;
-    private ImageView f6;
-    private ImageView f7;
-    private ImageView f8;
-
-    private ImageView g1;
-    private ImageView g2;
-    private ImageView g3;
-    private ImageView g4;
-    private ImageView g5;
-    private ImageView g6;
-    private ImageView g7;
-    private ImageView g8;
-
-    private ImageView h1;
-    private ImageView h2;
-    private ImageView h3;
-    private ImageView h4;
-    private ImageView h5;
-    private ImageView h6;
-    private ImageView h7;
-    private ImageView h8;
+    private ImageView a1, a2, a3, a4, a5, a6, a7, a8;
+    private ImageView b1, b2, b3, b4, b5, b6, b7, b8;
+    private ImageView c1, c2, c3, c4, c5, c6, c7, c8;
+    private ImageView d1, d2, d3, d4, d5, d6, d7, d8;
+    private ImageView e1, e2, e3, e4, e5, e6, e7, e8;
+    private ImageView f1, f2, f3, f4, f5, f6, f7, f8;
+    private ImageView g1, g2, g3, g4, g5, g6, g7, g8;
+    private ImageView h1, h2, h3, h4, h5, h6, h7, h8;
 
     private TextView logs;
 
