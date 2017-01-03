@@ -16,6 +16,7 @@ public class InstanceGame {
     private String mTurn_color;
     private String mUsername_white;
     private String mUsername_black;
+    private Long mLast_play;
 
 
 
@@ -24,7 +25,7 @@ public class InstanceGame {
     }
 
     // Constructor for InstanceGame with all attributes
-    public InstanceGame(String match_id, String board, String white, String black, String turn_color, String username_white, String username_black) {
+    public InstanceGame(String match_id, String board, String white, String black, String turn_color, String username_white, String username_black, Long last_play) {
         mMatch_id = match_id;
         mBoard = board;
         mWhite = white;
@@ -32,6 +33,7 @@ public class InstanceGame {
         mTurn_color = turn_color;
         mUsername_white = username_white;
         mUsername_black = username_black;
+        mLast_play = last_play;
 
     }
 
@@ -86,6 +88,13 @@ public class InstanceGame {
     public void setUsername_black(String mUsername_black) {
         this.mUsername_black = mUsername_black;
 
+    }
+
+    public Long getLast_play() {
+        return mLast_play;
+    }
+    public void setLast_play(Long mLast_play) {
+        this.mLast_play = mLast_play;
     }
 
 

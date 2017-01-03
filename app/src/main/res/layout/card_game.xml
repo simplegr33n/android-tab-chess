@@ -21,10 +21,17 @@
 
 
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:id="@+id/left_pawn"
+                android:background="@color/boardWhite"
+                android:src="@drawable/white_pawn" />
+
 
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/username_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -35,32 +42,20 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:background="#000000"
-                android:src="@drawable/white_pawn" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="v"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:background="#2d4b7a"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:src="@drawable/black_pawn" />
 
             <TextView
-                android:id="@+id/username2"
+                android:id="@+id/username_right"
                 android:textAlignment="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -70,6 +65,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@color/boardBlack"
+                android:id="@+id/right_pawn"
+                android:src="@drawable/black_pawn" />
+
 
         </LinearLayout>
 
@@ -79,16 +83,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:gravity="center"
             android:padding="4dp">
-
-            <TextView
-                android:id="@+id/turn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Turn: w/b"
-                android:textColor="#000000"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/lastmove"
@@ -1249,10 +1245,14 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <View
+                android:background="#3d78d0"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="4dp"/>
+
         </LinearLayout>
-
-
     </LinearLayout>
-
-
 </LinearLayout>

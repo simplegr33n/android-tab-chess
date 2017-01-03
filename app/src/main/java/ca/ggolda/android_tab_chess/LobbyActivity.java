@@ -96,7 +96,7 @@ public class LobbyActivity extends AppCompatActivity {
 
                 username = dataSnapshot.getValue(String.class);
 
-                TextView usernameBar = (TextView) findViewById(R.id.username);
+                TextView usernameBar = (TextView) findViewById(R.id.username_left);
                 usernameBar.setText(username);
 
             }
@@ -116,7 +116,7 @@ public class LobbyActivity extends AppCompatActivity {
                 if (username != null) {
                     mUsersDatabaseReference.child(userId).child("username").setValue(username);
 
-                    TextView usernameBar = (TextView) findViewById(R.id.username);
+                    TextView usernameBar = (TextView) findViewById(R.id.username_left);
                     usernameBar.setText(username);
 
                 }
@@ -251,12 +251,10 @@ public class LobbyActivity extends AppCompatActivity {
         Log.e("USERAFTER", "" + userId);
 
 
-
         games = new ArrayList<>();
         mAdapterActive = new AdapterActive(LobbyActivity.this, R.layout.card_game, games);
         mListViewActive = (ListView) findViewById(R.id.active_listview);
         mListViewActive.setAdapter(mAdapterActive);
-
 
 
     }
@@ -284,8 +282,6 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
 
-
-
     private void setUpAdapterActive() {
 
         mAdapterActive.clear();
@@ -308,7 +304,7 @@ public class LobbyActivity extends AppCompatActivity {
 
 
                         // only show games if there is a white and a black player
-                        if (((dataSnapshot.getValue(InstanceGame.class).getBlack()) != null ) && ((dataSnapshot.getValue(InstanceGame.class).getWhite()) != null )) {
+                        if (((dataSnapshot.getValue(InstanceGame.class).getBlack()) != null) && ((dataSnapshot.getValue(InstanceGame.class).getWhite()) != null)) {
 
                             // if new entry a double of another match id, replace the older entry, otherwise add new
                             for (int i = 0; i < games.size(); i++) {
@@ -320,18 +316,17 @@ public class LobbyActivity extends AppCompatActivity {
                             }
 
 
-                            // TODO: this adds progressively more doubles to the end of the array list, but updates in place
-                            // so is an improvement. Needs to be fixed though
+                            // This creates progressively more duplicates as the the opponent makes moves
+                            // And you are in the lobby. TODO: Fix
                             mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
 
 
-
-                 //            mAdapterActive.clear();
-                 //            mAdapterActive.notify();
-                 //            mAdapterActive.notifyDataSetChanged();
-                 //            mAdapterActive.setNotifyOnChange(true);
-                 //            mAdapterActive.insert(dataSnapshot.getValue(InstanceGame.class), i);
-                 //
+                            //            mAdapterActive.clear();
+                            //            mAdapterActive.notify();
+                            //            mAdapterActive.notifyDataSetChanged();
+                            //            mAdapterActive.setNotifyOnChange(true);
+                            //            mAdapterActive.insert(dataSnapshot.getValue(InstanceGame.class), i);
+                            //
 
 
                             if (games.size() > 0) {

@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
@@ -95,12 +96,9 @@ public class GameActivity extends AppCompatActivity {
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
 
-        if (playerColor == null) {
-            playerColor = "black";
-        }
-        Log.e("PLAYERCOLOR", playerColor);
 
-        declareBoard();
+        // Get player color and arange board accordingly
+        getPlayerColor();
 
 
     }
@@ -4696,6 +4694,7 @@ public class GameActivity extends AppCompatActivity {
             selectedSquare = 99;
 
 
+
             // delete piece from previous location
             if (getSquareImageView(selectedSquare) != null) {
                 getSquareImageView(selectedSquare).setImageResource(getResources().getIdentifier("free_square", "drawable", getPackageName()));
@@ -4718,11 +4717,13 @@ public class GameActivity extends AppCompatActivity {
 
         mGamesDatabaseReference.child(match_id).child("board").setValue(gamesetString);
 
+
         if (turn.equals("white")) {
             mGamesDatabaseReference.child(match_id).child("turn_color").setValue("black");
         } else if (turn.equals("black")) {
             mGamesDatabaseReference.child(match_id).child("turn_color").setValue("white");
         }
+        mGamesDatabaseReference.child(match_id).child("last_play").setValue(ServerValue.TIMESTAMP);
 
 
         // TODO: verify player cannot play twice in one turn if they play quickly
@@ -5170,11 +5171,34 @@ public class GameActivity extends AppCompatActivity {
         // Get username from firebase
         mUsersDatabaseReference.child(userId).child("username").addListenerForSingleValueEvent(mUsernameValueListener);
 
-        // Get gamesetString from firebase
-//        mGamesDatabaseReference.child(match_id).child("board").addValueEventListener(mGamesetValueListener);
-
         // Get turn color from firebase
         mGamesDatabaseReference.child(match_id).child("turn_color").addValueEventListener(mTurnColorValueListener);
 
+    }
+
+    private void getPlayerColor() {
+        mGamesDatabaseReference.child(match_id).child("white").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                dataSnapshot.getValue();
+
+                if (userId.equals(dataSnapshot.getValue())) {
+                    playerColor = "white";
+                } else {
+                    playerColor = "black";
+                }
+
+                Log.e("PLAYERCOLOR", ""+playerColor);
+
+                declareBoard();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

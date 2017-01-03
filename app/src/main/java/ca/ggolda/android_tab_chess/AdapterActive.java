@@ -3,6 +3,7 @@ package ca.ggolda.android_tab_chess;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class AdapterActive extends ArrayAdapter<InstanceGame> {
@@ -57,27 +60,78 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
         gameset = current.getBoard();
 
-        TextView nameWhiteTextView = (TextView) convertView.findViewById(R.id.username);
-        TextView nameBlackTextView = (TextView) convertView.findViewById(R.id.username2);
+        TextView nameLeftTextView = (TextView) convertView.findViewById(R.id.username_left);
+        TextView nameRightTextView = (TextView) convertView.findViewById(R.id.username_right);
+        ImageView leftPawn = (ImageView) convertView.findViewById(R.id.left_pawn);
+        ImageView rightPawn = (ImageView) convertView.findViewById(R.id.right_pawn);
+
+        // Set datetime for last play
+        TextView lastMove = (TextView) convertView.findViewById(R.id.lastmove);
+        if (game.getLast_play() != null) {
+            String date = DateFormat.format("dd-MM-yyyy", game.getLast_play()).toString();
+            String time = DateFormat.format("h:ss", game.getLast_play()).toString();
+
+            lastMove.setText("LAST PLAY: " + date + " " + time);
+        } else {
+            lastMove.setText("");
+        }
 
 
-        //Set white and black usernames
+
+
+        // Set white and black usernames and icons to left and right
+        // depending on turn
         if (game.getWhite().equals(LobbyActivity.userId)) {
-            nameWhiteTextView.setText("You");
+
+            switch (game.getTurn_color()) {
+                case ("white"):
+
+                    nameLeftTextView.setText("YOUR TURN");
+                    nameRightTextView.setText(game.getUsername_black());
+
+                    leftPawn.setImageResource(R.drawable.white_king);
+                    rightPawn.setImageResource(R.drawable.black_king);
+
+                    break;
+                case ("black"):
+
+                    nameRightTextView.setText("Waiting...");
+                    nameLeftTextView.setText(game.getUsername_black() + "'s TURN");
+
+                    leftPawn.setImageResource(R.drawable.black_king);
+                    rightPawn.setImageResource(R.drawable.white_king);
+
+                    break;
+
+            }
+
+
         } else {
-            nameWhiteTextView.setText(game.getUsername_white());
+
+            switch (game.getTurn_color()) {
+                case ("white"):
+
+                    nameRightTextView.setText("Waiting...");
+                    nameLeftTextView.setText(game.getUsername_white() + "'s TURN");
+
+                    leftPawn.setImageResource(R.drawable.black_king);
+                    rightPawn.setImageResource(R.drawable.white_king);
+
+                    break;
+
+                case ("black"):
+
+                    nameLeftTextView.setText("YOUR TURN");
+                    nameRightTextView.setText(game.getUsername_white());
+
+                    leftPawn.setImageResource(R.drawable.white_king);
+                    rightPawn.setImageResource(R.drawable.black_king);
+
+                    break;
+
+            }
         }
-        if (game.getBlack().equals(LobbyActivity.userId)) {
-            nameBlackTextView.setText("You");
-        } else {
-            nameBlackTextView.setText(game.getUsername_black());
-        }
 
-
-
-
-        TextView turnTextView = (TextView) convertView.findViewById(R.id.turn);
-        turnTextView.setText(game.getTurn_color() + " turn");
 
         // Declare and set board
         declareBoard();
