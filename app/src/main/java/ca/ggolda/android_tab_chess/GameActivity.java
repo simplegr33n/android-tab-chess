@@ -38,21 +38,11 @@ public class GameActivity extends AppCompatActivity {
     private ImageView g1, g2, g3, g4, g5, g6, g7, g8;
     private ImageView h1, h2, h3, h4, h5, h6, h7, h8;
 
-    private TextView logs;
-
+    private List<String> gamesetList;
     private String gamesetString = "";
 
     private int selectedSquare = 99;
     private String selectedUnit = "";
-
-    //TODO: remove hardcoded playerColor
-    private String playerColor;
-
-    private String turn = "";
-
-    private TextView currentTurn;
-
-    private List<String> gamesetList;
 
     private FirebaseAuth.AuthStateListener authListener;
 
@@ -64,10 +54,13 @@ public class GameActivity extends AppCompatActivity {
     private ValueEventListener mTurnColorValueListener;
 
     public static String match_id;
+    private String turn = "";
+    private TextView currentTurn;
 
     private String userId;
-
     public static String username;
+    private String playerColor;
+
 
 
     @Override
@@ -102,81 +95,164 @@ public class GameActivity extends AppCompatActivity {
 
         currentTurn = (TextView) findViewById(R.id.current_turn);
 
-        logs = (TextView) findViewById(R.id.log);
+        if (playerColor == null) {
+            playerColor = "black";
+        }
+        Log.e("PLAYERCOLOR", playerColor);
 
-        // TODO: Best way to reverse image view order depending on playerColor.
-        a1 = (ImageView) findViewById(R.id.img_a1);
-        a2 = (ImageView) findViewById(R.id.img_a2);
-        a3 = (ImageView) findViewById(R.id.img_a3);
-        a4 = (ImageView) findViewById(R.id.img_a4);
-        a5 = (ImageView) findViewById(R.id.img_a5);
-        a6 = (ImageView) findViewById(R.id.img_a6);
-        a7 = (ImageView) findViewById(R.id.img_a7);
-        a8 = (ImageView) findViewById(R.id.img_a8);
+        declareBoard();
 
-        b1 = (ImageView) findViewById(R.id.img_b1);
-        b2 = (ImageView) findViewById(R.id.img_b2);
-        b3 = (ImageView) findViewById(R.id.img_b3);
-        b4 = (ImageView) findViewById(R.id.img_b4);
-        b5 = (ImageView) findViewById(R.id.img_b5);
-        b6 = (ImageView) findViewById(R.id.img_b6);
-        b7 = (ImageView) findViewById(R.id.img_b7);
-        b8 = (ImageView) findViewById(R.id.img_b8);
 
-        c1 = (ImageView) findViewById(R.id.img_c1);
-        c2 = (ImageView) findViewById(R.id.img_c2);
-        c3 = (ImageView) findViewById(R.id.img_c3);
-        c4 = (ImageView) findViewById(R.id.img_c4);
-        c5 = (ImageView) findViewById(R.id.img_c5);
-        c6 = (ImageView) findViewById(R.id.img_c6);
-        c7 = (ImageView) findViewById(R.id.img_c7);
-        c8 = (ImageView) findViewById(R.id.img_c8);
+    }
 
-        d1 = (ImageView) findViewById(R.id.img_d1);
-        d2 = (ImageView) findViewById(R.id.img_d2);
-        d3 = (ImageView) findViewById(R.id.img_d3);
-        d4 = (ImageView) findViewById(R.id.img_d4);
-        d5 = (ImageView) findViewById(R.id.img_d5);
-        d6 = (ImageView) findViewById(R.id.img_d6);
-        d7 = (ImageView) findViewById(R.id.img_d7);
-        d8 = (ImageView) findViewById(R.id.img_d8);
+    private void declareBoard() {
 
-        e1 = (ImageView) findViewById(R.id.img_e1);
-        e2 = (ImageView) findViewById(R.id.img_e2);
-        e3 = (ImageView) findViewById(R.id.img_e3);
-        e4 = (ImageView) findViewById(R.id.img_e4);
-        e5 = (ImageView) findViewById(R.id.img_e5);
-        e6 = (ImageView) findViewById(R.id.img_e6);
-        e7 = (ImageView) findViewById(R.id.img_e7);
-        e8 = (ImageView) findViewById(R.id.img_e8);
+        if (playerColor.equals("white")) {
+            a1 = (ImageView) findViewById(R.id.img_a1);
+            a2 = (ImageView) findViewById(R.id.img_a2);
+            a3 = (ImageView) findViewById(R.id.img_a3);
+            a4 = (ImageView) findViewById(R.id.img_a4);
+            a5 = (ImageView) findViewById(R.id.img_a5);
+            a6 = (ImageView) findViewById(R.id.img_a6);
+            a7 = (ImageView) findViewById(R.id.img_a7);
+            a8 = (ImageView) findViewById(R.id.img_a8);
 
-        f1 = (ImageView) findViewById(R.id.img_f1);
-        f2 = (ImageView) findViewById(R.id.img_f2);
-        f3 = (ImageView) findViewById(R.id.img_f3);
-        f4 = (ImageView) findViewById(R.id.img_f4);
-        f5 = (ImageView) findViewById(R.id.img_f5);
-        f6 = (ImageView) findViewById(R.id.img_f6);
-        f7 = (ImageView) findViewById(R.id.img_f7);
-        f8 = (ImageView) findViewById(R.id.img_f8);
+            b1 = (ImageView) findViewById(R.id.img_b1);
+            b2 = (ImageView) findViewById(R.id.img_b2);
+            b3 = (ImageView) findViewById(R.id.img_b3);
+            b4 = (ImageView) findViewById(R.id.img_b4);
+            b5 = (ImageView) findViewById(R.id.img_b5);
+            b6 = (ImageView) findViewById(R.id.img_b6);
+            b7 = (ImageView) findViewById(R.id.img_b7);
+            b8 = (ImageView) findViewById(R.id.img_b8);
 
-        g1 = (ImageView) findViewById(R.id.img_g1);
-        g2 = (ImageView) findViewById(R.id.img_g2);
-        g3 = (ImageView) findViewById(R.id.img_g3);
-        g4 = (ImageView) findViewById(R.id.img_g4);
-        g5 = (ImageView) findViewById(R.id.img_g5);
-        g6 = (ImageView) findViewById(R.id.img_g6);
-        g7 = (ImageView) findViewById(R.id.img_g7);
-        g8 = (ImageView) findViewById(R.id.img_g8);
+            c1 = (ImageView) findViewById(R.id.img_c1);
+            c2 = (ImageView) findViewById(R.id.img_c2);
+            c3 = (ImageView) findViewById(R.id.img_c3);
+            c4 = (ImageView) findViewById(R.id.img_c4);
+            c5 = (ImageView) findViewById(R.id.img_c5);
+            c6 = (ImageView) findViewById(R.id.img_c6);
+            c7 = (ImageView) findViewById(R.id.img_c7);
+            c8 = (ImageView) findViewById(R.id.img_c8);
 
-        h1 = (ImageView) findViewById(R.id.img_h1);
-        h2 = (ImageView) findViewById(R.id.img_h2);
-        h3 = (ImageView) findViewById(R.id.img_h3);
-        h4 = (ImageView) findViewById(R.id.img_h4);
-        h5 = (ImageView) findViewById(R.id.img_h5);
-        h6 = (ImageView) findViewById(R.id.img_h6);
-        h7 = (ImageView) findViewById(R.id.img_h7);
-        h8 = (ImageView) findViewById(R.id.img_h8);
+            d1 = (ImageView) findViewById(R.id.img_d1);
+            d2 = (ImageView) findViewById(R.id.img_d2);
+            d3 = (ImageView) findViewById(R.id.img_d3);
+            d4 = (ImageView) findViewById(R.id.img_d4);
+            d5 = (ImageView) findViewById(R.id.img_d5);
+            d6 = (ImageView) findViewById(R.id.img_d6);
+            d7 = (ImageView) findViewById(R.id.img_d7);
+            d8 = (ImageView) findViewById(R.id.img_d8);
 
+            e1 = (ImageView) findViewById(R.id.img_e1);
+            e2 = (ImageView) findViewById(R.id.img_e2);
+            e3 = (ImageView) findViewById(R.id.img_e3);
+            e4 = (ImageView) findViewById(R.id.img_e4);
+            e5 = (ImageView) findViewById(R.id.img_e5);
+            e6 = (ImageView) findViewById(R.id.img_e6);
+            e7 = (ImageView) findViewById(R.id.img_e7);
+            e8 = (ImageView) findViewById(R.id.img_e8);
+
+            f1 = (ImageView) findViewById(R.id.img_f1);
+            f2 = (ImageView) findViewById(R.id.img_f2);
+            f3 = (ImageView) findViewById(R.id.img_f3);
+            f4 = (ImageView) findViewById(R.id.img_f4);
+            f5 = (ImageView) findViewById(R.id.img_f5);
+            f6 = (ImageView) findViewById(R.id.img_f6);
+            f7 = (ImageView) findViewById(R.id.img_f7);
+            f8 = (ImageView) findViewById(R.id.img_f8);
+
+            g1 = (ImageView) findViewById(R.id.img_g1);
+            g2 = (ImageView) findViewById(R.id.img_g2);
+            g3 = (ImageView) findViewById(R.id.img_g3);
+            g4 = (ImageView) findViewById(R.id.img_g4);
+            g5 = (ImageView) findViewById(R.id.img_g5);
+            g6 = (ImageView) findViewById(R.id.img_g6);
+            g7 = (ImageView) findViewById(R.id.img_g7);
+            g8 = (ImageView) findViewById(R.id.img_g8);
+
+            h1 = (ImageView) findViewById(R.id.img_h1);
+            h2 = (ImageView) findViewById(R.id.img_h2);
+            h3 = (ImageView) findViewById(R.id.img_h3);
+            h4 = (ImageView) findViewById(R.id.img_h4);
+            h5 = (ImageView) findViewById(R.id.img_h5);
+            h6 = (ImageView) findViewById(R.id.img_h6);
+            h7 = (ImageView) findViewById(R.id.img_h7);
+            h8 = (ImageView) findViewById(R.id.img_h8);
+
+        } else if (playerColor.equals("black")) {
+            a1 = (ImageView) findViewById(R.id.img_h8);
+            a2 = (ImageView) findViewById(R.id.img_h7);
+            a3 = (ImageView) findViewById(R.id.img_h6);
+            a4 = (ImageView) findViewById(R.id.img_h5);
+            a5 = (ImageView) findViewById(R.id.img_h4);
+            a6 = (ImageView) findViewById(R.id.img_h3);
+            a7 = (ImageView) findViewById(R.id.img_h2);
+            a8 = (ImageView) findViewById(R.id.img_h1);
+
+            b1 = (ImageView) findViewById(R.id.img_g8);
+            b2 = (ImageView) findViewById(R.id.img_g7);
+            b3 = (ImageView) findViewById(R.id.img_g6);
+            b4 = (ImageView) findViewById(R.id.img_g5);
+            b5 = (ImageView) findViewById(R.id.img_g4);
+            b6 = (ImageView) findViewById(R.id.img_g3);
+            b7 = (ImageView) findViewById(R.id.img_g2);
+            b8 = (ImageView) findViewById(R.id.img_g1);
+
+            c1 = (ImageView) findViewById(R.id.img_f8);
+            c2 = (ImageView) findViewById(R.id.img_f7);
+            c3 = (ImageView) findViewById(R.id.img_f6);
+            c4 = (ImageView) findViewById(R.id.img_f5);
+            c5 = (ImageView) findViewById(R.id.img_f4);
+            c6 = (ImageView) findViewById(R.id.img_f3);
+            c7 = (ImageView) findViewById(R.id.img_f2);
+            c8 = (ImageView) findViewById(R.id.img_f1);
+
+            d1 = (ImageView) findViewById(R.id.img_e8);
+            d2 = (ImageView) findViewById(R.id.img_e7);
+            d3 = (ImageView) findViewById(R.id.img_e6);
+            d4 = (ImageView) findViewById(R.id.img_e5);
+            d5 = (ImageView) findViewById(R.id.img_e4);
+            d6 = (ImageView) findViewById(R.id.img_e3);
+            d7 = (ImageView) findViewById(R.id.img_e2);
+            d8 = (ImageView) findViewById(R.id.img_e1);
+
+            e1 = (ImageView) findViewById(R.id.img_d8);
+            e2 = (ImageView) findViewById(R.id.img_d7);
+            e3 = (ImageView) findViewById(R.id.img_d6);
+            e4 = (ImageView) findViewById(R.id.img_d5);
+            e5 = (ImageView) findViewById(R.id.img_d4);
+            e6 = (ImageView) findViewById(R.id.img_d3);
+            e7 = (ImageView) findViewById(R.id.img_d2);
+            e8 = (ImageView) findViewById(R.id.img_d1);
+
+            f1 = (ImageView) findViewById(R.id.img_c8);
+            f2 = (ImageView) findViewById(R.id.img_c7);
+            f3 = (ImageView) findViewById(R.id.img_c6);
+            f4 = (ImageView) findViewById(R.id.img_c5);
+            f5 = (ImageView) findViewById(R.id.img_c4);
+            f6 = (ImageView) findViewById(R.id.img_c3);
+            f7 = (ImageView) findViewById(R.id.img_c2);
+            f8 = (ImageView) findViewById(R.id.img_c1);
+
+            g1 = (ImageView) findViewById(R.id.img_b8);
+            g2 = (ImageView) findViewById(R.id.img_b7);
+            g3 = (ImageView) findViewById(R.id.img_b6);
+            g4 = (ImageView) findViewById(R.id.img_b5);
+            g5 = (ImageView) findViewById(R.id.img_b4);
+            g6 = (ImageView) findViewById(R.id.img_b3);
+            g7 = (ImageView) findViewById(R.id.img_b2);
+            g8 = (ImageView) findViewById(R.id.img_b1);
+
+            h1 = (ImageView) findViewById(R.id.img_a8);
+            h2 = (ImageView) findViewById(R.id.img_a7);
+            h3 = (ImageView) findViewById(R.id.img_a6);
+            h4 = (ImageView) findViewById(R.id.img_a5);
+            h5 = (ImageView) findViewById(R.id.img_a4);
+            h6 = (ImageView) findViewById(R.id.img_a3);
+            h7 = (ImageView) findViewById(R.id.img_a2);
+            h8 = (ImageView) findViewById(R.id.img_a1);
+        }
 
         onStartResume();
 
@@ -184,9 +260,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setBoard() {
-
-
-        logs.setText(gamesetString);
 
         clearSelected();
 
@@ -340,11 +413,6 @@ public class GameActivity extends AppCompatActivity {
             if (turn.equals("white")) {
 
                 Log.e("GAMEEEE", gamesetList.get(square).split("_")[0]);
-
-                if (playerColor == null) {
-                    playerColor = "black";
-                }
-                Log.e("GAMEEEE", playerColor);
 
                 if ((gamesetList.get(square).split("_")[0]).equals("white") && playerColor.equals("white")) {
 
