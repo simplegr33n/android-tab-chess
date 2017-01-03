@@ -31,6 +31,8 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
     private String gameset;
 
+    private InstanceGame game;
+
 
     public AdapterActive(Context context, int resource, List<InstanceGame> objects) {
         super(context, resource, objects);
@@ -49,7 +51,7 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
         final InstanceGame current = getItem(position);
 
-        InstanceGame game = current;
+        game = current;
 
         Log.e("ADAPTERCHILDEV", "" + game.getBlack());
 
@@ -107,77 +109,154 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
         View v = mView;
 
         // TODO: Best way to reverse image view order depending on playerColor.
-        a1 = (ImageView) v.findViewById(R.id.img_a1);
-        a2 = (ImageView) v.findViewById(R.id.img_a2);
-        a3 = (ImageView) v.findViewById(R.id.img_a3);
-        a4 = (ImageView) v.findViewById(R.id.img_a4);
-        a5 = (ImageView) v.findViewById(R.id.img_a5);
-        a6 = (ImageView) v.findViewById(R.id.img_a6);
-        a7 = (ImageView) v.findViewById(R.id.img_a7);
-        a8 = (ImageView) v.findViewById(R.id.img_a8);
+        //
 
-        b1 = (ImageView) v.findViewById(R.id.img_b1);
-        b2 = (ImageView) v.findViewById(R.id.img_b2);
-        b3 = (ImageView) v.findViewById(R.id.img_b3);
-        b4 = (ImageView) v.findViewById(R.id.img_b4);
-        b5 = (ImageView) v.findViewById(R.id.img_b5);
-        b6 = (ImageView) v.findViewById(R.id.img_b6);
-        b7 = (ImageView) v.findViewById(R.id.img_b7);
-        b8 = (ImageView) v.findViewById(R.id.img_b8);
+        if (LobbyActivity.userId.equals(game.getWhite())) {
+            a1 = (ImageView) v.findViewById(R.id.img_a1);
+            a2 = (ImageView) v.findViewById(R.id.img_a2);
+            a3 = (ImageView) v.findViewById(R.id.img_a3);
+            a4 = (ImageView) v.findViewById(R.id.img_a4);
+            a5 = (ImageView) v.findViewById(R.id.img_a5);
+            a6 = (ImageView) v.findViewById(R.id.img_a6);
+            a7 = (ImageView) v.findViewById(R.id.img_a7);
+            a8 = (ImageView) v.findViewById(R.id.img_a8);
 
-        c1 = (ImageView) v.findViewById(R.id.img_c1);
-        c2 = (ImageView) v.findViewById(R.id.img_c2);
-        c3 = (ImageView) v.findViewById(R.id.img_c3);
-        c4 = (ImageView) v.findViewById(R.id.img_c4);
-        c5 = (ImageView) v.findViewById(R.id.img_c5);
-        c6 = (ImageView) v.findViewById(R.id.img_c6);
-        c7 = (ImageView) v.findViewById(R.id.img_c7);
-        c8 = (ImageView) v.findViewById(R.id.img_c8);
+            b1 = (ImageView) v.findViewById(R.id.img_b1);
+            b2 = (ImageView) v.findViewById(R.id.img_b2);
+            b3 = (ImageView) v.findViewById(R.id.img_b3);
+            b4 = (ImageView) v.findViewById(R.id.img_b4);
+            b5 = (ImageView) v.findViewById(R.id.img_b5);
+            b6 = (ImageView) v.findViewById(R.id.img_b6);
+            b7 = (ImageView) v.findViewById(R.id.img_b7);
+            b8 = (ImageView) v.findViewById(R.id.img_b8);
 
-        d1 = (ImageView) v.findViewById(R.id.img_d1);
-        d2 = (ImageView) v.findViewById(R.id.img_d2);
-        d3 = (ImageView) v.findViewById(R.id.img_d3);
-        d4 = (ImageView) v.findViewById(R.id.img_d4);
-        d5 = (ImageView) v.findViewById(R.id.img_d5);
-        d6 = (ImageView) v.findViewById(R.id.img_d6);
-        d7 = (ImageView) v.findViewById(R.id.img_d7);
-        d8 = (ImageView) v.findViewById(R.id.img_d8);
+            c1 = (ImageView) v.findViewById(R.id.img_c1);
+            c2 = (ImageView) v.findViewById(R.id.img_c2);
+            c3 = (ImageView) v.findViewById(R.id.img_c3);
+            c4 = (ImageView) v.findViewById(R.id.img_c4);
+            c5 = (ImageView) v.findViewById(R.id.img_c5);
+            c6 = (ImageView) v.findViewById(R.id.img_c6);
+            c7 = (ImageView) v.findViewById(R.id.img_c7);
+            c8 = (ImageView) v.findViewById(R.id.img_c8);
 
-        e1 = (ImageView) v.findViewById(R.id.img_e1);
-        e2 = (ImageView) v.findViewById(R.id.img_e2);
-        e3 = (ImageView) v.findViewById(R.id.img_e3);
-        e4 = (ImageView) v.findViewById(R.id.img_e4);
-        e5 = (ImageView) v.findViewById(R.id.img_e5);
-        e6 = (ImageView) v.findViewById(R.id.img_e6);
-        e7 = (ImageView) v.findViewById(R.id.img_e7);
-        e8 = (ImageView) v.findViewById(R.id.img_e8);
+            d1 = (ImageView) v.findViewById(R.id.img_d1);
+            d2 = (ImageView) v.findViewById(R.id.img_d2);
+            d3 = (ImageView) v.findViewById(R.id.img_d3);
+            d4 = (ImageView) v.findViewById(R.id.img_d4);
+            d5 = (ImageView) v.findViewById(R.id.img_d5);
+            d6 = (ImageView) v.findViewById(R.id.img_d6);
+            d7 = (ImageView) v.findViewById(R.id.img_d7);
+            d8 = (ImageView) v.findViewById(R.id.img_d8);
 
-        f1 = (ImageView) v.findViewById(R.id.img_f1);
-        f2 = (ImageView) v.findViewById(R.id.img_f2);
-        f3 = (ImageView) v.findViewById(R.id.img_f3);
-        f4 = (ImageView) v.findViewById(R.id.img_f4);
-        f5 = (ImageView) v.findViewById(R.id.img_f5);
-        f6 = (ImageView) v.findViewById(R.id.img_f6);
-        f7 = (ImageView) v.findViewById(R.id.img_f7);
-        f8 = (ImageView) v.findViewById(R.id.img_f8);
+            e1 = (ImageView) v.findViewById(R.id.img_e1);
+            e2 = (ImageView) v.findViewById(R.id.img_e2);
+            e3 = (ImageView) v.findViewById(R.id.img_e3);
+            e4 = (ImageView) v.findViewById(R.id.img_e4);
+            e5 = (ImageView) v.findViewById(R.id.img_e5);
+            e6 = (ImageView) v.findViewById(R.id.img_e6);
+            e7 = (ImageView) v.findViewById(R.id.img_e7);
+            e8 = (ImageView) v.findViewById(R.id.img_e8);
 
-        g1 = (ImageView) v.findViewById(R.id.img_g1);
-        g2 = (ImageView) v.findViewById(R.id.img_g2);
-        g3 = (ImageView) v.findViewById(R.id.img_g3);
-        g4 = (ImageView) v.findViewById(R.id.img_g4);
-        g5 = (ImageView) v.findViewById(R.id.img_g5);
-        g6 = (ImageView) v.findViewById(R.id.img_g6);
-        g7 = (ImageView) v.findViewById(R.id.img_g7);
-        g8 = (ImageView) v.findViewById(R.id.img_g8);
+            f1 = (ImageView) v.findViewById(R.id.img_f1);
+            f2 = (ImageView) v.findViewById(R.id.img_f2);
+            f3 = (ImageView) v.findViewById(R.id.img_f3);
+            f4 = (ImageView) v.findViewById(R.id.img_f4);
+            f5 = (ImageView) v.findViewById(R.id.img_f5);
+            f6 = (ImageView) v.findViewById(R.id.img_f6);
+            f7 = (ImageView) v.findViewById(R.id.img_f7);
+            f8 = (ImageView) v.findViewById(R.id.img_f8);
 
-        h1 = (ImageView) v.findViewById(R.id.img_h1);
-        h2 = (ImageView) v.findViewById(R.id.img_h2);
-        h3 = (ImageView) v.findViewById(R.id.img_h3);
-        h4 = (ImageView) v.findViewById(R.id.img_h4);
-        h5 = (ImageView) v.findViewById(R.id.img_h5);
-        h6 = (ImageView) v.findViewById(R.id.img_h6);
-        h7 = (ImageView) v.findViewById(R.id.img_h7);
-        h8 = (ImageView) v.findViewById(R.id.img_h8);
+            g1 = (ImageView) v.findViewById(R.id.img_g1);
+            g2 = (ImageView) v.findViewById(R.id.img_g2);
+            g3 = (ImageView) v.findViewById(R.id.img_g3);
+            g4 = (ImageView) v.findViewById(R.id.img_g4);
+            g5 = (ImageView) v.findViewById(R.id.img_g5);
+            g6 = (ImageView) v.findViewById(R.id.img_g6);
+            g7 = (ImageView) v.findViewById(R.id.img_g7);
+            g8 = (ImageView) v.findViewById(R.id.img_g8);
+
+            h1 = (ImageView) v.findViewById(R.id.img_h1);
+            h2 = (ImageView) v.findViewById(R.id.img_h2);
+            h3 = (ImageView) v.findViewById(R.id.img_h3);
+            h4 = (ImageView) v.findViewById(R.id.img_h4);
+            h5 = (ImageView) v.findViewById(R.id.img_h5);
+            h6 = (ImageView) v.findViewById(R.id.img_h6);
+            h7 = (ImageView) v.findViewById(R.id.img_h7);
+            h8 = (ImageView) v.findViewById(R.id.img_h8);
+
+        } else if (LobbyActivity.userId.equals(game.getBlack())) {
+            a1 = (ImageView) v.findViewById(R.id.img_h8);
+            a2 = (ImageView) v.findViewById(R.id.img_h7);
+            a3 = (ImageView) v.findViewById(R.id.img_h6);
+            a4 = (ImageView) v.findViewById(R.id.img_h5);
+            a5 = (ImageView) v.findViewById(R.id.img_h4);
+            a6 = (ImageView) v.findViewById(R.id.img_h3);
+            a7 = (ImageView) v.findViewById(R.id.img_h2);
+            a8 = (ImageView) v.findViewById(R.id.img_h1);
+
+            b1 = (ImageView) v.findViewById(R.id.img_g8);
+            b2 = (ImageView) v.findViewById(R.id.img_g7);
+            b3 = (ImageView) v.findViewById(R.id.img_g6);
+            b4 = (ImageView) v.findViewById(R.id.img_g5);
+            b5 = (ImageView) v.findViewById(R.id.img_g4);
+            b6 = (ImageView) v.findViewById(R.id.img_g3);
+            b7 = (ImageView) v.findViewById(R.id.img_g2);
+            b8 = (ImageView) v.findViewById(R.id.img_g1);
+
+            c1 = (ImageView) v.findViewById(R.id.img_f8);
+            c2 = (ImageView) v.findViewById(R.id.img_f7);
+            c3 = (ImageView) v.findViewById(R.id.img_f6);
+            c4 = (ImageView) v.findViewById(R.id.img_f5);
+            c5 = (ImageView) v.findViewById(R.id.img_f4);
+            c6 = (ImageView) v.findViewById(R.id.img_f3);
+            c7 = (ImageView) v.findViewById(R.id.img_f2);
+            c8 = (ImageView) v.findViewById(R.id.img_f1);
+
+            d1 = (ImageView) v.findViewById(R.id.img_e8);
+            d2 = (ImageView) v.findViewById(R.id.img_e7);
+            d3 = (ImageView) v.findViewById(R.id.img_e6);
+            d4 = (ImageView) v.findViewById(R.id.img_e5);
+            d5 = (ImageView) v.findViewById(R.id.img_e4);
+            d6 = (ImageView) v.findViewById(R.id.img_e3);
+            d7 = (ImageView) v.findViewById(R.id.img_e2);
+            d8 = (ImageView) v.findViewById(R.id.img_e1);
+
+            e1 = (ImageView) v.findViewById(R.id.img_d8);
+            e2 = (ImageView) v.findViewById(R.id.img_d7);
+            e3 = (ImageView) v.findViewById(R.id.img_d6);
+            e4 = (ImageView) v.findViewById(R.id.img_d5);
+            e5 = (ImageView) v.findViewById(R.id.img_d4);
+            e6 = (ImageView) v.findViewById(R.id.img_d3);
+            e7 = (ImageView) v.findViewById(R.id.img_d2);
+            e8 = (ImageView) v.findViewById(R.id.img_d1);
+
+            f1 = (ImageView) v.findViewById(R.id.img_c8);
+            f2 = (ImageView) v.findViewById(R.id.img_c7);
+            f3 = (ImageView) v.findViewById(R.id.img_c6);
+            f4 = (ImageView) v.findViewById(R.id.img_c5);
+            f5 = (ImageView) v.findViewById(R.id.img_c4);
+            f6 = (ImageView) v.findViewById(R.id.img_c3);
+            f7 = (ImageView) v.findViewById(R.id.img_c2);
+            f8 = (ImageView) v.findViewById(R.id.img_c1);
+
+            g1 = (ImageView) v.findViewById(R.id.img_b8);
+            g2 = (ImageView) v.findViewById(R.id.img_b7);
+            g3 = (ImageView) v.findViewById(R.id.img_b6);
+            g4 = (ImageView) v.findViewById(R.id.img_b5);
+            g5 = (ImageView) v.findViewById(R.id.img_b4);
+            g6 = (ImageView) v.findViewById(R.id.img_b3);
+            g7 = (ImageView) v.findViewById(R.id.img_b2);
+            g8 = (ImageView) v.findViewById(R.id.img_b1);
+
+            h1 = (ImageView) v.findViewById(R.id.img_a8);
+            h2 = (ImageView) v.findViewById(R.id.img_a7);
+            h3 = (ImageView) v.findViewById(R.id.img_a6);
+            h4 = (ImageView) v.findViewById(R.id.img_a5);
+            h5 = (ImageView) v.findViewById(R.id.img_a4);
+            h6 = (ImageView) v.findViewById(R.id.img_a3);
+            h7 = (ImageView) v.findViewById(R.id.img_a2);
+            h8 = (ImageView) v.findViewById(R.id.img_a1);
+        }
 
         setBoard();
     }
