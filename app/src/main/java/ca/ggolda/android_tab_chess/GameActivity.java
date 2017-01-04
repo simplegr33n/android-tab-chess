@@ -2413,7 +2413,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 45:
@@ -2427,7 +2427,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 36:
@@ -2441,7 +2441,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 27:
@@ -2455,7 +2455,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 18:
@@ -2471,7 +2471,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 9:
@@ -2486,7 +2486,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     // DOWN-RIGHT
@@ -2501,7 +2501,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -35:
@@ -2515,7 +2515,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -28:
@@ -2529,7 +2529,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -21:
@@ -2543,7 +2543,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -14:
@@ -2559,7 +2559,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -7:
@@ -2574,7 +2574,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     // UP-LEFT
@@ -2589,7 +2589,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 35:
@@ -2603,7 +2603,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 28:
@@ -2617,7 +2617,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 21:
@@ -2631,7 +2631,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 14:
@@ -2647,7 +2647,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 7:
@@ -2662,7 +2662,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
 
@@ -2678,7 +2678,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -45:
@@ -2692,7 +2692,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -36:
@@ -2706,7 +2706,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -27:
@@ -2720,7 +2720,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -18:
@@ -2736,7 +2736,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -9:
@@ -2751,7 +2751,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
                 }
 
@@ -2976,7 +2976,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -2992,7 +2992,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case 3:
@@ -3007,7 +3007,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3023,7 +3023,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3039,7 +3039,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3055,7 +3055,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case 7:
@@ -3070,7 +3070,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
 
@@ -3086,7 +3086,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3103,7 +3103,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case -3:
@@ -3119,7 +3119,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3136,7 +3136,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3153,7 +3153,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3170,7 +3170,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case -7:
@@ -3186,7 +3186,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
 
@@ -3228,7 +3228,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 45:
@@ -3242,7 +3242,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 36:
@@ -3256,7 +3256,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 27:
@@ -3270,7 +3270,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 18:
@@ -3286,7 +3286,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 9:
@@ -3301,7 +3301,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     // DOWN-RIGHT
@@ -3316,7 +3316,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -35:
@@ -3330,7 +3330,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -28:
@@ -3344,7 +3344,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -21:
@@ -3358,7 +3358,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -14:
@@ -3374,7 +3374,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -7:
@@ -3389,7 +3389,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     // UP-LEFT
@@ -3404,7 +3404,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 35:
@@ -3418,7 +3418,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 28:
@@ -3432,7 +3432,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 21:
@@ -3446,7 +3446,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 14:
@@ -3462,7 +3462,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case 7:
@@ -3477,7 +3477,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
 
@@ -3493,7 +3493,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -45:
@@ -3507,7 +3507,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -36:
@@ -3521,7 +3521,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -27:
@@ -3535,7 +3535,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -18:
@@ -3551,7 +3551,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
 
                     case -9:
@@ -3566,7 +3566,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenDiagonal(i);
                         break;
                 }
 
@@ -3791,7 +3791,7 @@ public class GameActivity extends AppCompatActivity {
                             }
 
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3807,7 +3807,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case 3:
@@ -3822,7 +3822,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3838,7 +3838,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3854,7 +3854,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3870,7 +3870,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case 7:
@@ -3885,7 +3885,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
 
@@ -3901,7 +3901,7 @@ public class GameActivity extends AppCompatActivity {
                                 });
                             }
                         }
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3918,7 +3918,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case -3:
@@ -3934,7 +3934,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3951,7 +3951,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3968,7 +3968,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
 
                         break;
@@ -3985,7 +3985,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
                     case -7:
@@ -4001,7 +4001,7 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
 
-                        wallQueen(i);
+                        wallQueenHorizontal(i);
 
                         break;
 
@@ -4339,13 +4339,16 @@ public class GameActivity extends AppCompatActivity {
 
     //Queen Fix
     //TODO: create separate queen function instead of combining rook + bishop
-    private void wallQueen(int i) {
-        //if ((i == 9) || (i == 18) || (i == 27) || (i == 36) || (i == 45) || (i == 54) || (i == 63) || (i == 7) ||(i == 14) || (i == 21) || (i == 28) || (i == 35) || (i == 42) || (i == 49) || (i == 56) || (i == -9) || (i == -18) || (i == -27) || (i == -36) || (i == -45) || (i == -54) || (i == -63) || (i == -7) ||(i == -14) || (i == -21) || (i == -28) || (i == -35) || (i == -42) || (i == -49) || (i == -56)) {
-        wallBishop(i);
-        // } else {
-        wallRook(i);
+    private void wallQueenDiagonal(int i) {
 
-        //  }
+        wallBishop(i);
+
+
+    }
+
+    private void wallQueenHorizontal(int i) {
+
+        wallRook(i);
 
     }
 
