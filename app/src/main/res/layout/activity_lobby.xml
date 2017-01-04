@@ -142,7 +142,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:text="Active Games (#)"
                 android:visibility="gone"
                 tools:visibility="visible"
@@ -174,8 +174,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#3d78d0"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"/>
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"/>
 
 
         </LinearLayout>

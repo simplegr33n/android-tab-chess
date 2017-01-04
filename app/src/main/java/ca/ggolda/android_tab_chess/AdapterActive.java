@@ -3,6 +3,7 @@ package ca.ggolda.android_tab_chess;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -62,6 +63,7 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
 
         TextView nameLeftTextView = (TextView) convertView.findViewById(R.id.username_left);
         TextView nameRightTextView = (TextView) convertView.findViewById(R.id.username_right);
+        TextView vTextView = (TextView) convertView.findViewById(R.id.v_textview);
         ImageView leftPawn = (ImageView) convertView.findViewById(R.id.left_pawn);
         ImageView rightPawn = (ImageView) convertView.findViewById(R.id.right_pawn);
 
@@ -87,6 +89,9 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
                 case ("white"):
 
                     nameLeftTextView.setText("YOUR TURN");
+                    nameLeftTextView.setTextColor(Color.parseColor("#FFFFFF"));
+                    vTextView.setVisibility(View.VISIBLE);
+                    nameLeftTextView.setBackgroundColor(Color.parseColor("#2D7A53"));
                     nameRightTextView.setText(game.getUsername_black());
 
                     leftPawn.setImageResource(R.drawable.white_king);
@@ -95,7 +100,10 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
                     break;
                 case ("black"):
 
-                    nameRightTextView.setText("Waiting...");
+                    nameRightTextView.setText("waiting...");
+                    nameLeftTextView.setBackgroundColor(Color.parseColor("#c19e6d"));
+                    nameLeftTextView.setTextColor(Color.parseColor("#000000"));
+                    vTextView.setVisibility(View.INVISIBLE);
                     nameLeftTextView.setText(game.getUsername_black() + "'s TURN");
 
                     leftPawn.setImageResource(R.drawable.black_king);
@@ -111,7 +119,10 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
             switch (game.getTurn_color()) {
                 case ("white"):
 
-                    nameRightTextView.setText("Waiting...");
+                    nameRightTextView.setText("waiting...");
+                    nameLeftTextView.setBackgroundColor(Color.parseColor("#c19e6d"));
+                    nameLeftTextView.setTextColor(Color.parseColor("#000000"));
+                    vTextView.setVisibility(View.INVISIBLE);
                     nameLeftTextView.setText(game.getUsername_white() + "'s TURN");
 
                     leftPawn.setImageResource(R.drawable.black_king);
@@ -122,6 +133,9 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
                 case ("black"):
 
                     nameLeftTextView.setText("YOUR TURN");
+                    nameLeftTextView.setTextColor(Color.parseColor("#2D7A53"));
+                    vTextView.setVisibility(View.VISIBLE);
+                    nameLeftTextView.setBackgroundColor(Color.parseColor("#2d4b7a"));
                     nameRightTextView.setText(game.getUsername_white());
 
                     leftPawn.setImageResource(R.drawable.white_king);
