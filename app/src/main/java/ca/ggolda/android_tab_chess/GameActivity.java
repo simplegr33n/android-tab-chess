@@ -456,7 +456,6 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
     private void isSelected(int square, ImageView squareImageView) {
 
         // get selectedUnit
@@ -562,12 +561,10 @@ public class GameActivity extends AppCompatActivity {
 
                 // if statement for pawn kill
                 if (((i == selectedSquare + 7) || (i == selectedSquare + 9))) {
-                    if ((gamesetList.get(i).equals("black_pawn") || gamesetList.get(i).equals("black_king") || gamesetList.get(i).equals("black_queen") || gamesetList.get(i).equals("black_rook") || gamesetList.get(i).equals("black_knight") || gamesetList.get(i).equals("black_bishop"))) {
-
-                        Log.e("EHYOe", "um" + gamesetList.get(i));
+                    if (heldBlack(i)) {
 
                         if (space != null) {
-                            space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            space.setBackgroundColor(Color.parseColor("#A6FF0000"));
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     moveGamepiece(localI);
@@ -625,12 +622,10 @@ public class GameActivity extends AppCompatActivity {
 
                 // if statement for pawn kill
                 if (((i == selectedSquare - 7) || (i == selectedSquare - 9))) {
-                    if ((gamesetList.get(i).equals("white_pawn") || gamesetList.get(i).equals("white_king") || gamesetList.get(i).equals("white_queen") || gamesetList.get(i).equals("white_rook") || gamesetList.get(i).equals("white_knight") || gamesetList.get(i).equals("white_bishop"))) {
-
-                        Log.e("EHYOe", "um" + gamesetList.get(i));
+                    if (heldWhite(i)) {
 
                         if (space != null) {
-                            space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            space.setBackgroundColor(Color.parseColor("#A6FF0000"));
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     moveGamepiece(localI);
@@ -661,9 +656,15 @@ public class GameActivity extends AppCompatActivity {
                 // if statement for +1 forward
                 if ((i == selectedSquare + 6) || (i == selectedSquare + 10) || (i == selectedSquare + 15) || (i == selectedSquare + 17) || (i == selectedSquare - 6) || (i == selectedSquare - 10) || (i == selectedSquare - 15) || (i == selectedSquare - 17)) {
 
-                    if (isFree(i) || (gamesetList.get(i).equals("black_pawn")) || (gamesetList.get(i).equals("black_king")) || (gamesetList.get(i).equals("black_queen")) || (gamesetList.get(i).equals("black_bishop")) || (gamesetList.get(i).equals("black_knight")) || (gamesetList.get(i).equals("black_rook"))) {
+                    if (heldBlackOrFree(i)) {
+
                         if (space != null) {
-                            space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            if (heldBlack(i)) {
+                                space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                            } else if (isFree(i)) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            }
+
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     moveGamepiece(localI);
@@ -695,9 +696,15 @@ public class GameActivity extends AppCompatActivity {
                 // if statement for Knight movement
                 if ((i == selectedSquare + 6) || (i == selectedSquare + 10) || (i == selectedSquare + 15) || (i == selectedSquare + 17) || (i == selectedSquare - 6) || (i == selectedSquare - 10) || (i == selectedSquare - 15) || (i == selectedSquare - 17)) {
 
-                    if (isFree(i) || (gamesetList.get(i).equals("white_pawn")) || (gamesetList.get(i).equals("white_king")) || (gamesetList.get(i).equals("white_queen")) || (gamesetList.get(i).equals("white_bishop")) || (gamesetList.get(i).equals("white_knight")) || (gamesetList.get(i).equals("white_rook"))) {
+                    if (heldWhiteOrFree(i)) {
+
                         if (space != null) {
-                            space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            if (heldWhite(i)) {
+                                space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                            } else if (isFree(i)) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                            }
+
                             space.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     moveGamepiece(localI);
@@ -725,8 +732,6 @@ public class GameActivity extends AppCompatActivity {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
-                Log.e("EYHOSEL", gamesetList.get(i));
-
                 // subtract int selectedSquare to get the difference of i
                 int iDiff = i - selectedSquare;
 
@@ -735,7 +740,12 @@ public class GameActivity extends AppCompatActivity {
                     case 8:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
+
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -750,7 +760,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -764,7 +778,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -779,7 +797,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -794,7 +816,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -809,7 +835,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -823,7 +853,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40) && isFree(i - 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -837,7 +871,11 @@ public class GameActivity extends AppCompatActivity {
                     case -8:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -852,7 +890,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -866,7 +908,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -881,7 +927,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -896,7 +946,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -911,7 +965,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -925,7 +983,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40) && isFree(i + 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -940,7 +1002,11 @@ public class GameActivity extends AppCompatActivity {
                     case 1:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -957,7 +1023,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -972,7 +1042,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -988,7 +1062,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1004,7 +1082,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1020,7 +1102,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1035,7 +1121,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5) && isFree(i - 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1051,7 +1141,11 @@ public class GameActivity extends AppCompatActivity {
                     case -1:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1067,7 +1161,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1083,7 +1181,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1100,7 +1202,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1117,7 +1223,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1134,7 +1244,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1150,7 +1264,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5) && isFree(i + 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1190,7 +1308,11 @@ public class GameActivity extends AppCompatActivity {
                     case 8:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1205,7 +1327,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1219,7 +1345,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1234,7 +1364,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1249,7 +1383,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1264,7 +1402,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1278,7 +1420,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40) && isFree(i - 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1292,7 +1438,11 @@ public class GameActivity extends AppCompatActivity {
                     case -8:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1307,7 +1457,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1321,7 +1475,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1336,7 +1494,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1351,7 +1513,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1366,7 +1532,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1380,7 +1550,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40) && isFree(i + 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1395,7 +1569,11 @@ public class GameActivity extends AppCompatActivity {
                     case 1:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1412,7 +1590,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1427,7 +1609,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1443,7 +1629,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1459,7 +1649,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1475,7 +1669,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1490,7 +1688,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5) && isFree(i - 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1506,7 +1708,11 @@ public class GameActivity extends AppCompatActivity {
                     case -1:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1522,7 +1728,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1538,7 +1748,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1555,7 +1769,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1572,7 +1790,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1589,7 +1811,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1605,7 +1831,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5) && isFree(i + 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1637,8 +1867,6 @@ public class GameActivity extends AppCompatActivity {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
-                Log.e("EYHOSEL", gamesetList.get(i));
-
                 // subtract int selectedSquare to get the difference of i
                 int iDiff = i - selectedSquare;
 
@@ -1647,7 +1875,11 @@ public class GameActivity extends AppCompatActivity {
                     case 54:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1661,7 +1893,11 @@ public class GameActivity extends AppCompatActivity {
                     case 45:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1675,7 +1911,11 @@ public class GameActivity extends AppCompatActivity {
                     case 36:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1689,7 +1929,11 @@ public class GameActivity extends AppCompatActivity {
                     case 27:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1704,7 +1948,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1719,7 +1967,11 @@ public class GameActivity extends AppCompatActivity {
                     case 9:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1735,7 +1987,11 @@ public class GameActivity extends AppCompatActivity {
                     case -42:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1749,7 +2005,11 @@ public class GameActivity extends AppCompatActivity {
                     case -35:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1763,7 +2023,11 @@ public class GameActivity extends AppCompatActivity {
                     case -28:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1777,7 +2041,11 @@ public class GameActivity extends AppCompatActivity {
                     case -21:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1792,7 +2060,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1807,7 +2079,11 @@ public class GameActivity extends AppCompatActivity {
                     case -7:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1823,7 +2099,11 @@ public class GameActivity extends AppCompatActivity {
                     case 42:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1837,7 +2117,11 @@ public class GameActivity extends AppCompatActivity {
                     case 35:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1851,7 +2135,11 @@ public class GameActivity extends AppCompatActivity {
                     case 28:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1865,7 +2153,11 @@ public class GameActivity extends AppCompatActivity {
                     case 21:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1880,7 +2172,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1895,7 +2191,11 @@ public class GameActivity extends AppCompatActivity {
                     case 7:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1912,7 +2212,11 @@ public class GameActivity extends AppCompatActivity {
                     case -54:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1926,7 +2230,11 @@ public class GameActivity extends AppCompatActivity {
                     case -45:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1940,7 +2248,11 @@ public class GameActivity extends AppCompatActivity {
                     case -36:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1954,7 +2266,11 @@ public class GameActivity extends AppCompatActivity {
                     case -27:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1969,7 +2285,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -1984,7 +2304,11 @@ public class GameActivity extends AppCompatActivity {
                     case -9:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2015,8 +2339,6 @@ public class GameActivity extends AppCompatActivity {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
-                Log.e("EYHOSEL", gamesetList.get(i));
-
                 // subtract int selectedSquare to get the difference of i
                 int iDiff = i - selectedSquare;
 
@@ -2025,7 +2347,11 @@ public class GameActivity extends AppCompatActivity {
                     case 54:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2039,7 +2365,11 @@ public class GameActivity extends AppCompatActivity {
                     case 45:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2053,7 +2383,11 @@ public class GameActivity extends AppCompatActivity {
                     case 36:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2067,7 +2401,11 @@ public class GameActivity extends AppCompatActivity {
                     case 27:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2082,7 +2420,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2097,7 +2439,11 @@ public class GameActivity extends AppCompatActivity {
                     case 9:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2113,7 +2459,11 @@ public class GameActivity extends AppCompatActivity {
                     case -42:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2127,7 +2477,11 @@ public class GameActivity extends AppCompatActivity {
                     case -35:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2141,7 +2495,11 @@ public class GameActivity extends AppCompatActivity {
                     case -28:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2155,7 +2513,11 @@ public class GameActivity extends AppCompatActivity {
                     case -21:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2170,7 +2532,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2185,7 +2551,11 @@ public class GameActivity extends AppCompatActivity {
                     case -7:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2201,7 +2571,11 @@ public class GameActivity extends AppCompatActivity {
                     case 42:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2215,7 +2589,11 @@ public class GameActivity extends AppCompatActivity {
                     case 35:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2229,7 +2607,11 @@ public class GameActivity extends AppCompatActivity {
                     case 28:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2243,7 +2625,11 @@ public class GameActivity extends AppCompatActivity {
                     case 21:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2258,7 +2644,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2273,7 +2663,11 @@ public class GameActivity extends AppCompatActivity {
                     case 7:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2304,7 +2698,11 @@ public class GameActivity extends AppCompatActivity {
                     case -45:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2318,7 +2716,11 @@ public class GameActivity extends AppCompatActivity {
                     case -36:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2332,7 +2734,11 @@ public class GameActivity extends AppCompatActivity {
                     case -27:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2347,7 +2753,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2362,7 +2772,11 @@ public class GameActivity extends AppCompatActivity {
                     case -9:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2393,8 +2807,6 @@ public class GameActivity extends AppCompatActivity {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
-                Log.e("EYHOSEL", gamesetList.get(i));
-
                 // subtract int selectedSquare to get the difference of i
                 int iDiff = i - selectedSquare;
 
@@ -2404,7 +2816,11 @@ public class GameActivity extends AppCompatActivity {
                     case 54:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2418,7 +2834,11 @@ public class GameActivity extends AppCompatActivity {
                     case 45:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2432,7 +2852,11 @@ public class GameActivity extends AppCompatActivity {
                     case 36:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2446,7 +2870,11 @@ public class GameActivity extends AppCompatActivity {
                     case 27:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2461,7 +2889,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2476,7 +2908,11 @@ public class GameActivity extends AppCompatActivity {
                     case 9:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2492,7 +2928,11 @@ public class GameActivity extends AppCompatActivity {
                     case -42:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2506,7 +2946,11 @@ public class GameActivity extends AppCompatActivity {
                     case -35:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2520,7 +2964,11 @@ public class GameActivity extends AppCompatActivity {
                     case -28:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2534,7 +2982,11 @@ public class GameActivity extends AppCompatActivity {
                     case -21:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2549,7 +3001,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2564,7 +3020,11 @@ public class GameActivity extends AppCompatActivity {
                     case -7:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2580,7 +3040,11 @@ public class GameActivity extends AppCompatActivity {
                     case 42:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2594,7 +3058,11 @@ public class GameActivity extends AppCompatActivity {
                     case 35:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2608,7 +3076,11 @@ public class GameActivity extends AppCompatActivity {
                     case 28:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2622,7 +3094,11 @@ public class GameActivity extends AppCompatActivity {
                     case 21:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2637,7 +3113,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare + 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2652,7 +3132,11 @@ public class GameActivity extends AppCompatActivity {
                     case 7:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2669,7 +3153,11 @@ public class GameActivity extends AppCompatActivity {
                     case -54:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2683,7 +3171,11 @@ public class GameActivity extends AppCompatActivity {
                     case -45:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2697,7 +3189,11 @@ public class GameActivity extends AppCompatActivity {
                     case -36:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2711,7 +3207,11 @@ public class GameActivity extends AppCompatActivity {
                     case -27:
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2726,7 +3226,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldBlackOrFree(i) && (isFree(selectedSquare - 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2741,7 +3245,11 @@ public class GameActivity extends AppCompatActivity {
                     case -9:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2761,7 +3269,11 @@ public class GameActivity extends AppCompatActivity {
                     case 8:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2776,7 +3288,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2790,7 +3306,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2805,7 +3325,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2820,7 +3344,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2835,7 +3363,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2849,7 +3381,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40) && isFree(i - 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2863,7 +3399,11 @@ public class GameActivity extends AppCompatActivity {
                     case -8:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2878,7 +3418,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2892,7 +3436,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2907,7 +3455,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2922,7 +3474,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2937,7 +3493,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2951,7 +3511,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40) && isFree(i + 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2966,7 +3530,11 @@ public class GameActivity extends AppCompatActivity {
                     case 1:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2983,7 +3551,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -2998,7 +3570,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3014,7 +3590,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3030,7 +3610,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3046,7 +3630,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3061,7 +3649,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5) && isFree(i - 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3077,7 +3669,11 @@ public class GameActivity extends AppCompatActivity {
                     case -1:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3093,7 +3689,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3109,7 +3709,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3126,7 +3730,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3143,7 +3751,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3160,7 +3772,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3176,7 +3792,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldBlackOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5) && isFree(i + 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3208,8 +3828,6 @@ public class GameActivity extends AppCompatActivity {
                 final int localI = i;
                 final ImageView space = getSquareImageView(i);
 
-                Log.e("EYHOSEL", gamesetList.get(i));
-
                 // subtract int selectedSquare to get the difference of i
                 int iDiff = i - selectedSquare;
 
@@ -3219,7 +3837,11 @@ public class GameActivity extends AppCompatActivity {
                     case 63:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45) && isFree(selectedSquare + 54))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3235,7 +3857,11 @@ public class GameActivity extends AppCompatActivity {
                     case 54:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3249,7 +3875,11 @@ public class GameActivity extends AppCompatActivity {
                     case 45:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3263,7 +3893,11 @@ public class GameActivity extends AppCompatActivity {
                     case 36:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3277,7 +3911,11 @@ public class GameActivity extends AppCompatActivity {
                     case 27:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3292,7 +3930,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3307,7 +3949,11 @@ public class GameActivity extends AppCompatActivity {
                     case 9:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3323,7 +3969,11 @@ public class GameActivity extends AppCompatActivity {
                     case -48:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35) && isFree(selectedSquare - 42))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3337,7 +3987,11 @@ public class GameActivity extends AppCompatActivity {
                     case -42:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3351,7 +4005,11 @@ public class GameActivity extends AppCompatActivity {
                     case -35:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3365,7 +4023,11 @@ public class GameActivity extends AppCompatActivity {
                     case -28:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3379,7 +4041,11 @@ public class GameActivity extends AppCompatActivity {
                     case -21:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3394,7 +4060,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3409,7 +4079,11 @@ public class GameActivity extends AppCompatActivity {
                     case -7:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3425,7 +4099,11 @@ public class GameActivity extends AppCompatActivity {
                     case 48:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35) && isFree(selectedSquare + 42))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3439,7 +4117,11 @@ public class GameActivity extends AppCompatActivity {
                     case 42:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3453,7 +4135,11 @@ public class GameActivity extends AppCompatActivity {
                     case 35:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3467,7 +4153,11 @@ public class GameActivity extends AppCompatActivity {
                     case 28:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3481,7 +4171,11 @@ public class GameActivity extends AppCompatActivity {
                     case 21:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3496,7 +4190,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3511,7 +4209,11 @@ public class GameActivity extends AppCompatActivity {
                     case 7:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3528,7 +4230,11 @@ public class GameActivity extends AppCompatActivity {
                     case -63:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45) && isFree(selectedSquare - 54))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3542,7 +4248,11 @@ public class GameActivity extends AppCompatActivity {
                     case -54:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3556,7 +4266,11 @@ public class GameActivity extends AppCompatActivity {
                     case -45:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3570,7 +4284,11 @@ public class GameActivity extends AppCompatActivity {
                     case -36:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3584,7 +4302,11 @@ public class GameActivity extends AppCompatActivity {
                     case -27:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18))) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3599,7 +4321,11 @@ public class GameActivity extends AppCompatActivity {
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9))) {
 
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3614,7 +4340,11 @@ public class GameActivity extends AppCompatActivity {
                     case -9:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3634,7 +4364,11 @@ public class GameActivity extends AppCompatActivity {
                     case 8:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3649,7 +4383,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3663,7 +4401,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3678,7 +4420,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3693,7 +4439,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3708,7 +4458,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3722,7 +4476,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 8) && isFree(i - 16) && isFree(i - 24) && isFree(i - 32) && isFree(i - 40) && isFree(i - 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3736,7 +4494,11 @@ public class GameActivity extends AppCompatActivity {
                     case -8:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3751,7 +4513,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3765,7 +4531,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3780,7 +4550,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3795,7 +4569,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3810,7 +4588,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3824,7 +4606,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 8) && isFree(i + 16) && isFree(i + 24) && isFree(i + 32) && isFree(i + 40) && isFree(i + 48)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3839,7 +4625,11 @@ public class GameActivity extends AppCompatActivity {
                     case 1:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3856,7 +4646,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3871,7 +4665,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3887,7 +4685,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3903,7 +4705,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3919,7 +4725,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3934,7 +4744,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i - 1) && isFree(i - 2) && isFree(i - 3) && isFree(i - 4) && isFree(i - 5) && isFree(i - 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3950,7 +4764,11 @@ public class GameActivity extends AppCompatActivity {
                     case -1:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3966,7 +4784,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3982,7 +4804,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -3999,7 +4825,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4016,7 +4846,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4033,7 +4867,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4049,7 +4887,11 @@ public class GameActivity extends AppCompatActivity {
 
                         if (heldWhiteOrFree(i) && isFree(i + 1) && isFree(i + 2) && isFree(i + 3) && isFree(i + 4) && isFree(i + 5) && isFree(i + 6)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4092,7 +4934,11 @@ public class GameActivity extends AppCompatActivity {
                     case 8:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4108,7 +4954,11 @@ public class GameActivity extends AppCompatActivity {
                     case -8:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4124,7 +4974,11 @@ public class GameActivity extends AppCompatActivity {
                     case 1:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4142,7 +4996,11 @@ public class GameActivity extends AppCompatActivity {
                     case 9:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4160,7 +5018,11 @@ public class GameActivity extends AppCompatActivity {
                     case -9:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4178,7 +5040,11 @@ public class GameActivity extends AppCompatActivity {
                     case -1:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4196,7 +5062,11 @@ public class GameActivity extends AppCompatActivity {
                     case 7:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4214,7 +5084,11 @@ public class GameActivity extends AppCompatActivity {
                     case -7:
                         if (heldBlackOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldBlack(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4254,7 +5128,11 @@ public class GameActivity extends AppCompatActivity {
                     case 8:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4270,7 +5148,11 @@ public class GameActivity extends AppCompatActivity {
                     case -8:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4286,7 +5168,11 @@ public class GameActivity extends AppCompatActivity {
                     case 1:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4303,7 +5189,11 @@ public class GameActivity extends AppCompatActivity {
                     case 9:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4320,7 +5210,11 @@ public class GameActivity extends AppCompatActivity {
                     case -9:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4338,7 +5232,11 @@ public class GameActivity extends AppCompatActivity {
                     case -1:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4356,7 +5254,11 @@ public class GameActivity extends AppCompatActivity {
                     case 7:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4374,7 +5276,11 @@ public class GameActivity extends AppCompatActivity {
                     case -7:
                         if (heldWhiteOrFree(i)) {
                             if (space != null) {
-                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                if (heldWhite(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                                } else if (isFree(i)) {
+                                    space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                }
                                 space.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         moveGamepiece(localI);
@@ -4394,7 +5300,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    //Queen Fix
     private void wallQueenDiagonal(int i) {
 
         wallBishop(i);
@@ -4402,9 +5307,8 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    // if space in row directly ahead or behind not in same column as queen, make unavailable
-    //TODO: consider more elegant solution to walling off queen at sides
-
+    //Queen Fix
+    // TODO: ensure added selected squares are counted for check/checkmate check
     private void wallQueenHorizontal(int i) {
 
         if (selectedSquare <= 7 && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15))) {
@@ -4519,20 +5423,28 @@ public class GameActivity extends AppCompatActivity {
             final ImageView place = getSquareImageView(i);
             final int tempI = i;
 
-            if (playerColor.equals("white") && heldBlackOrFree(i)){
+            if (playerColor.equals("white") && heldBlackOrFree(i)) {
 
                 if (place != null) {
-                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    if (heldBlack(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                    } else if (isFree(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    }
                     place.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             moveGamepiece(tempI);
                         }
                     });
                 }
-            } else    if (playerColor.equals("black") && heldWhiteOrFree(i)){
+            } else if (playerColor.equals("black") && heldWhiteOrFree(i)) {
 
                 if (place != null) {
-                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    if (heldWhite(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                    } else if (isFree(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    }
                     place.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             moveGamepiece(tempI);
@@ -4548,20 +5460,28 @@ public class GameActivity extends AppCompatActivity {
             final ImageView place = getSquareImageView(i);
             final int tempI = i;
 
-            if (playerColor.equals("white") && heldBlackOrFree(i)){
+            if (playerColor.equals("white") && heldBlackOrFree(i)) {
 
                 if (place != null) {
-                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    if (heldBlack(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                    } else if (isFree(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    }
                     place.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             moveGamepiece(tempI);
                         }
                     });
                 }
-            } else    if (playerColor.equals("black") && heldWhiteOrFree(i)){
+            } else if (playerColor.equals("black") && heldWhiteOrFree(i)) {
 
                 if (place != null) {
-                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    if (heldWhite(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A6FF0000"));
+                    } else if (isFree(i)) {
+                        place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    }
                     place.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             moveGamepiece(tempI);
@@ -4577,8 +5497,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     //TODO: figure out how to stop board side crossing a cleaner way
-    // do not make squares which cross over the board available
-
+    // do not make squares which cross over the board available to knight
     private void wallKnight() {
 
         if ((selectedSquare == 0) || (selectedSquare == 1) || (selectedSquare == 8) || (selectedSquare == 9) || (selectedSquare == 16) || (selectedSquare == 17) || (selectedSquare == 24) || (selectedSquare == 25) || (selectedSquare == 32) || (selectedSquare == 33) || (selectedSquare == 40) || (selectedSquare == 41) || (selectedSquare == 48) || (selectedSquare == 49) || (selectedSquare == 56) || (selectedSquare == 57))
@@ -4892,6 +5811,16 @@ public class GameActivity extends AppCompatActivity {
 
     private Boolean isBlack(int i) {
         return ((i == 0) || (i == 2) || (i == 4) || (i == 6) || (i == 9) || (i == 11) || (i == 13) || (i == 15) || (i == 16) || (i == 18) || (i == 20) || (i == 22) || (i == 25) || (i == 27) || (i == 29) || (i == 31) || (i == 32) || (i == 34) || (i == 36) || (i == 38) || (i == 41) || (i == 43) || (i == 45) || (i == 47) || (i == 48) || (i == 50) || (i == 52) || (i == 54) || (i == 57) || (i == 59) || (i == 61) || (i == 63));
+    }
+
+    // Check if a square is either black or free
+    private Boolean heldBlack(int i) {
+        return ((gamesetList.get(i).equals("black_pawn")) || (gamesetList.get(i).equals("black_king")) || (gamesetList.get(i).equals("black_queen")) || (gamesetList.get(i).equals("black_bishop")) || (gamesetList.get(i).equals("black_knight")) || (gamesetList.get(i).equals("black_rook")));
+    }
+
+    // Check if a square is either black or free
+    private Boolean heldWhite(int i) {
+        return ((gamesetList.get(i).equals("white_pawn")) || (gamesetList.get(i).equals("white_king")) || (gamesetList.get(i).equals("white_queen")) || (gamesetList.get(i).equals("white_bishop")) || (gamesetList.get(i).equals("white_knight")) || (gamesetList.get(i).equals("white_rook")));
     }
 
     // Check if a square is either black or free
