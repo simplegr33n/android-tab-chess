@@ -306,27 +306,23 @@ public class LobbyActivity extends AppCompatActivity {
                         // only show games if there is a white and a black player
                         if (((dataSnapshot.getValue(InstanceGame.class).getBlack()) != null) && ((dataSnapshot.getValue(InstanceGame.class).getWhite()) != null)) {
 
+
+                            int temp = 1;
+
                             // if new entry a double of another match id, replace the older entry, otherwise add new
                             for (int i = 0; i < games.size(); i++) {
-
                                 if (games.get(i).getMatch_id().equals(dataSnapshot.getValue(InstanceGame.class).getMatch_id())) {
                                     games.set(i, dataSnapshot.getValue(InstanceGame.class));
+                                    temp = 0;
                                 }
-
                             }
 
+                            if (temp != 0) {
+                                mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
+                            } else {
+                                mAdapterActive.notifyDataSetChanged();
+                            }
 
-                            // This creates progressively more duplicates as the the opponent makes moves
-                            // And you are in the lobby. TODO: Fix
-                            mAdapterActive.add(dataSnapshot.getValue(InstanceGame.class));
-
-
-                            //            mAdapterActive.clear();
-                            //            mAdapterActive.notify();
-                            //            mAdapterActive.notifyDataSetChanged();
-                            //            mAdapterActive.setNotifyOnChange(true);
-                            //            mAdapterActive.insert(dataSnapshot.getValue(InstanceGame.class), i);
-                            //
 
 
                             if (games.size() > 0) {

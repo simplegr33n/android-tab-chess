@@ -68,8 +68,8 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
         // Set datetime for last play
         TextView lastMove = (TextView) convertView.findViewById(R.id.lastmove);
         if (game.getLast_play() != null) {
-            String date = DateFormat.format("dd-MM-yyyy", game.getLast_play()).toString();
-            String time = DateFormat.format("h:ss", game.getLast_play()).toString();
+            String date = DateFormat.format("MMMM dd, yyyy", game.getLast_play()).toString();
+            String time = DateFormat.format("hh:mm a", game.getLast_play()).toString();
 
             lastMove.setText("LAST PLAY: " + date + " " + time);
         } else {
