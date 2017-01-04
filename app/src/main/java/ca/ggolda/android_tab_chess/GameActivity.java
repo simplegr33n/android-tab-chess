@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
 
     private String userId;
     public static String username;
-    private String playerColor;
+    public static String playerColor;
 
 
     @Override

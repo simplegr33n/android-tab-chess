@@ -24,8 +24,30 @@ public class AdapterMessages extends ArrayAdapter<InstanceMessage> {
 
         TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
+        ImageView colorSide = (ImageView) convertView.findViewById(R.id.color_side);
+
+
 
         InstanceMessage message = getItem(position);
+
+        // Set color of icone next to name in chat
+        if (message.getName() != null) {
+            if (message.getName().equals(GameActivity.username)) {
+                if (GameActivity.playerColor.equals("white")) {
+                    colorSide.setImageResource(R.drawable.white_king);
+
+                } else if (GameActivity.playerColor.equals("black")) {
+                    colorSide.setImageResource(R.drawable.black_king);
+                }
+            } else {
+                if (GameActivity.playerColor.equals("white")) {
+                    colorSide.setImageResource(R.drawable.black_king);
+
+                } else if (GameActivity.playerColor.equals("black")) {
+                    colorSide.setImageResource(R.drawable.white_king);
+                }
+            }
+        }
 
         authorTextView.setText(message.getName());
         messageTextView.setText(message.getText());
