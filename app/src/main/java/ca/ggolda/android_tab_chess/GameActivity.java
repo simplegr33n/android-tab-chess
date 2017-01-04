@@ -63,7 +63,6 @@ public class GameActivity extends AppCompatActivity {
     private String playerColor;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -3217,6 +3216,22 @@ public class GameActivity extends AppCompatActivity {
                 // FOR DIAGONAL
                 switch (iDiff) {
                     // UP-RIGHT
+                    case 63:
+                        if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45) && isFree(selectedSquare + 54))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallQueenDiagonal(i);
+                        break;
+
+
+                    // UP-RIGHT
                     case 54:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 9) && isFree(selectedSquare + 18) && isFree(selectedSquare + 27) && isFree(selectedSquare + 36) && isFree(selectedSquare + 45))) {
                             if (space != null) {
@@ -3305,6 +3320,20 @@ public class GameActivity extends AppCompatActivity {
                         break;
 
                     // DOWN-RIGHT
+                    case -48:
+                        if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35) && isFree(selectedSquare - 42))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallQueenDiagonal(i);
+                        break;
+
                     case -42:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 7) && isFree(selectedSquare - 14) && isFree(selectedSquare - 21) && isFree(selectedSquare - 28) && isFree(selectedSquare - 35))) {
                             if (space != null) {
@@ -3393,6 +3422,20 @@ public class GameActivity extends AppCompatActivity {
                         break;
 
                     // UP-LEFT
+                    case 48:
+                        if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35) && isFree(selectedSquare + 42))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallQueenDiagonal(i);
+                        break;
+
                     case 42:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare + 7) && isFree(selectedSquare + 14) && isFree(selectedSquare + 21) && isFree(selectedSquare + 28) && isFree(selectedSquare + 35))) {
                             if (space != null) {
@@ -3482,6 +3525,20 @@ public class GameActivity extends AppCompatActivity {
 
 
                     // DOWN LEFT
+                    case -63:
+                        if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45) && isFree(selectedSquare - 54))) {
+                            if (space != null) {
+                                space.setBackgroundColor(Color.parseColor("#A600FF00"));
+                                space.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        moveGamepiece(localI);
+                                    }
+                                });
+                            }
+                        }
+                        wallQueenDiagonal(i);
+                        break;
+
                     case -54:
                         if (heldWhiteOrFree(i) && (isFree(selectedSquare - 9) && isFree(selectedSquare - 18) && isFree(selectedSquare - 27) && isFree(selectedSquare - 36) && isFree(selectedSquare - 45))) {
                             if (space != null) {
@@ -4338,7 +4395,6 @@ public class GameActivity extends AppCompatActivity {
 
 
     //Queen Fix
-    //TODO: create separate queen function instead of combining rook + bishop
     private void wallQueenDiagonal(int i) {
 
         wallBishop(i);
@@ -4346,9 +4402,176 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    // if space in row directly ahead or behind not in same column as queen, make unavailable
+    //TODO: consider more elegant solution to walling off queen at sides
+
     private void wallQueenHorizontal(int i) {
 
-        wallRook(i);
+        if (selectedSquare <= 7 && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15))) {
+
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+
+        }
+
+        if ((selectedSquare >= 8 && selectedSquare <= 15) && ((i == 0) || (i == 1) || (i == 2) || (i == 3) || (i == 4) || (i == 5) || (i == 6) || (i == 7) || (i == 16) || (i == 17) || (i == 18) || (i == 19) || (i == 20) || (i == 21) || (i == 22) || (i == 23))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+
+        if ((selectedSquare >= 16 && selectedSquare <= 23) && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15) || (i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+
+        if ((selectedSquare >= 24 && selectedSquare <= 31) && ((i == 16) || (i == 17) || (i == 18) || (i == 19) || (i == 20) || (i == 21) || (i == 22) || (i == 23) || (i == 32) || (i == 33) || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+
+        if ((selectedSquare >= 32 && selectedSquare <= 39) && ((i == 24) || (i == 25) || (i == 26) || (i == 27) || (i == 28) || (i == 29) || (i == 30) || (i == 31) || (i == 40) || (i == 41) || (i == 42) || (i == 43) || (i == 44) || (i == 45) || (i == 46) || (i == 47))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+
+        if ((selectedSquare >= 40 && selectedSquare <= 47) && ((i == 32) || (i == 33 || (i == 34) || (i == 35) || (i == 36) || (i == 37) || (i == 38) || (i == 39) || (i == 48) || (i == 49) || (i == 50) || (i == 51) || (i == 52) || (i == 53)) || (i == 54) || (i == 55))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+        if ((selectedSquare >= 48 && selectedSquare <= 56) && ((i == 40) || (i == 41) || (i == 42) || (i == 43) || (i == 44) || (i == 45) || (i == 46) || (i == 47) || (i == 56) || (i == 57) || (i == 58) || (i == 59) || (i == 60) || (i == 61) || (i == 62) || (i == 63))) {
+
+            if (i != selectedSquare + 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+        if ((selectedSquare >= 56 && selectedSquare <= 63) && ((i == 48) || (i == 49) || (i == 50) || (i == 51) || (i == 52) || (i == 53) || (i == 54) || (i == 55))) {
+            if (i != selectedSquare - 8) {
+                ImageView nulled = getSquareImageView(i);
+                nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                nulled.setOnClickListener(null);
+            }
+        }
+
+
+        if ((i == selectedSquare + 7) && (selectedSquare != 0) && (selectedSquare != 8) && (selectedSquare != 16) && (selectedSquare != 24) && (selectedSquare != 32) && (selectedSquare != 40) && (selectedSquare != 48) && (selectedSquare != 56)) {
+            final ImageView place = getSquareImageView(i);
+            final int tempI = i;
+
+            if (playerColor.equals("white") && heldBlackOrFree(i)){
+
+                if (place != null) {
+                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    place.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(tempI);
+                        }
+                    });
+                }
+            } else    if (playerColor.equals("black") && heldWhiteOrFree(i)){
+
+                if (place != null) {
+                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    place.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(tempI);
+                        }
+                    });
+                }
+            }
+
+
+        }
+
+        if ((i == selectedSquare - 7) && (selectedSquare != 7) && (selectedSquare != 15) && (selectedSquare != 23) && (selectedSquare != 31) && (selectedSquare != 39) && (selectedSquare != 47) && (selectedSquare != 55) && (selectedSquare != 63)) {
+            final ImageView place = getSquareImageView(i);
+            final int tempI = i;
+
+            if (playerColor.equals("white") && heldBlackOrFree(i)){
+
+                if (place != null) {
+                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    place.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(tempI);
+                        }
+                    });
+                }
+            } else    if (playerColor.equals("black") && heldWhiteOrFree(i)){
+
+                if (place != null) {
+                    place.setBackgroundColor(Color.parseColor("#A600FF00"));
+                    place.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            moveGamepiece(tempI);
+                        }
+                    });
+                }
+            }
+
+
+        }
 
     }
 
@@ -4437,7 +4660,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void wallKing(int i) {
 
-        if ((selectedSquare == 7) ||(selectedSquare == 15) || (selectedSquare == 23) || (selectedSquare == 31) || (selectedSquare == 39) || (selectedSquare == 47) || (selectedSquare == 55) || (selectedSquare == 63)) {
+        if ((selectedSquare == 7) || (selectedSquare == 15) || (selectedSquare == 23) || (selectedSquare == 31) || (selectedSquare == 39) || (selectedSquare == 47) || (selectedSquare == 55) || (selectedSquare == 63)) {
             if ((i == selectedSquare - 7)) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
@@ -4480,6 +4703,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
     }
+
 
     private void wallPawn(int i) {
 
@@ -4527,6 +4751,8 @@ public class GameActivity extends AppCompatActivity {
     private void wallRook(int i) {
 
         if (selectedSquare <= 7 && ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14) || (i == 15))) {
+
+
             if (i != selectedSquare + 8) {
                 ImageView nulled = getSquareImageView(i);
                 nulled.setBackgroundColor(Color.parseColor("#00FFFFFF"));
@@ -4695,7 +4921,6 @@ public class GameActivity extends AppCompatActivity {
 
             selectedUnit = "";
             selectedSquare = 99;
-
 
 
             // delete piece from previous location
@@ -5161,7 +5386,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
 
-               // setBoard();
+                // setBoard();
 
             }
 
@@ -5192,7 +5417,7 @@ public class GameActivity extends AppCompatActivity {
                     playerColor = "black";
                 }
 
-                Log.e("PLAYERCOLOR", ""+playerColor);
+                Log.e("PLAYERCOLOR", "" + playerColor);
 
                 declareBoard();
 
