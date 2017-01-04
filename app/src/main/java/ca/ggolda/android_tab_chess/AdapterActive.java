@@ -125,8 +125,8 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
                     vTextView.setVisibility(View.INVISIBLE);
                     nameLeftTextView.setText(game.getUsername_white() + "'s TURN");
 
-                    leftPawn.setImageResource(R.drawable.black_king);
-                    rightPawn.setImageResource(R.drawable.white_king);
+                    rightPawn.setImageResource(R.drawable.black_king);
+                    leftPawn.setImageResource(R.drawable.white_king);
 
                     break;
 
@@ -138,8 +138,8 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
                     nameLeftTextView.setBackgroundColor(Color.parseColor("#2D7A53"));
                     nameRightTextView.setText(game.getUsername_white());
 
-                    leftPawn.setImageResource(R.drawable.white_king);
-                    rightPawn.setImageResource(R.drawable.black_king);
+                    rightPawn.setImageResource(R.drawable.white_king);
+                    leftPawn.setImageResource(R.drawable.black_king);
 
                     break;
 
