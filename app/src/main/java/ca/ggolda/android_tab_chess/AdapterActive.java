@@ -133,9 +133,9 @@ public class AdapterActive extends ArrayAdapter<InstanceGame> {
                 case ("black"):
 
                     nameLeftTextView.setText("YOUR TURN");
-                    nameLeftTextView.setTextColor(Color.parseColor("#2D7A53"));
+                    nameLeftTextView.setTextColor(Color.parseColor("#FFFFFF"));
                     vTextView.setVisibility(View.VISIBLE);
-                    nameLeftTextView.setBackgroundColor(Color.parseColor("#2d4b7a"));
+                    nameLeftTextView.setBackgroundColor(Color.parseColor("#2D7A53"));
                     nameRightTextView.setText(game.getUsername_white());
 
                     leftPawn.setImageResource(R.drawable.white_king);
