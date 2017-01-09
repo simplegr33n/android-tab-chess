@@ -8,6 +8,7 @@ https://play.google.com/store/apps/details?id=ca.ggolda.android_tab_chess
 ## Screenshots
 
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0007.jpg" width="144">
+<img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0009.jpg" width="144">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0008.jpg" width="144">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/tablet0002.jpg" width="160">
 
@@ -19,8 +20,8 @@ https://play.google.com/store/apps/details?id=ca.ggolda.android_tab_chess
 * Castling
 * Add Friends
 * Creat conversations for Chat rather than using match_ids
-* Game Preview In Lobby
-* Spectator mode // Private - Public gamemode
+* Single Player / AI
+* Spectator mode & Private/Public gamemodes
 
 ### Major Bugs
 * Queen and bishop missing far diagonals in footprint
