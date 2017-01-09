@@ -1,4 +1,4 @@
-# <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/logos/pawn-icon-10.png" width="32"> Android Tab Chess
+# <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/logos/logo.png" width="32"> Android Tab Chess
 
 Check out the alpha on Google Play:
 https://play.google.com/store/apps/details?id=ca.ggolda.android_tab_chess
