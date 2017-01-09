@@ -12,8 +12,6 @@
         android:layout_height="match_parent">
 
         <!-- top bar -->
-
-
         <LinearLayout
             android:id="@+id/topbar"
             android:layout_width="wrap_content"
@@ -161,7 +159,6 @@
         </LinearLayout>
 
         <!-- listView -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -180,24 +177,22 @@
 
         </LinearLayout>
 
-
         <!-- make username! -->
-
         <LinearLayout
-            android:id="@+id/username_layout"
+            android:id="@+id/load_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#5cc6e4"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible"
+            tools:visibility="visible">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#8bd6eb"
+                android:layout_weight="1.5"
                 android:gravity="center">
 
                 <TextView
@@ -205,53 +200,128 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="ChessMATE"
+                    android:text="openChess"
                     android:textAlignment="center"
+                    android:textColor="#000"
                     android:textSize="64dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
 
-            <ImageView
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:src="@drawable/black_king" />
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/wait_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ProgressBar
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_margin="22dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:text="one moment..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/username_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="What's your name?"
+                        android:textColor="#FFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/username_edittext"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:background="#FFFFFF"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+                        android:hint="candidate"
+                        android:inputType="textFilter"
+                        android:maxLength="9"
+                        android:paddingBottom="8dp"
+                        android:textAlignment="center"
+                        android:textColorHint="#bdb6b6"
+                        android:textSize="44dp" />
 
 
-            <EditText
-                android:id="@+id/username_edittext"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="#FFFFFF"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
-                android:hint="(max: 7 char)"
-                android:inputType="textFilter"
-                android:maxLength="7"
-                android:paddingBottom="8dp"
-                android:textAlignment="center"
-                android:textColorHint="#bdb6b6"
-                android:textSize="44dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#FF0000"
+                        android:gravity="center"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:id="@+id/set_username"
+                            android:layout_width="240dp"
+                            android:layout_height="match_parent"
+                            android:background="#ffffff"
+                            android:padding="8dp"
+                            android:text="SET"
+                            android:textAlignment="center"
+                            android:textSize="28dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="(max length 9 characters)"
+                            android:textAlignment="center"
+                            android:textColor="#dddddd" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#8bd6eb"
+                android:layout_weight="0.5"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/set_username"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:background="#62ff6b"
-                    android:padding="8dp"
-                    android:text="SET USERNAME"
-                    android:textAlignment="center"
-                    android:textSize="28dp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 

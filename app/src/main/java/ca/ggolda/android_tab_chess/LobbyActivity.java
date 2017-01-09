@@ -134,14 +134,18 @@ public class LobbyActivity extends AppCompatActivity {
                 Log.e("USER", "GAME2uname " + dataSnapshot.getValue());
 
                 if (dataSnapshot.getValue() == null) {
+
+                    LinearLayout waitLayout = (LinearLayout) findViewById(R.id.wait_layout);
+                    waitLayout.setVisibility(View.GONE);
+
                     LinearLayout usernameLayout = (LinearLayout) findViewById(R.id.username_layout);
                     usernameLayout.setVisibility(View.VISIBLE);
 
                 }
 
                 if (dataSnapshot.getValue() != null) {
-                    LinearLayout usernameLayout = (LinearLayout) findViewById(R.id.username_layout);
-                    usernameLayout.setVisibility(View.GONE);
+                    LinearLayout loadLayout = (LinearLayout) findViewById(R.id.load_layout);
+                    loadLayout.setVisibility(View.GONE);
 
                 }
 
@@ -347,12 +351,7 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
 
-//              // TODO: probably remove, I don't think this does anything and I don't think I want it // TODO: 01/03/2017
                 Log.e("GAME", "Changed: " + dataSnapshot.getKey());
-//                Intent intent = new Intent(LobbyActivity.this, LobbyActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-//                        | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                startActivity(intent);
 
             }
 

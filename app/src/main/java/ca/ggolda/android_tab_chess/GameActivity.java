@@ -5299,7 +5299,6 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
     private void wallQueenDiagonal(int i) {
 
         wallBishop(i);
@@ -5495,7 +5494,6 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
     //TODO: figure out how to stop board side crossing a cleaner way
     // do not make squares which cross over the board available to knight
     private void wallKnight() {
@@ -5576,7 +5574,6 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
     private void wallKing(int i) {
 
         if ((selectedSquare == 7) || (selectedSquare == 15) || (selectedSquare == 23) || (selectedSquare == 31) || (selectedSquare == 39) || (selectedSquare == 47) || (selectedSquare == 55) || (selectedSquare == 63)) {
@@ -5623,7 +5620,6 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
     private void wallPawn(int i) {
 
         if ((selectedSquare == 15) || (selectedSquare == 23) || (selectedSquare == 31) || (selectedSquare == 39) || (selectedSquare == 47) || (selectedSquare == 55)) {
@@ -5662,7 +5658,6 @@ public class GameActivity extends AppCompatActivity {
 
         }
     }
-
 
     // if space in row directly ahead or behind not in same column as rook, make unavailable
     //TODO: consider more elegant solution to walling off rooks at sides
@@ -5780,7 +5775,6 @@ public class GameActivity extends AppCompatActivity {
 
     // if space is not the same color as that stood on by the bishop
     // make unavailable
-
     private void wallBishop(int i) {
         if (isWhite(selectedSquare)) {
             if (isBlack(i)) {
@@ -5798,7 +5792,6 @@ public class GameActivity extends AppCompatActivity {
         }
 
     }
-
 
     // Check if a square is free
     private Boolean isFree(int i) {
@@ -5832,7 +5825,6 @@ public class GameActivity extends AppCompatActivity {
     private Boolean heldWhiteOrFree(int i) {
         return ((gamesetList.get(i).equals("free_square")) || (gamesetList.get(i).equals("white_pawn")) || (gamesetList.get(i).equals("white_king")) || (gamesetList.get(i).equals("white_queen")) || (gamesetList.get(i).equals("white_bishop")) || (gamesetList.get(i).equals("white_knight")) || (gamesetList.get(i).equals("white_rook")));
     }
-
 
     private void moveGamepiece(int moveTo) {
 
@@ -5924,7 +5916,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // Clear backgrounds from selected / possible moves
-
     private void clearSelected() {
         for (int i = 0; i < 64; i++) {
             ImageView space = (ImageView) getSquareImageView(i);
@@ -5934,7 +5925,6 @@ public class GameActivity extends AppCompatActivity {
             selectedUnit = "";
         }
     }
-
 
     // to conveniently get ImageView from the int value of the square
     // TODO: there are definitely more clever/efficient ways to do this
