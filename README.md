@@ -1,12 +1,18 @@
 # <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/logos/logo.png" width="32"> Android Tab Chess
 
+## About
+A multiplayer chess game built in Android studio and using Firebase as a backend. A learning project -- quite inefficient code and as yet incomplete. Feel free to fork/pull requests welcome. 
+
+
 ## Screenshots
 
+
+<p align="center">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0007.jpg" width="144">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0009.jpg" width="144">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/phone0008.jpg" width="144">
 <img src="https://github.com/simplegr33n/android-tab-chess/blob/master/screenshots/tablet0002.jpg" width="160">
-
+</p>
 
 ## Todo
 * Check
